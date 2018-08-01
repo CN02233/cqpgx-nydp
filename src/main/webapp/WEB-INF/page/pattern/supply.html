@@ -1,0 +1,28 @@
+<#include "/WEB-INF/include/base.html" />
+<#macro head>
+<script src="${host}/static/lib/echarts/echarts-gl.js"></script>
+<script src="${host}/static/lib/echarts/map/world.js"></script>
+<script src="${host}/static/js/pattern/index.js"></script>
+</#macro>
+
+<#macro body>
+<@topbar title="能源格局">
+    <div class="btn-group" style="width:100px;">
+        <button class="btn btn-default barbtn" type="button" onclick="gourl('index')">储量</button>
+    </div>
+    <div class="btn-group" style="width:100px;">
+        <button class="btn btn-primary barbtn" type="button" onclick="gourl('supply')">供给</button>
+    </div>
+    <div class="btn-group" style="width:100px;">
+        <button class="btn btn-default barbtn" type="button" onclick="gourl('require')">需求</button>
+    </div>
+    <div class="btn-group" style="width:100px;">
+        <button class="btn btn-default barbtn" type="button" onclick="gourl('store')">库存</button>
+    </div>
+</@topbar>
+<div class="qmain container-fluid animated fadeInRight">
+    <div id="page" class="row qpage"  style="margin-top: 2px">
+
+    </div>
+</div>
+</#macro>

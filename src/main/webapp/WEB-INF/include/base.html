@@ -1,0 +1,31 @@
+<#macro topbar title>
+	<div class="qheader-title"><div class="qheader-title1">${title}</div><div id="qt2" class="qheader-title2">&nbsp;</div></div>
+	<div class="qheader btn-group">
+		<div class="btn-group" style="width:100px;">
+			<div class="qmenu-ico" onclick="$('.qmenu').toggle();"><i class="fa fa-list-ul"></i></div>
+		</div>
+		<div class="right" style="z-index:7">
+			<#nested />
+			<div class="btn-group" style="width:100px;">
+				<div class="qmenu-ico"><i class="fa fa-sign-out"></i></div>
+			</div>
+		</div>
+	</div>
+	<div class="qmenu" style="display:none;"><ul id="appmenu" class="sidenav"></ul></div>
+</#macro>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<#include "/WEB-INF/include/baseInclude.html" />
+	<#if head?exists>
+		<@head/>
+	</#if>
+</head>
+
+<body class="qbody">
+<#if body?exists>
+	<@body/>
+</#if>
+</body>
+</html>
