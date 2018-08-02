@@ -74,9 +74,8 @@
     color:#59ebe8;
     font-size:24px;
 }
-span.qs_title1:after{
-    content:"\\";
-    font-weight:100;
+.qs_title2{
+	font-size:16px;
 }
 .qs_body{
     width:100%;
