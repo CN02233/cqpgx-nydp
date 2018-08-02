@@ -1,3 +1,4 @@
+var xStyle = {color:'#fff'}, yStyle = {color:'#fff'};
 $(document).ready(function(){
     main();
     getdata('/pattern/index/chart1.json',chart1);
@@ -258,6 +259,7 @@ function chart2(data){
             name:data[1][i],
             type:'line',
             stack: '总量',
+            showSymbol: false,
             areaStyle: {normal: {}},
             data:data[2+i]||[]
         };
@@ -278,19 +280,34 @@ function chart2(data){
             show:false
         },
         grid:[{
-            top:0
+            top:20,
+            bottom:20,
+            containLabel: true
         }],
-        /*dataZoom: [{
-            show: true,
-            start:1,
-            end:10
-        }],*/
+        dataZoom: [{
+            type:'inside',
+            show: true
+        }],
         xAxis : [{
             type : 'category',
             boundaryGap : false,
+            axisLabel: {
+                rotate:45,
+                textStyle: {
+                    color: '#ffffff'
+                }
+            },
             data : data[0]
         }],
         yAxis : [{
+            splitLine:{
+                show:false
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#ffffff'
+                }
+            },
             type : 'value'
         }],
         series : seriesData

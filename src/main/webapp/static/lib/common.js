@@ -4,6 +4,9 @@ if (!String.prototype.trim) {
     };
 }
 
+var $chart = {
+};
+
 function gourl(url){
     location.href = url;
 }
