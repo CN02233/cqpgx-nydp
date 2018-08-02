@@ -81,10 +81,10 @@
     }
     function to_arrstr(o){
         if(o.length <= 0)
-            return '\"\"';
+            return '[\"\"]';
         var ss = '';
         for(var i =0; i < o.length; i++){
-            ss += ",\"" + o[i] + "\"";
+            ss += "," + to_var(o[i],i);
         }
         return '[' + ss.substr(1) + ']';
     }
@@ -102,17 +102,17 @@
         }
     }
     function to_var(v, i){
-        if(varMap[i]){
+        /*if(varMap[i]){
             if(varMap[i]=='n')
                 return v;
             else
                 return "\"" + v + "\"";
-        }
-        if(regNum.test(v)){
-            varMap[i] = 'n';
-            return v;
+        }*/
+        if(regNum.test(v.trim())){
+            //varMap[i] = 'n';
+            return v.trim();
         }else{
-            varMap[i] = 's';
+            //varMap[i] = 's';
             return "\"" + v + "\"";
         }
     }
@@ -139,19 +139,20 @@
         });
     }
     function cv_dataframe(a,s){
-        var ld = a[0].length, aa = [];
-        for(var q = 0; q < ld; q++)
-            aa[q]=[];
-        for(var i = 1, l= a.length;i<l;i++){
+        var ld = a[0].length, ii=[],aa = [];
+        for(var i = 1, l = a.length; i < l; i++){
             var o = a[i];
-            if(!o[0] && !o[1])
+            if(!o || (!o[0] && !o[1]))
                 continue;
-            for(var j = 0; j < ld; j++){
-                aa[j].push(o[j]);
-            }
+            aa[i-1]=[];
+            ii.push(a[i][0]);
+            for(var j = 1;j< o.length; j++)
+                aa[i-1].push(o[j]);
         }
+        a[0].splice(0,1);
         s.push(to_arrstr(a[0]));//column
-        //index,data
+        s.push(",\n",to_arrstr(ii));//index
+        //data
         for(var x = 0; x < aa.length; x++){
             s.push(',\n');
             s.push(to_arrstr(aa[x]));
