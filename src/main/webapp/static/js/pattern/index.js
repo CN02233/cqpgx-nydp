@@ -1,4 +1,3 @@
-var xStyle = {color:'#fff'}, yStyle = {color:'#fff'};
 $(document).ready(function(){
     main();
     getdata('/pattern/index/chart1.json',chart1);
@@ -321,5 +320,77 @@ function chart3(data){
 }
 
 function chart4(data){
-
+    var option = {
+        tooltip:{
+            formatter:'{b}: {c}%',
+        },
+        grid: {
+            bottom: 20,
+            top: 20,
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            data: data[1],
+            axisLine: {
+                lineStyle: {
+                    color: '#87CEFF'
+                }
+            },
+            axisLabel: {
+                rotate: 45,
+                interval: 0,
+                textStyle: {
+                    color: '#ffffff'
+                }
+            }
+        },
+        yAxis: [{
+            splitLine: {
+                show: false
+            },
+            type: 'value',
+            boundaryGap: [0, 0.01],
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#87CEFF'
+                }
+            },
+            axisLabel: {
+                formatter:'{value}%',
+                textStyle: {
+                    color: '#ffffff'
+                }
+            }
+        }],
+        series: [{
+            name: '探明储量',
+            type: 'bar',
+            barWidth: '40%',
+            itemStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(
+                        0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(40,161,255,1)'
+                        }, {
+                            offset: 0.4,
+                            color: 'rgba(40,161,255,0.5)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(40,161,255,0.1)'
+                        }]
+                    ),
+                    barBorderRadius: [3, 3, 0, 0]
+                }
+            },
+            z: -12,
+            data: data[2]
+        }]
+    };
+    var myChart = echarts.init($('#chart4')[0]);
+    myChart.setOption(option);
 }

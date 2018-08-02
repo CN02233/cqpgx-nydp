@@ -139,6 +139,9 @@
         });
     }
     function cv_dataframe(a,s){
+        if(a[0].length == 2){
+            return cv_dataframe2(a, s);
+        }
         var ld = a[0].length, ii=[],aa = [];
         for(var i = 1, l = a.length; i < l; i++){
             var o = a[i];
@@ -157,6 +160,22 @@
             s.push(',\n');
             s.push(to_arrstr(aa[x]));
         }
+    }
+    function cv_dataframe2(a, s){
+        var ld = a[0].length, ii=[],aa = [];
+        for(var i = 1, l = a.length; i < l; i++){
+            var o = a[i];
+            if(!o || (!o[0] && !o[1]))
+                continue;
+            ii.push(a[i][0]);
+            for(var j = 1;j< o.length; j++)
+                aa.push(o[j]);
+        }
+        a[0].splice(0,1);
+        s.push(to_arrstr(a[0]));//column
+        s.push(",\n",to_arrstr(ii));//index
+        s.push(',\n',to_arrstr(aa));//data
+        return true;
     }
     function cv_list(a,s){
         for(var i = 1, l = a.length; i < l; i++){
