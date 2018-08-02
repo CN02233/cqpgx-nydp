@@ -1,136 +1,144 @@
 $(document).ready(function(){
     main();
-    getdata('/pattern/index/jg1.json',jg1);
-    getdata('/pattern/index/pm2.json',pm2);
-    getdata('/pattern/index/ls3.json',ls3);
-    getdata('/pattern/index/zl4.json',zl4);
+    getdata('/pattern/index/chart1.json',chart1);
+    getdata('/pattern/index/chart2.json',chart2);
+    getdata('/pattern/index/chart3.json',chart3);
+    getdata('/pattern/index/chart4.json',chart4);
 });
 
 function main(){
-    /*var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#ffffff"];
-    var regionCss = [];
-    for(var i = 0; i < regionData.length; i++){
-        var c = '', v = regionData[i].value;
-        if(v >= 200)
-            c = color[0];
-        else if(v >= 100 & v < 200)
-            c = color[1];
-        else if(v > 60 & v < 100)
-            c = color[2];
-        else if(v > 30 & v < 61)
-            c = color[3];
-        else if(v > 0)
-            c = color[4];
-        else
-            c = color[5];
-        regionCss.push({
-            name:regionData[i].name,
-            itemStyle:{
-                color:c
+    getdata('/pattern/index/main.json', function(data){
+        var routes, regionData = [];
+        function getAirportCoord(idx) {
+            return [data.airports[idx][3], data.airports[idx][4]];
+        }
+        data.airports.forEach(function(item){
+            var b = false;
+            for(var i = 0; i <regionData.length; i++){
+                if(regionData[i].name == item[2]){
+                    regionData[i].value++;
+                    b = true;
+                    break;
+                }
+            }
+            if(!b){
+                regionData.push({"name":item[2], "value":0});
             }
         });
-    }
-    var data1 = data.airports.filter(function(datItem, index){
-        return index < 100;
-    }).map(function (dataItem) {
-        return {name:dataItem[1], value:[dataItem[3], dataItem[4], 0, Math.floor((Math.random()*10)+1)]}
-    });
+        routes = data.routes.map(function(airline) {
+            return [
+                getAirportCoord(airline[1]),
+                getAirportCoord(airline[2])
+            ];
+        });
 
-    var option = {
-        geo3D: {
-            map: 'world',
-            shading: 'color',
-            //environment: 'images/datav.jpg',
-            silent: true,
-            groundPlane: {
-                show: false
-            },
-            light: {
-                main: {
-                    intensity: 0
-                },
-                ambient: {
-                    intensity: 0
+        var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#ffffff"];
+        var regionCss = [];
+        for(var i = 0; i < regionData.length; i++){
+            var c = '', v = regionData[i].value;
+            if(v >= 200)
+                c = color[0];
+            else if(v >= 100 & v < 200)
+                c = color[1];
+            else if(v > 60 & v < 100)
+                c = color[2];
+            else if(v > 30 & v < 61)
+                c = color[3];
+            else if(v > 0)
+                c = color[4];
+            else
+                c = color[5];
+            regionCss.push({
+                name:regionData[i].name,
+                itemStyle:{
+                    color:c
                 }
+            });
+        }
+        var data1 = data.airports.filter(function(datItem, index){
+            return index < 100;
+        }).map(function (dataItem) {
+            return {name:dataItem[1], value:[dataItem[3], dataItem[4], 0, Math.floor((Math.random()*10)+1)]}
+        });
+
+        var option = {
+            geo3D: {
+                map: 'world',
+                shading: 'color',
+                silent: true,
+                groundPlane: {
+                    show: false
+                },
+                light: {
+                    main: {
+                        intensity: 0
+                    },
+                    ambient: {
+                        intensity: 0
+                    }
+                },
+                regions: regionCss,
+                viewControl: {
+                    distance: 100
+                },
+                itemStyle: {
+                    color: '#fff',
+                    borderWidth:0.3
+                },
+                regionHeight: 0.5
             },
-            regions: regionCss,
-            viewControl: {
-                distance: 50
-            },
-            itemStyle: {
-                color: '#fff',
-                borderWidth:0.3
-            },
-            regionHeight: 0.5
-        },
-        series: [{
-            type: 'scatter3D',
-            coordinateSystem: 'geo3D',
-            //blendMode: 'lighter',
-            symbolSize: function(item){
-                console.log(JSON.stringify(item));
-                return item[3];
-            },
-            itemStyle: {
-                color: 'rgb(253, 235, 59)',
-                opacity: 1
-            },
-            data: data1
-        },{
-            type: 'lines3D',
-            coordinateSystem: 'geo3D',
-            effect: {
-                show: true,
-                trailWidth: 2,
-                trailLength: 0.4
-            },
-            blendMode: 'lighter',
-            lineStyle: {
-                width: 0,
-                color: 'rgb(20, 15, 2)',
-                opacity: 1
-            },
-            data: routes
-        }]
-    };
-    var myChart = echarts.init($('#main')[0]);*/ 
+            series: [{
+                type: 'scatter3D',
+                coordinateSystem: 'geo3D',
+                //blendMode: 'lighter',
+                symbolSize: function(item){
+                    return item[3];
+                },
+                itemStyle: {
+                    color: 'rgb(253, 235, 59)',
+                    opacity: 1
+                },
+                data: data1
+            },{
+                type: 'lines3D',
+                coordinateSystem: 'geo3D',
+                effect: {
+                    show: true,
+                    trailWidth: 2,
+                    trailLength: 0.4
+                },
+                blendMode: 'lighter',
+                lineStyle: {
+                    width: 0,
+                    color: 'rgb(20, 15, 2)',
+                    opacity: 1
+                },
+                data: routes
+            }]
+        };
+        var myChart = echarts.init($('#main')[0]);
+        myChart.setOption(option);
+    });
 }
 
-function jg1(data){
-    data[0].itemStyle = {
-        "normal": {
-            "color": new echarts.graphic.LinearGradient(1, 0, 0, 1, [{
-                "offset": 0,
-                "color": '#f125ff'
-            }, {
-                "offset": 1,
-                "color": '#2dcbff'
-            }]),
-        }
-    };
-    data[1].itemStyle = {
-        "normal": {
-            color: 'rgba(0,0,0,0)'
-        }
-    };
+function chart1(data){
+    if(data==null||data.length<2)
+        return;
     var option = {
-        title: {
-            "text": 'PUE',
-            "x": '50%',
-            "y": '80%',
-            "textAlign": "center",
-            "textStyle": {
-                "fontWeight": 'normal',
-                "fontSize": 24,
-                "color": "#bcbfff",
+        legend:{
+            show:true,
+            bottom:0,
+            textStyle:{
+                color:'#fff'
             },
+            data:['欧佩克']
         },
         series: [{
             "name": ' ',
             "type": 'pie',
             "radius": ['68%', '70%'],
             "avoidLabelOverlap": false,
-            "startAngle": 225,
+            "startAngle": 90,
             "color": ["#fff", "transparent"],
             "hoverAnimation": false,
             "legendHoverLink": false,
@@ -157,12 +165,12 @@ function jg1(data){
                 "name": '',
                 "itemStyle": {
                     "normal": {
-                        "color": new echarts.graphic.LinearGradient(1, 0, 0, 1, [{
+                        "color": new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
                             "offset": 0,
-                            "color": '#f125ff'
+                            "color": '#ffffff'
                         }, {
-                            "offset": 1,
-                            "color": '#2dcbff'
+                            "offset": 0.2,
+                            "color": '#2874ff'
                         }]),
                     }
                 }
@@ -176,12 +184,12 @@ function jg1(data){
                 }
             }]
         }, {
-            "name": '',
+            "name": '欧佩克',
             "type": 'pie',
             "radius": ['50%', '68.1%'],
             "avoidLabelOverlap": false,
-            "startAngle": 225,
-            "color": ["#fff", "transparent"],
+            "startAngle": 90,
+            "color": ["#2874ff", "transparent"],
             "hoverAnimation": false,
             "legendHoverLink": false,
             "z": 10,
@@ -204,14 +212,13 @@ function jg1(data){
                 }
             },
             "data": [{
-                "name": '50',
+                "name": data[0].value,
                 "value": 37.5,
                 "label": {
                     "normal": {
                         "show": true,
-                        "formatter": '{b} %',
                         "textStyle": {
-                            "fontSize": 28,
+                            "fontSize": 24,
                             "fontWeight": "bold",
                             "color": "#5886f0",
                         },
@@ -220,12 +227,12 @@ function jg1(data){
                 },
                 "itemStyle": {
                     "normal": {
-                        "color": new echarts.graphic.LinearGradient(1, 0, 0, 1, [{
+                        "color": new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                             "offset": 0,
-                            "color": '#f125ff'
+                            "color": '#ffffff'
                         }, {
-                            "offset": 1,
-                            "color": '#2dcbff'
+                            "offset": 0.2,
+                            "color": '#2874ff'
                         }]),
                     }
                 }
@@ -238,22 +245,88 @@ function jg1(data){
                     }
                 }
             }]
-        }
-
-        ]
+        }]
     };
-    var myChart = echarts.init($('#jg1')[0]);
+    var myChart = echarts.init($('#chart1')[0]);
     myChart.setOption(option);
 }
 
-function pm2(data){
+function chart2(data){
+    var option = {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
+        },
+        legend: {
+            show:false
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : ['周一','周二','周三','周四','周五','周六','周日']
+            }
+        ],
+        yAxis : [{
+            type : 'value'
+        }],
+        series : [
+            {
+                name:'邮件营销',
+                type:'line',
+                stack: '总量',
+                areaStyle: {normal: {}},
+                data:[120, 132, 101, 134, 90, 230, 210]
+            },
+            {
+                name:'联盟广告',
+                type:'line',
+                stack: '总量',
+                areaStyle: {normal: {}},
+                data:[220, 182, 191, 234, 290, 330, 310]
+            },
+            {
+                name:'视频广告',
+                type:'line',
+                stack: '总量',
+                areaStyle: {normal: {}},
+                data:[150, 232, 201, 154, 190, 330, 410]
+            },
+            {
+                name:'直接访问',
+                type:'line',
+                stack: '总量',
+                areaStyle: {normal: {}},
+                data:[320, 332, 301, 334, 390, 330, 320]
+            },
+            {
+                name:'搜索引擎',
+                type:'line',
+                stack: '总量',
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'top'
+                    }
+                },
+                areaStyle: {normal: {}},
+                data:[820, 932, 901, 934, 1290, 1330, 1320]
+            }
+        ]
+    };
+    var myChart = echarts.init($('#chart2')[0]);
+    myChart.setOption(option);
+}
+
+function chart3(data){
 
 }
 
-function ls3(data){
-
-}
-
-function zl4(data){
+function chart4(data){
 
 }

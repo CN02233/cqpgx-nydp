@@ -11,9 +11,11 @@
     <div style="float:left;width:210px;height:400px;">
         <p></p>
         <div style="vertical-align: middle;text-align: left;">
-            <div style="text-align: left;width:200px;">
-                <label><input id="r1" name="r" type="radio" value="map" checked="checked" />[{name:'aa',value:33}]</label>
-                <label><input id="r2" name="r" type="radio" value="array" />[12, 34, 23]</label>
+            <div style="text-align: left;width:260px;">
+                <label><input id="r1" name="r" type="radio" value="map" checked="checked" />pie:[{name:'aa',value:33}]</label><br />
+                <label><input id="r2" name="r" type="radio" value="array" />scatter:[[12, 34,23]]</label><br />
+                <label><input id="r3" name="r" type="radio" value="dataframe" />line/bar:[{col},{ind},{dat}]</label><br />
+                <label><input id="r4" name="r" type="radio" value="list" />table:[{"aa":33}]</label>
             </div><br />
             <div style="height:50px;width:200px;text-align:center;"><button onclick="convert();">转换</button></div>
             <div style="height:50px;width:200px;text-align:center;">
@@ -77,6 +79,15 @@
         }
         return '';
     }
+    function to_arrstr(o){
+        if(o.length <= 0)
+            return '\"\"';
+        var ss = '';
+        for(var i =0; i < o.length; i++){
+            ss += ",\"" + o[i] + "\"";
+        }
+        return '[' + ss.substr(1) + ']';
+    }
     function to_valstr(o){
         if(o.length <= 0)
             return '\"\"';
@@ -106,22 +117,61 @@
         }
     }
     function cv_array(a, s){
+        var j = 0;
         a.forEach(function(o,i){
             if(!o[0])
                 return false;
-            if(i>0)
+            if(j>0)
                 s.push(',\n');
             s.push(to_valstr(o));
+            j++;
         });
     }
     function cv_map(a, s){
+        var j = 0;
         a.forEach(function(o,i){
             if(!o[0])
                 return false;
-            if(i>0)
+            if(j>0)
                 s.push(',\n');
             s.push('{\"name\":\"', o[0], '\",\"value\":', to_valstr(o), '}');
+            j++;
         });
+    }
+    function cv_dataframe(a,s){
+        var ld = a[0].length, aa = [];
+        for(var q = 0; q < ld; q++)
+            aa[q]=[];
+        for(var i = 1, l= a.length;i<l;i++){
+            var o = a[i];
+            if(!o[0] && !o[1])
+                continue;
+            for(var j = 0; j < ld; j++){
+                aa[j].push(o[j]);
+            }
+        }
+        s.push(to_arrstr(a[0]));//column
+        //index,data
+        for(var x = 0; x < aa.length; x++){
+            s.push(',\n');
+            s.push(to_arrstr(aa[x]));
+        }
+    }
+    function cv_list(a,s){
+        for(var i = 1, l = a.length; i < l; i++){
+            var o = a[i];
+            if(!o[0] && !o[1])
+                continue;
+            if(i>1)
+                s.push(',\n');
+            s.push('{');
+            for(var j =0; j < o.length; j++){
+                if(j>0)
+                    s.push(',');
+                s.push("\"" + a[0][j] + "\":" + "\"" + o[j] + "\"");
+            }
+            s.push('}');
+        }
     }
     function csv_arr(v, spt){
         var arr = [], spt = spt || /\t/;
