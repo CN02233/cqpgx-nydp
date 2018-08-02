@@ -1,7 +1,8 @@
 $(document).ready(function(){
+	main();
 	chart1();
 	chart2();
-	chart3();
+	getdata('/pattern/require/chart3.json',chart3);
 	chart4();
 	chart5();
 });
@@ -43,7 +44,7 @@ function chart1(){
             textStyle: {
                 color: '#fff',
                 fontWeight: 'normal',
-                fontSize: '12',
+                fontSize: 6
             },
         },
 		            data : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
@@ -69,7 +70,7 @@ function chart1(){
 		             textStyle: {
 		                 color: '#fff',
 		                 fontWeight: 'normal',
-		                 fontSize: '12',
+		                 fontSize: 6
 		             },
 		             formatter: '{value}%',
 		         },
@@ -122,6 +123,7 @@ function chart1(){
 		};
 	var myChart = echarts.init($('#chart1')[0]);
     myChart.setOption(option);
+    setH('chart1');
 }
 
 
@@ -201,7 +203,7 @@ function chart2(){
 	        },
 	        axisLabel: {
 	            color: '#fff',
-	            fontSize: 14
+	            fontSize: 6
 	        }
 	    }],
 	    yAxis: [{
@@ -216,7 +218,7 @@ function chart2(){
 	         },
 	         axisLabel: {
 	             color: '#fff',
-	             fontSize: 16
+	             fontSize: 6
 	         },
 	         splitLine: {
 	             show:false,
@@ -256,117 +258,146 @@ function chart2(){
 	};
 	var myChart = echarts.init($('#chart2')[0]);
     myChart.setOption(option);
+    setH('chart2');
 }
 
-function chart3(){
-	let country = ['不丹', '印度', '孟加拉国', '尼泊尔', '巴基斯坦', '斯里兰卡', '马尔代夫', '马来西亚', '缅甸', '泰国', '越南', '新加坡', '印度尼西亚'];
-
-	var foodImport = [11.47, 3.95, 17.42, 14.15, 13.08, 15.35, 22.35, 7.86, 8.3, 4.96, 8.68, 3.19, 8.46];
-	    var foodExport = [7.17, 8.26, 4.03, 20.2, 16.79, 26.89, 96.15, 11.9, 19.63, 13.23, 19.26, 1.98, 16.36];
+function chart3(data){
+	//alert(JSON.stringify(data));
+	var xData = data[1];
+	var lineData1 = data[2];
+	var lineData2 = data[3];
+	var barData = data[4];
 	    var option =  {
-	        "backgroundColor": "transparent",
-	        "title": {
-	            "left": "center",
-	            "show": false,
-	            "text": "各国家2010年食品进出口情况",
-	            "textStyle": {
-	                "color": "#000",
-	                "fontFamily": "Microsoft YaHei",
-	                "fontSize": 16,
-	                "fontStyle": "normal",
-	                "fontWeight": "bold"
-	            }
-	        },
 	        grid:{
-	            top:10,
-	            left:10,
-	            right:10,
-	            bottom:50,
+	            top:'7%',
+	            left:'10%',
+	            right:'10%',
+	            bottom:'25%',
 	        },
-	        "tooltip": {},
-	        "legend": {
-	            "show": true,
-	            "left": "right",
-	            "top": 'top',
-	            "data": ["食品进口", "食品出口"],
-	            textStyle:{
-	                color: '#00ccfe'
+	        tooltip: {
+	            trigger: 'axis',
+	            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+	                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
 	            }
 	        },
-	        "xAxis": [{
-	            "position": "bottom",
-	            "type": "category",
-	            'axisLabel': {
-	                'interval': 0,
+	        xAxis: [{
+	            position: "bottom",
+	            type: "category",
+	            axisLabel: {
+	                interval: 0,
 	                textStyle: {
-	                    color: '#00ccfe',
+	                    color: '#fff',
+	                    fontSize:6
 	                },
-	                'rotate': 30,
+	                rotate: 30,
 	            },
 	            axisLine:{
 	                lineStyle:{
-	                    color: '#00ccfe'
+	                    color: '#0177d4'
 	                }
 	            },
-	            "data": country,
+	            data: xData,
 	        }],
-	        "yAxis": [{
-	            "type": "value",
+	        yAxis: [{
+	            name: '',
+	            type: 'value',
+	            position: 'left',
+	            axisLabel: {
+	                textStyle: {
+	                    color: '#fff',
+	                    fontStyle: 'normal',
+	                    fontSize:6
+	                }
+	            },
 	            axisLine: {
-	                show: false
+	            	lineStyle:{
+	                    color: '#0177d4'
+	                }
 	            },
 	            axisTick: {
+	            	color: '#0177d4',
+	                show: true
+	            },
+	            splitLine: {
 	                show: false
+	            }
+	        },{
+	            type: "value",
+	            position: 'right',
+	            axisLine: {
+	            	lineStyle:{
+	                    color: '#fff'
+	                }
+	            },
+	            axisTick: {
+	                show: true
+	            },
+	            axisLine: {
+	            	lineStyle:{
+	                    color: '#0177d4'
+	                }
 	            },
 	            splitLine: {
 	                show: false
 	            },
 	            axisLabel: {
-	                show: false,
+	                show: true,
 	                formatter: function(param) {
 	                    return param + '%';
 	                },
 	                textStyle: {
-	                    color: '#00ccfe',
+	                    color: '#fff',
+	                    fontSize:6
 	                }
 	            }
 	        }],
-	        "series": [{
-	            "name": "食品出口",
-	            "type": "bar",
+	        series: [{
+	            name: "消费量",
+	            type: "bar",
+	            barWidth: '30%',
 	            itemStyle: {
 	                normal: {
-	                	 color: '#00FFFF'
+	                	 color: '#00FFFF',
+	                	 barBorderRadius: 50,
 	                },
 	            },
-	            "data": foodExport,
+	            data: barData,
 
 	        }, {
-	            "name": "食品进口",
-	            "type": "bar",
-	            itemStyle: {
-	                normal: {
-	                    color: '#6495ED'
-	                },
-	            },
-	            "data": foodImport,
-	        }, {
-	            "name": "食品进口差额比",
-	            "type": "line",
+	            name: "占比",
+	            type: "line",
+	            yAxisIndex: 1,
 	            itemStyle: {
 	                normal: {
 	                    color: '#E9DC37'
 	                },
 	            },
-	            "data": foodImport,
+	            data: lineData1,
+
+	        }, {
+	            name: "增长率",
+	            type: "line",
+	            yAxisIndex: 1,
+	            itemStyle: {
+	                normal: {
+	                    color: '#E9DC37'
+	                },
+	            },
+	            data: lineData2,
 
 	        }]
 	    }
 	var myChart = echarts.init($('#chart3')[0]);
     myChart.setOption(option);
+    setH('chart3');
 }
 
-function chart4(){option = {
+function chart4(){
+	
+}
+
+function main(){
+	option = {
 	    tooltip: {
 	        trigger: 'item',
 	        formatter: function (params) {
@@ -575,16 +606,15 @@ function chart4(){option = {
 	        }
 	    ]
 	};
-var myChart = echarts.init($('#map')[0]);
+var myChart = echarts.init($('#main')[0]);
 myChart.setOption(option);
+setH('main');
 }
 
 function chart5(){
-	var _boyActual = [100, 100, 120,12,13,14,15,13];
-	var _boyShould = [150, 150, 150,150,150,150,150,150];
-	var _bgshow=[100,100,100,100,100,100,100,100];
-	var _college = ['100万以内', '100-500万', '500-1000万', '1000-2000万', '2000-5000万','5000-100000万','10000万以上','其他'];
-
+	var barData1 = [100, 100, 120,12,13,-64,-75,-83];
+	var xData = ['1', '2', '3', '4', '5','6','7','8'];
+	var data1= [16, 16, 16,16,16,-16,-16,-16];
 	option = {
 		    tooltip: {
 	        show:"true",
@@ -594,8 +624,7 @@ function chart5(){
 	        }
 	        },
 	    
-	    xAxis: {
-	        type: 'value',
+	    xAxis: [{
 	        show: true,
 	        axisLine: {
 	            show: false
@@ -608,12 +637,43 @@ function chart5(){
 	        },
 	        splitLine: {
 	            show: false
-	        } ,
-	        data: _college
-	    },
-	    yAxis: [{
-	        type: 'category',
+	        },
+	        data: xData
+	    },{
+	        show: true,
+	        axisLine: {
+	            show: false
+	        },
+	        axisTick: {
+	            show: false
+	        },
+	        axisLabel: {
+	            show: false
+	        },
+	        splitLine: {
+	            show: false
+	        },
+	        data: xData
+	    }],
+	    yAxis: [ {
 	        position: "left",
+	        type: 'value',
+	        axisLine: {
+	            show: false
+	        },
+	        axisTick: {
+	            show: false
+	        },
+	        axisLabel: {
+	            show: true,
+	            color:'#fff'
+	        },
+	        splitLine: {
+	            show: false
+	        }
+	    },{
+	        position: "left",
+	        type: 'value',
 	        axisLine: {
 	            show: false
 	        },
@@ -628,42 +688,98 @@ function chart5(){
 	            show: false
 	        }
 	    }],
+	    grid: {
+	        left: '0%',
+	        right: '0%',
+	        bottom: '5%',
+	        top: '10%',
+	    },
 	    series: [{
 	        name: '',
 	        type: 'bar',
-	        barWidth: 6,
+	        barWidth: 2,
 			silent: false,
+			stack: "1",
 	        itemStyle: {
 	            normal: {
-	               barBorderRadius: 10,
-			       color: {
-							type: 'bar',
-							colorStops: [{
-							offset: 0,
-							color: '#00ffa8' // 0% 处的颜色
-							}, {
-									offset: 1,
-									color: '#ffea00' // 100% 处的颜色
-								}],
-								globalCoord: false, // 缺省为 false
-					},
-	              label: {
+	               //barBorderRadius: 10,
+			       color:new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+	                    offset: 0,
+	                    color: '#00b0ff'
+	                }, {
+	                    offset: 0.8,
+	                    color: '#7052f4'
+	                }], false),
+	             /* label: {
 	                show: true,
-	                position: 'insideRight',
+	                position: function(){
+	                	return 'top';
+	                },
 	                formatter: '   ',
 	                backgroundColor: '#fff',
-	                distance: 0,
+	                distance: -2,
 	                borderColor: 'rgba(255, 234, 0, 0.5)',
-	                borderWidth: 8,
+	                borderWidth: 6,
 	                borderRadius: 10,
 	                color: '#fff'
-	              }
+	              }*/
 	            }
 	        },
-	        data:[10,90,40,50,70,20,30,10]
-	        
+	        data: barData1
+	    },
+	    {
+	        name: '',
+	        type: 'bar',
+	        barWidth: 2,
+			silent: false,
+			stack: "1",
+	        itemStyle: {
+	            normal: {
+	            	color: 'rgba(222,222,222,0)'
+	            }
+	        },
+	        data: data1
+	    },{
+	        name: '',
+	        type: 'bar',
+	        barWidth: 9,
+	        yAxisIndex: 1,
+	        xAxisIndex: 1,
+			silent: false,
+			stack: "2",
+	        itemStyle: {
+	            normal: {
+	            	color: 'rgba(222,222,222,0)'
+	            }
+	        },
+	        data: barData1
+	    },
+	    {
+	        name: '',
+	        type: 'bar',
+	        AxisIndex: 1,
+	        xAxisIndex: 1,
+	        barWidth: 9,
+			silent: false,
+			stack: "2",
+	        itemStyle: {
+	            normal: {
+	            	color: '#7052f4',
+	            	barBorderRadius: 100
+	            }
+	        },
+	        data: data1
 	    }]
 	};
 	var myChart = echarts.init($('#chart5')[0]);
     myChart.setOption(option);
+    setH('chart5');
+}
+
+function setH(id){
+	var ids ='#'+ id+' div';
+	$(ids).css('height','100%');
+	$(ids).css('width','100%');
+	$('canvas').css('height','100%');
+	$('canvas').css('width','100%');
 }
