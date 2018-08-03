@@ -16,4 +16,15 @@
 			cache: false //关闭AJAX缓存
 		});
 	});
+	function initMenu(){
+		var dt = [{"name":"能源格局",url:"/pattern/index"},{"name":"能源市场",url:"/market/index"},{"name":"能源安全",url:"/security/index"},{"name":"运营平台",url:"/motion/index"}]
+		var str = [];
+		for(var i = 0; i <dt.length; i++){
+			str.push('<li>','<a href="${host}', dt[i].url,'"><i class="fa fa-fw fa-file-o"></i>', dt[i].name , '</a>','</li>');
+		}
+		$("#appmenu").html(str.join(''));
+	}
+	$(document).ready(function(){
+		initMenu();
+	});
 </script>

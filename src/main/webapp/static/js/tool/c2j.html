@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>CVS to Json</title>
     <script src="../../lib/jquery.min.js" type="text/javascript"></script>
+    <script src="../../lib/common.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -14,8 +15,9 @@
             <div style="text-align: left;width:260px;">
                 <label><input id="r1" name="r" type="radio" value="map" checked="checked" />pie:[{name:'aa',value:33}]</label><br />
                 <label><input id="r2" name="r" type="radio" value="array" />scatter:[[12, 34,23]]</label><br />
-                <label><input id="r3" name="r" type="radio" value="dataframe" />line/bar:[{col},{ind},{dat}]</label><br />
-                <label><input id="r4" name="r" type="radio" value="list" />table:[{"aa":33}]</label>
+                <label><input id="r3" name="r" type="radio" value="dataframe" />bar按行:[{col},{ind},{dat}]</label><br />
+                <label><input id="r4" name="r" type="radio" value="dataframeX" />bar按列:[{col},{ind},{dat}]</label><br />
+                <label><input id="r5" name="r" type="radio" value="list" />table:[{"aa":33}]</label>
             </div><br />
             <div style="height:50px;width:200px;text-align:center;"><button onclick="convert();">转换</button></div>
             <div style="height:50px;width:200px;text-align:center;">
@@ -29,11 +31,8 @@
 <script type="text/javascript">
     var regNum = /^(\-)?\d+(\.\d+)?$/, varMap = {};
     function save(){
+        convert();
         var v2 = $("#t2").val();
-        if(v2 == ''){
-            convert();
-            v2 = $("#t2").val();
-        }
         var fname = 'test.json';
         if (isIE()){
             var winname = window.open('', '_blank', 'top=10000');
@@ -108,6 +107,9 @@
             else
                 return "\"" + v + "\"";
         }*/
+        if(v==null&&v!==0){
+            return "\"\"";
+        }
         if(regNum.test(v.trim())){
             //varMap[i] = 'n';
             return v.trim();
@@ -157,8 +159,7 @@
         s.push(",\n",to_arrstr(ii));//index
         //data
         for(var x = 0; x < aa.length; x++){
-            s.push(',\n');
-            s.push(to_arrstr(aa[x]));
+            s.push(',\n', to_arrstr(aa[x]));
         }
     }
     function cv_dataframe2(a, s){
@@ -176,6 +177,29 @@
         s.push(",\n",to_arrstr(ii));//index
         s.push(',\n',to_arrstr(aa));//data
         return true;
+    }
+    function cv_dataframeX(a,s){
+        if(a[0].length == 2){
+            return cv_dataframe2(a, s);
+        }
+        var ld = a[0].length, ln = a.length, aa = [];
+        for(var p = 0; p < ld; p++)
+            aa[p]=[];//if(a[0][p])
+
+        ld = aa.length;
+        for(var i = 1; i < ln; i++){
+            var o = a[i];
+            if(!o || (!o[0] && !o[1]))
+                continue;
+            for(var j = 0;j< ld; j++)
+                aa[j].push(o[j]);
+        }
+        a[0].splice(0,1);
+        s.push(to_arrstr(a[0]));//column
+        //index//data
+        for(var x = 0; x < aa.length; x++){
+            s.push(',\n', to_arrstr(aa[x]));
+        }
     }
     function cv_list(a,s){
         for(var i = 1, l = a.length; i < l; i++){

@@ -17,8 +17,25 @@ public class MarketController  extends BaseController {
      * 首页
      * @return
      */
-	  @RequestMapping
-	    public String index(ModelMap map){
+	@RequestMapping
+	public String index(ModelMap map){
 	        return "page/market/index";
 	    }
+
+	/**
+	 * 产品动态
+	 * @return
+	 */
+	@RequestMapping
+	public String price(ModelMap map){
+		return "page/market/price";
+	}
+	/**
+	 * 金融市场
+	 * @return
+	 */
+	@RequestMapping
+	public String finance(ModelMap map){
+		return "page/market/finance";
+	}
 }
