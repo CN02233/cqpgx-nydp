@@ -15,3 +15,4 @@ html,body {
 .w1,.w2,.w3,.w4,.w5,.w6,.w7,.w8,.w9.w10,.w11,.w12{float:left;}
 div.h1,div.h2,div.h3,div.h4,div.h5,div.h6,div.h7{margin-top:0px;margin-bottom:0px;}
 /***bootstrap fix***/
+.btn{padding: 4px 10px;}

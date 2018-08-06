@@ -7,36 +7,20 @@ $(document).ready(function(){
 });
 
 function main(){
+    var cnMap = {};
+    for(var n in _country){
+        cnMap[_country[n]] = n;
+    }
     getdata('/pattern/index/main.json', function(data){
-        var routes, regionData = [];
-        function getAirportCoord(idx) {
-            return [data.airports[idx][3], data.airports[idx][4]];
+        var db = data.country;
+        for(var i = 0; i < db.length; i++){
+            db[i].name = _country[db[i].name];
         }
-        data.airports.forEach(function(item){
-            var b = false;
-            for(var i = 0; i <regionData.length; i++){
-                if(regionData[i].name == item[2]){
-                    regionData[i].value++;
-                    b = true;
-                    break;
-                }
-            }
-            if(!b){
-                regionData.push({"name":item[2], "value":0});
-            }
-        });
-        routes = data.routes.map(function(airline) {
-            return [
-                getAirportCoord(airline[1]),
-                getAirportCoord(airline[2])
-            ];
-        });
-
-        var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#ffffff"];
-        var regionCss = [];
+        var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#b9e1f2", "#ffffff"];
+        /*var regionCss = [];
         for(var i = 0; i < regionData.length; i++){
             var c = '', v = regionData[i].value;
-            if(v >= 200)
+            if(v < 1)
                 c = color[0];
             else if(v >= 100 & v < 200)
                 c = color[1];
@@ -54,14 +38,55 @@ function main(){
                     color:c
                 }
             });
-        }
-        var data1 = data.airports.filter(function(datItem, index){
-            return index < 100;
-        }).map(function (dataItem) {
-            return {name:dataItem[1], value:[dataItem[3], dataItem[4], 0, Math.floor((Math.random()*10)+1)]}
+        }*/
+        var data1 = db.filter(function(datItem, index){
+            return index < 2;
+        }).map(function(d,i){
+            return {"name": d.name, value: [data.top[i][0], data.top[i][1], 0, d.value]};
         });
 
         var option = {
+            visualMap: {
+                type: 'piecewise',
+                splitNumber: 6,
+                inverse: true,
+                seriesIndex:0,
+                pieces: [{
+                    min: 0,
+                    max: 0.99,
+                    label:'<10',
+                    color: '#fff'
+                }, {
+                    min: 1,
+                    max: 1.99,
+                    label:'10-20',
+                    color: '#b4e0f3'
+                }, {
+                    min: 2,
+                    max: 4.99,
+                    label:'20-50',
+                    color: '#70b4eb'
+                }, {
+                    min: 5,
+                    max: 9.99,
+                    label:'50-100',
+                    color: '#1482e5'
+                }, {
+                    min: 10,
+                    max: 29.99,
+                    label:'100-300',
+                    color: '#1c3fbf'
+                }, {
+                    min: 30,
+                    label:'>300',
+                    color: '#070093'
+                }],
+                left: 'left',
+                top: 'bottom',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
             geo3D: {
                 map: 'world',
                 shading: 'color',
@@ -77,7 +102,7 @@ function main(){
                         intensity: 0
                     }
                 },
-                regions: regionCss,
+                //regions: regionCss,
                 viewControl: {
                     distance: 100
                 },
@@ -88,33 +113,41 @@ function main(){
                 regionHeight: 0.5
             },
             series: [{
+                type:'map3D',
+                map: 'world',
+                shading: 'color',
+                label:{
+                    textStyle:{
+                        distance:10,
+                        color:'#2874ff'
+                    },
+                    formatter:function(o){
+                        if(o.value)
+                            return cnMap[o.name] + " - " + o.value * 10 + "亿吨";
+                        return cnMap[o.name];
+                    }
+                },
+                itemStyle: {
+                    color: '#fff',
+                    borderWidth:0.3
+                },
+                viewControl: {
+                    distance: 100
+                },
+                regionHeight: 0.5,
+                data:db
+            }/*,{
                 type: 'scatter3D',
                 coordinateSystem: 'geo3D',
-                //blendMode: 'lighter',
                 symbolSize: function(item){
-                    return item[3];
+                    return 20;
                 },
                 itemStyle: {
                     color: 'rgb(253, 235, 59)',
                     opacity: 1
                 },
                 data: data1
-            },{
-                type: 'lines3D',
-                coordinateSystem: 'geo3D',
-                effect: {
-                    show: true,
-                    trailWidth: 2,
-                    trailLength: 0.4
-                },
-                blendMode: 'lighter',
-                lineStyle: {
-                    width: 0,
-                    color: 'rgb(20, 15, 2)',
-                    opacity: 1
-                },
-                data: routes
-            }]
+            }*/]
         };
         var myChart = echarts.init($('#main')[0]);
         myChart.setOption(option);
@@ -127,7 +160,7 @@ function chart1(data){
     var option = {
         legend:{
             show:true,
-            bottom:0,
+            bottom:5,
             textStyle:{
                 color:'#fff'
             },
@@ -161,7 +194,7 @@ function chart1(data){
                 }
             },
             "data": [{
-                "value": 75,
+                "value": 85,
                 "name": '',
                 "itemStyle": {
                     "normal": {
@@ -175,7 +208,7 @@ function chart1(data){
                     }
                 }
             }, {
-                "value": 25,
+                "value": 15,
                 "name": '',
                 "itemStyle": {
                     "normal": {
@@ -212,8 +245,8 @@ function chart1(data){
                 }
             },
             "data": [{
-                "name": data[0].value,
-                "value": 37.5,
+                "name": data[0].value + ' %',
+                "value": data[0].value,
                 "label": {
                     "normal": {
                         "show": true,
@@ -238,7 +271,7 @@ function chart1(data){
                 }
             }, {
                 "name": '',
-                "value": 62.5,
+                "value": 100-data[0].value,
                 "itemStyle": {
                     "normal": {
                         color: 'rgba(0,0,0,0)'
@@ -321,36 +354,33 @@ function chart3(data){
             label: {
                 show: true,
                 color: '#fff',
-                fontSize: 18,
+                fontSize: 12,
             },
             labelLine: {
-                //smooth: 0.2,
-                length: 40,
-                length2: 40
+                length: 15,
+                length2: 15
             },
         }
     };
-
     var labelShow = {
         show: true,
         color: '#fff',
-        fontSize: 15,
+        fontSize: 13,
         formatter: [
             '{b| {b} }',
-            '占比：{d| {d}% }'
+            '({d| {d}% })'
         ].join('\n'),
         rich: {
             d: {
-                fontSize: 15,
+                fontSize: 12,
                 color: '#fff'
             },
             b: {
-                fontSize: 18,
+                fontSize: 14,
                 color: '#fff'
             },
         }
     };
-
     var placeHolderStyle = {
         normal: {
             color: 'rgba(0,0,0,0)',
@@ -365,8 +395,44 @@ function chart3(data){
             color: 'rgba(0,0,0,0)'
         }
     };
+    var seriesData = [], x0 = 360, x1 = 0, rs = [[60,62],[35,60],[60,70],[46,56],[35,55],[35,55]], sa = [121,59.33,19.94,341.25,307.08, 276.60];
+    data.forEach(function(d, i){
+        var x = 3.6 * d.value;
+        x0 = sa[i];
+        x1 = 360 - x - x0;
+        var arr = [{
+            value: x0,
+            name: '',
+            itemStyle: placeHolderStyle
+        }, {
+            value: x,
+            name: d.name,
+            label: labelShow,
+        }, {
+            value:x1,
+            name: '',
+            itemStyle: placeHolderStyle
+        }];
+        var o = {
+            name: 'Line '+(i+1),
+            type: 'pie',
+            clockWise: false,
+            radius: rs[i],
+            itemStyle: dataStyle,
+            hoverAnimation: false,
+            data:arr
+        };
+        seriesData.push(o);
+    });
+    seriesData.push({
+        type: 'bar',
+        data: [0],
+        coordinateSystem: 'polar',
+        name: '06a',
+        stack: 'a'
+    });
     var option = {
-        color: ['#2078d1', '#8a00ec', '#ff00f3', '#fb0065', '#ff941b'],
+        color: ['#2078d1', '#8a00ec', '#ff00f3', '#fb0065', '#ff941b', '#ac9857'],
         tooltip: {
             show: true,
             formatter: function(param){
@@ -412,141 +478,12 @@ function chart3(data){
         },
         polar: {
             center: ['50%', '50%'],
-            radius: 70,
+            radius: 75,
         },
         legend: {
             show:false
         },
-        series: [{
-            name: 'Line 1',
-            type: 'pie',
-            clockWise: false,
-            radius: [50, 55],
-            itemStyle: dataStyle,
-            hoverAnimation: false,
-            data: [{
-                value: 260,
-                name: '',
-                itemStyle: placeHolderStyle
-            }, {
-                value: 100,
-                name: '伊拉克',
-                label: labelShow,
-            },
-            {
-                value: 0,
-                name: '',
-                itemStyle: placeHolderStyle
-            }]
-        },
-            {
-                name: 'Line 2',
-                type: 'pie',
-                clockWise: false,
-                radius: [35, 50],
-                itemStyle: dataStyle,
-                hoverAnimation: false,
-
-                data: [{
-                    value: 190,
-                    name: '',
-                    itemStyle: placeHolderStyle
-                },
-                    {
-                        value: 70,
-                        name: '委内瑞拉',
-                        label: labelShow,
-                    },
-                    {
-                        value: 100,
-                        name: '',
-                        itemStyle: placeHolderStyle
-                    }
-                ]
-            },
-            {
-                name: 'Line 3',
-                type: 'pie',
-                clockWise: false,
-                hoverAnimation: false,
-                radius: [60, 65],
-                itemStyle: dataStyle,
-
-                data: [{
-                    value: 130,
-                    name: '',
-                    itemStyle: placeHolderStyle
-                },
-                    {
-                        value: 60,
-                        name: '美国',
-                        label: labelShow,
-                    },
-                    {
-                        value: 170,
-                        name: '',
-                        itemStyle: placeHolderStyle
-                    }
-                ]
-            },
-            {
-                name: 'Line 4',
-                type: 'pie',
-                clockWise: false,
-                hoverAnimation: false,
-                radius: [55, 65],
-                itemStyle: dataStyle,
-                data: [{
-                    value: 40,
-                    name: '',
-                    itemStyle: placeHolderStyle
-                },
-                    {
-                        value: 90,
-                        name: '伊朗',
-                        label: labelShow,
-                    },
-                    {
-                        value: 230,
-                        name: '',
-                        itemStyle: placeHolderStyle
-                    }
-                ]
-            },
-            {
-                name: 'Line 5',
-                type: 'pie',
-                clockWise: false,
-                hoverAnimation: false,
-                radius: [30, 40],
-                itemStyle: dataStyle,
-
-                data: [{
-                    value: 0,
-                    name: '',
-                    itemStyle: placeHolderStyle
-                },
-                    {
-                        value: 40,
-                        name: '中国',
-                        label: labelShow,
-                    },
-                    {
-                        value: 320,
-                        name: '',
-                        itemStyle: placeHolderStyle
-                    }
-                ]
-            },
-            {
-                type: 'bar',
-                data: [0],
-                coordinateSystem: 'polar',
-                name: '06a',
-                stack: 'a'
-            },
-
-        ]
+        series: seriesData
     };
     var myChart = echarts.init($('#chart3')[0]);
     myChart.setOption(option);

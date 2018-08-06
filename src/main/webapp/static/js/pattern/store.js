@@ -9,7 +9,91 @@ $(document).ready(function(){
 });
 
 function main(){
-
+    getdata('/pattern/store/main.json', function(data) {
+        var option = {
+            title:{
+                text:'世界库存变动',
+                subtext:'单位：千吨',
+                textStyle:{
+                    fontSize:16,
+                    color:'#fff'
+                },
+                top:20
+            },
+            geo: {
+                show: true,
+                map: 'world',
+                label: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: false,
+                    }
+                },
+                roam: true,
+                itemStyle: {
+                    normal: {
+                        areaColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                offset: 0,
+                                color: 'rgba(21, 127, 237,1)'
+                            }, {
+                                offset: 0.4,
+                                color: 'rgba(21, 127, 237,0.5)'
+                            }, {
+                                offset: 1,
+                                color: 'rgba(21, 127, 237,0.1)'
+                            }]
+                        ),//'rgba(21, 127, 237, 0.5)',//'transparent',
+                        //borderColor: '#3fdaff',
+                        borderWidth: 0,
+                        shadowColor: 'rgba(63, 218, 255, 0.3)',
+                        shadowBlur: 10
+                    },
+                    emphasis: {
+                        areaColor: '#2B91B7',
+                    }
+                }
+            },
+            series : [
+                {
+                    name: '世界库存变动',
+                    type: 'effectScatter',
+                    coordinateSystem: 'geo',
+                    data: data,
+                    symbolSize: function (val) {
+                        if(val[2] < 1100)
+                            return 15;
+                        else if(val[2] < 10000)
+                            return 15 + val[2] / 500;
+                        return 25 + val[2] / 2000;
+                    },
+                    showEffectOn: 'render',
+                    rippleEffect: {
+                        brushType: 'stroke'
+                    },
+                    hoverAnimation: true,
+                    label: {
+                        normal: {
+                            formatter: function(o){ return o.name + ' - ' + o.value[2]},
+                            position: 'left',
+                            show: true
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#F4E925',
+                            shadowBlur: 10,
+                            shadowColor: '#05C3F9'
+                        }
+                    },
+                    zlevel: 1
+                },
+            ]
+        };
+        var myChart = echarts.init($('#main')[0]);
+        myChart.setOption(option);
+    });
 }
 
 function chart1(data){
@@ -200,7 +284,7 @@ function chart3(data){
                             offset: 0,
                             color: 'rgba(196,171,85,1)'
                         }, {
-                            offset: 0.4,
+                            offset: 0.7,
                             color: 'rgba(196,171,85,0.5)'
                         }, {
                             offset: 1,

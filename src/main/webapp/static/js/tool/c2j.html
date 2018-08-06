@@ -14,10 +14,11 @@
         <div style="vertical-align: middle;text-align: left;">
             <div style="text-align: left;width:260px;">
                 <label><input id="r1" name="r" type="radio" value="map" checked="checked" />pie:[{name:'aa',value:33}]</label><br />
-                <label><input id="r2" name="r" type="radio" value="array" />scatter:[[12, 34,23]]</label><br />
+                <label><input id="r2" name="r" type="radio" value="data" />scatter:[[12, 34,23]]</label><br />
                 <label><input id="r3" name="r" type="radio" value="dataframe" />bar按行:[{col},{ind},{dat}]</label><br />
                 <label><input id="r4" name="r" type="radio" value="dataframeX" />bar按列:[{col},{ind},{dat}]</label><br />
-                <label><input id="r5" name="r" type="radio" value="list" />table:[{"aa":33}]</label>
+                <label><input id="r5" name="r" type="radio" value="list" />table:[{"aa":33}]</label><br />
+                <label><input id="r6" name="r" type="radio" value="array" />array:[['aa','bb'],[11,2]]</label>
             </div><br />
             <div style="height:50px;width:200px;text-align:center;"><button onclick="convert();">转换</button></div>
             <div style="height:50px;width:200px;text-align:center;">
@@ -118,7 +119,7 @@
             return "\"" + v + "\"";
         }
     }
-    function cv_array(a, s){
+    function cv_data(a, s){
         var j = 0;
         a.forEach(function(o,i){
             if(!o[0])
@@ -137,6 +138,15 @@
             if(j>0)
                 s.push(',\n');
             s.push('{\"name\":\"', o[0], '\",\"value\":', to_valstr(o), '}');
+            j++;
+        });
+    }
+    function cv_array(a, s){
+        var j = 0;
+        a.forEach(function(o,i){
+            if(j>0)
+                s.push(',\n');
+            s.push(to_arrstr(o));
             j++;
         });
     }

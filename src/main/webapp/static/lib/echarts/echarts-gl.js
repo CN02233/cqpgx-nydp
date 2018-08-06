@@ -16294,6 +16294,13 @@ function _default(seriesType, defaultSymbolType, legendSymbol) {
           var params = seriesModel.getDataParams(idx);
           data.setItemVisual(idx, 'symbolSize', symbolSize(rawValue, params));
         }
+        try{
+        	if(data.hasItemVisual.symbolSize)
+        		data._layout.points[idx*3+1] = data._layout.points[idx*3+1]
+        	 	+ data._itemVisuals[idx].symbolSize / 2 / (data.hostModel.coordinateSystem.altitudeAxis._extent[1]);
+        }catch(e){
+        	console.log('my error about symbolSize');
+        }
 
         if (data.hasItemOption) {
           var itemModel = data.getItemModel(idx);
@@ -25038,7 +25045,7 @@ module.exports = _default;
 
 var ArrayCtor = typeof Float32Array === 'undefined' ? Array : Float32Array;
 /**
- * 创建一个向量
+ * 创建一个向酿
  * @param {number} [x=0]
  * @param {number} [y=0]
  * @return {Vector2}
@@ -25073,7 +25080,7 @@ function copy(out, v) {
   return out;
 }
 /**
- * 克隆一个向量
+ * 克隆一个向酿
  * @param {Vector2} v
  * @return {Vector2}
  */
@@ -25113,7 +25120,7 @@ function add(out, v1, v2) {
   return out;
 }
 /**
- * 向量缩放后相加
+ * 向量缩放后相刿
  * @param {Vector2} out
  * @param {Vector2} v1
  * @param {Vector2} v2
@@ -25213,7 +25220,7 @@ function scale(out, v, s) {
   return out;
 }
 /**
- * 向量归一化
+ * 向量归一势
  * @param {Vector2} out
  * @param {Vector2} v
  */
@@ -25233,7 +25240,7 @@ function normalize(out, v) {
   return out;
 }
 /**
- * 计算向量间距离
+ * 计算向量间距礿
  * @param {Vector2} v1
  * @param {Vector2} v2
  * @return {number}
@@ -25298,7 +25305,7 @@ function applyTransform(out, v, m) {
   return out;
 }
 /**
- * 求两个向量最小值
+ * 求两个向量最小便
  * @param  {Vector2} out
  * @param  {Vector2} v1
  * @param  {Vector2} v2
@@ -25311,7 +25318,7 @@ function min(out, v1, v2) {
   return out;
 }
 /**
- * 求两个向量最大值
+ * 求两个向量最大便
  * @param  {Vector2} out
  * @param  {Vector2} v1
  * @param  {Vector2} v2
@@ -25355,7 +25362,7 @@ exports.max = max;
 /***/ (function(module, exports) {
 
 /**
- * 3x2矩阵操作类
+ * 3x2矩阵操作篿
  * @exports zrender/tool/matrix
  */
 var ArrayCtor = typeof Float32Array === 'undefined' ? Array : Float32Array;
@@ -25370,7 +25377,7 @@ function create() {
   return out;
 }
 /**
- * 设置矩阵为单位矩阵
+ * 设置矩阵为单位矩閿
  * @param {Float32Array|Array.<number>} out
  */
 
@@ -25488,7 +25495,7 @@ function scale(out, a, v) {
   return out;
 }
 /**
- * 求逆矩阵
+ * 求逆矩閿
  * @param {Float32Array|Array.<number>} out
  * @param {Float32Array|Array.<number>} a
  */
@@ -25909,8 +25916,8 @@ function quantityExponent(val) {
   return Math.floor(Math.log(val) / Math.LN10);
 }
 /**
- * find a “nice” number approximately equal to x. Round the number if round = true,
- * take ceiling if round = false. The primary observation is that the “nicest”
+ * find a “nice᾿ number approximately equal to x. Round the number if round = true,
+ * take ceiling if round = false. The primary observation is that the “nicest᾿
  * numbers in decimal are 1, 2, and 5, and all power-of-ten multiples of these numbers.
  *
  * See "Nice Numbers for Graph Labels" of Graphic Gems.
@@ -35164,7 +35171,7 @@ var Animator = function (target, loop, getter, setter) {
 
 Animator.prototype = {
   /**
-   * 设置动画关键帧
+   * 设置动画关键嶿
    * @param  {number} time 关键帧时间，单位是ms
    * @param  {Object} props 关键帧的属性值，key-value表示
    * @return {module:zrender/animation/Animator}
@@ -35251,7 +35258,7 @@ Animator.prototype = {
   },
 
   /**
-   * 开始执行动画
+   * 开始执行动璿
    * @param  {string|Function} [easing]
    *         动画缓动函数，详见{@link module:zrender/animation/easing}
    * @param  {boolean} forceAnimate
@@ -35347,7 +35354,7 @@ Animator.prototype = {
   },
 
   /**
-   * 添加动画结束的回调
+   * 添加动画结束的回访
    * @param  {Function} cb
    * @return {module:zrender/animation/Animator}
    */
@@ -35377,11 +35384,11 @@ var easingFuncs = __webpack_require__(144);
 
 /**
  * 动画主控制器
- * @config target 动画对象，可以是数组，如果是数组的话会批量分发onframe等事件
+ * @config target 动画对象，可以是数组，如果是数组的话会批量分发onframe等事乿
  * @config life(1000) 动画时长
  * @config delay(0) 动画延迟时间
  * @config loop(true)
- * @config gap(0) 循环的间隔时间
+ * @config gap(0) 循环的间隔时长
  * @config onframe
  * @config easing(optional)
  * @config ondestroy(optional)
@@ -35394,7 +35401,7 @@ function Clip(options) {
 
   this._life = options.life || 1000; // 延时
 
-  this._delay = options.delay || 0; // 开始时间
+  this._delay = options.delay || 0; // 开始时长
   // this._startTime = new Date().getTime() + this._delay;// 单位毫秒
 
   this._initialized = false; // 是否循环
@@ -35424,7 +35431,7 @@ Clip.prototype = {
       return;
     }
 
-    var percent = (globalTime - this._startTime - this._pausedTime) / this._life; // 还没开始
+    var percent = (globalTime - this._startTime - this._pausedTime) / this._life; // 还没开奿
 
     if (percent < 0) {
       return;
@@ -35438,12 +35445,12 @@ Clip.prototype = {
 
     if (percent == 1) {
       if (this.loop) {
-        this.restart(globalTime); // 重新开始周期
-        // 抛出而不是直接调用事件直到 stage.update 后再统一调用这些事件
+        this.restart(globalTime); // 重新开始周暿
+        // 抛出而不是直接调用事件直冿 stage.update 后再统一调用这些事件
 
         return 'restart';
       } // 动画完成将这个控制器标识为待删除
-      // 在Animation.update中进行批量删除
+      // 在Animation.update中进行批量删闿
 
 
       this._needsRemove = true;
@@ -35520,7 +35527,7 @@ var easing = {
 
     return -0.5 * (--k * (k - 2) - 1);
   },
-  // 三次方的缓动（t^3）
+  // 三次方的缓动（t^3ﺿ
 
   /**
   * @param {number} k
@@ -35549,7 +35556,7 @@ var easing = {
 
     return 0.5 * ((k -= 2) * k * k + 2);
   },
-  // 四次方的缓动（t^4）
+  // 四次方的缓动（t^4ﺿ
 
   /**
   * @param {number} k
@@ -35578,7 +35585,7 @@ var easing = {
 
     return -0.5 * ((k -= 2) * k * k * k - 2);
   },
-  // 五次方的缓动（t^5）
+  // 五次方的缓动（t^5ﺿ
 
   /**
   * @param {number} k
@@ -35607,7 +35614,7 @@ var easing = {
 
     return 0.5 * ((k -= 2) * k * k * k * k + 2);
   },
-  // 正弦曲线的缓动（sin(t)）
+  // 正弦曲线的缓动（sin(t)ﺿ
 
   /**
   * @param {number} k
@@ -35632,7 +35639,7 @@ var easing = {
   sinusoidalInOut: function (k) {
     return 0.5 * (1 - Math.cos(Math.PI * k));
   },
-  // 指数曲线的缓动（2^t）
+  // 指数曲线的缓动（2^tﺿ
 
   /**
   * @param {number} k
@@ -35669,7 +35676,7 @@ var easing = {
 
     return 0.5 * (-Math.pow(2, -10 * (k - 1)) + 2);
   },
-  // 圆形曲线的缓动（sqrt(1-t^2)）
+  // 圆形曲线的缓动（sqrt(1-t^2)ﺿ
 
   /**
   * @param {number} k
@@ -36800,18 +36807,18 @@ var defaultOption = {
     show: true,
 
     grid3DIndex: 0,
-    // 反向坐标轴
+    // 反向坐标軿
     inverse: false,
 
-    // 坐标轴名字
+    // 坐标轴名嫿
     name: '',
-    // 坐标轴名字位置
+    // 坐标轴名字位绿
     nameLocation: 'middle',
 
     nameTextStyle: {
         fontSize: 16
     },
-    // 文字与轴线距离
+    // 文字与轴线距礿
     nameGap: 20,
 
     axisPointer: {},
@@ -36825,7 +36832,7 @@ var defaultOption = {
 };
 
 var categoryAxis = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge({
-    // 类目起始和结束两端空白策略
+    // 类目起始和结束两端空白策瓿
     boundaryGap: true,
     // splitArea: {
         // show: false
@@ -36851,9 +36858,9 @@ var categoryAxis = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.u
 var valueAxis = __WEBPACK_IMPORTED_MODULE_0_echarts_lib_echarts___default.a.util.merge({
     // 数值起始和结束两端空白策略
     boundaryGap: [0, 0],
-    // 最小值, 设置成 'dataMin' 则从数据中计算最小值
+    // 最小便, 设置憿 'dataMin' 则从数据中计算最小便
     // min: null,
-    // 最大值，设置成 'dataMax' 则从数据中计算最大值
+    // 最大值，设置憿 'dataMax' 则从数据中计算最大便
     // max: null,
     // 脱离0值比例，放大聚焦到最终_min，_max区间
     // scale: false,
@@ -39032,7 +39039,7 @@ var numberUtil = __webpack_require__(85);
 */
 
 /**
- * 每三位默认加,格式化
+ * 每三位默认加,格式势
  * @param {string|number} x
  * @return {string}
  */
@@ -39513,12 +39520,12 @@ function prepareTruncateOptions(containerWidth, font, ellipsis, options) {
   var minChar = options.minChar = retrieve2(options.minChar, 0); // FIXME
   // Other languages?
 
-  options.cnCharWidth = getWidth('国', font); // FIXME
+  options.cnCharWidth = getWidth('噿', font); // FIXME
   // Consider proportional font?
 
   var ascCharWidth = options.ascCharWidth = getWidth('a', font);
   options.placeholder = retrieve2(options.placeholder, ''); // Example 1: minChar: 3, text: 'asdfzxcv', truncate result: 'asdf', but not: 'a...'.
-  // Example 2: minChar: 3, text: '维度', truncate result: '维', but not: '...'.
+  // Example 2: minChar: 3, text: '维度', truncate result: '繿', but not: '...'.
 
   var contentWidth = containerWidth = Math.max(0, containerWidth - 1); // Reserve some gap.
 
@@ -39594,7 +39601,7 @@ function estimateLength(text, contentWidth, ascCharWidth, cnCharWidth) {
 
 function getLineHeight(font) {
   // FIXME A rough approach.
-  return getWidth('国', font);
+  return getWidth('噿', font);
 }
 /**
  * @public
