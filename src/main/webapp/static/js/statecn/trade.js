@@ -1,13 +1,16 @@
 $(document).ready(function(){
     main();
-    getdata('/statecn/market/chart1.json',chart1);
-    getdata('/statecn/market/chart2.json',chart2);
-    getdata('/statecn/market/chart3.json',chart3);
-    getdata('/statecn/market/chart4.json',chart4);
+    getdata('/statecn/trade/chart1.json',chart1);
+    getdata('/statecn/trade/chart2.json',chart2);
+    getdata('/statecn/trade/chart3.json',chart3);
 });
 
 function main(){
-    getdata('/statecn/market/main.json', function(data){
+    var cnMap = {};
+    for(var n in _country){
+        cnMap[_country[n]] = n;
+    }
+    getdata('/statecn/trade/main.json', function(data){
         var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#b9e1f2", "#ffffff"];
         var regionCss = [{name:"China", itemStyle:{color:'#ffa24c'}}];
         /*for(var i = 0; i < regionData.length; i++){
@@ -32,14 +35,12 @@ function main(){
             });
         }*/
         var data1 = data.top.map(function(o){
-            return {
-                value: parseFloat(o.value[0])
-            };
+           return o;
         });
         var option = {
             geo: {
                 show: true,
-                map: 'china',
+                map: 'world',
                 label: {
                     normal: {
                         show: false
@@ -90,14 +91,80 @@ function main(){
                         }
                     }
                 },
+                /*{
+                    name:'航线',
+                    type:'lines',
+                    coordinateSystem: 'geo',
+                    large: true,
+                    largeThreshold: 100,
+                    lineStyle: {
+                        normal: {
+                            opacity: 0.05,
+                            width: 0.5,
+                            curveness: 0.3
+                        }
+                    },
+                    blendMode: 'lighter',
+                    data:convertLines(data1)
+                }*/
             ]
         };
         var myChart = echarts.init($('#main')[0]);
         myChart.setOption(option);
     });
 }
+function convertLines(d){
+    var o = {
+        coords:[],
+        lineStyle:{}
+    };
+    for(var i = 0; i < d.length; i++){
+        o.coords.push([121.336319, 31.197], [d[i].value[0],d[i].value[1]]);
+    }
+    return o;
+}
 
 function chart1(data){
+    var option = {
+        color: ['#ffd653','#6ed5ff','#ff3a83','#2874ff','#ffa24c','#af59ff'],
+        tooltip : {
+            trigger: 'item'
+        },
+        legend: {
+            x : 'center',
+            y : 'top',
+            type:'scroll',
+            textStyle:{
+                color:'#fff'
+            },
+            pageTextStyle:{
+                color:'#fff'
+            }
+        },
+        series : [
+            {
+                name:'国家',
+                type:'pie',
+                radius : [30, 80],
+                center : ['50%', '60%'],
+                roseType : 'area',
+                labelLine: {
+                    length: 5,
+                    length2: 10
+                },
+                data:data
+            }
+        ]
+    };
+    var myChart = echarts.init($('#chart1')[0]);
+    myChart.setOption(option);
+}
+
+function chart2(data){
+    var dataShadow = [], yMax = 12000;
+    for(var i = 0; i < data[3].length; i++){
+        dataShadow.push(yMax);
+    }
     var option = {
         tooltip:{},
         legend:{
@@ -117,7 +184,7 @@ function chart1(data){
                 show: false
             },
             type: 'category',
-            data:data[1]
+            data:$chart.xtime(data[1])
         },
         yAxis: [{
             axisLine: {
@@ -150,6 +217,17 @@ function chart1(data){
             type: 'value'
         }],
         series: [
+            {
+                type: 'bar',
+                yAxisIndex:0,
+                itemStyle: {
+                    normal: {color: 'rgba(12,15,34,0.8)'}
+                },
+                barGap:'-100%',
+                barCategoryGap:'40%',
+                data: dataShadow,
+                animation: false
+            },
             {
                 name:data[0][0],
                 type: 'bar',
@@ -166,7 +244,7 @@ function chart1(data){
                         )
                     },
                 },
-                data: data[2]
+                data: data[3]
             },
             {
                 name:data[0][1],
@@ -177,112 +255,7 @@ function chart1(data){
                         color:'#8121dd'
                     }
                 },
-                data: data[3]
-            }
-        ]
-    };
-    var myChart = echarts.init($('#chart1')[0]);
-    myChart.setOption(option);
-}
-
-function chart2(data){
-    var option = {
-        tooltip:{},
-        legend:{
-            y : 'left',
-            textStyle:{
-                color:'#fff'
-            },
-            data:data[0]
-        },
-        xAxis: {
-            axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                }
-            },
-            splitLine: {
-                show: false
-            },
-            type: 'category',
-            data:data[1]
-        },
-        yAxis: [{
-            axisLine: {
-                show: false
-            },
-            splitLine:{
-                show:false
-            },
-            axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                }
-            },
-            type: 'value'
-        },{
-            axisLine: {
-                show: false
-            },
-            splitLine:{
-                show:false
-            },
-            axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                },
-                formatter:function(v){
-                    return v + '%';
-                }
-            },
-            type: 'value'
-        }],
-        series: [
-            {
-                name:data[0][0],
-                type: 'bar',
-                yAxisIndex:0,
-                itemStyle: {
-                    normal: {
-                        color: '#61ffff'
-                    },
-                },
-                zlevel:1,
-                data: data[2]
-            },
-            {
-                name:data[0][2],
-                type: 'bar',
-                yAxisIndex:0,
-                itemStyle: {
-                    normal: {
-                        color: '#2874ff'
-                    },
-                },
-                zlevel:1,
                 data: data[4]
-            },
-            {
-                name:data[0][1],
-                yAxisIndex:1,
-                type:'line',
-                areaStyle:{
-                    normal:{
-                        color:'#ffa24c'
-                    }
-                },
-                data: data[3]
-            },
-            {
-                name:data[0][3],
-                yAxisIndex:1,
-                type:'line',
-                itemStyle:{
-                    normal:{
-                        color:'#ff3481'
-                    }
-                },
-                data: data[5]
             }
         ]
     };
@@ -291,19 +264,9 @@ function chart2(data){
 }
 
 function chart3(data){
-    var seriesData = [];
-    for(var i = 2; i < data.length; i++){
-        var o = {
-            name:data[0][i-2],
-            type:'line',
-            areaStyle:{},
-            data:data[i]
-        };
-        seriesData.push(o);
-    }
     var option = {
         tooltip:{},
-        color:['#61ffff','#2874ff','#ffa24c'],
+        color:['#61ffff','#ff0'],
         legend:{
             y : 'left',
             textStyle:{
@@ -321,53 +284,11 @@ function chart3(data){
                 show: false
             },
             type: 'category',
-            data:data[1]
-        },
-        yAxis: {
-            axisLine: {
-                show: false
-            },
-            axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                }
-            },
-            type: 'value'
-        },
-        series: seriesData
-    };
-    var myChart = echarts.init($('#chart3')[0]);
-    myChart.setOption(option);
-}
-
-function chart4(data){
-    var option = {
-        tooltip:{},
-        legend:{
-            y : 'left',
-            textStyle:{
-                color:'#fff'
-            },
-            data:data[0]
-        },
-        xAxis: {
-            axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                }
-            },
-            splitLine: {
-                show: false
-            },
-            type: 'category',
-            data:data[1]
+            data:$chart.xtime(data[1])
         },
         yAxis: [{
             axisLine: {
                 show: false
-            },
-            splitLine:{
-                show:false
             },
             axisLabel: {
                 textStyle: {
@@ -385,46 +306,33 @@ function chart4(data){
             axisLabel: {
                 textStyle: {
                     color: '#fff'
-                }
+                },
             },
+            formatter:function(v){
+                return v + '%';
+            },
+            min:-60,
+            max:100,
             type: 'value'
         }],
         series: [
             {
                 name:data[0][0],
-                type: 'bar',
                 yAxisIndex:0,
-                itemStyle: {
-                    normal: {
-                        color: '#61ffff'
-                    },
-                },
-                data: data[2]
-            },
-            {
-                name:data[0][1],
                 type: 'bar',
-                yAxisIndex:0,
-                itemStyle: {
-                    normal: {
-                        color: '#2874ff'
-                    },
-                },
                 data: data[3]
             },
             {
-                name:data[0][2],
+                name:data[0][1],
                 yAxisIndex:1,
                 type:'line',
-                itemStyle:{
-                    normal:{
-                        color:'#ff0'
-                    }
+                lineStyle:{
+                    type:'dotted'
                 },
                 data: data[4]
             }
         ]
     };
-    var myChart = echarts.init($('#chart4')[0]);
+    var myChart = echarts.init($('#chart3')[0]);
     myChart.setOption(option);
 }

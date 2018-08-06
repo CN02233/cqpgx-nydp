@@ -5,6 +5,14 @@ if (!String.prototype.trim) {
 }
 
 var $chart = {
+    xtime:function(d){
+        for(var i = 0, l = d.length; i<l; i++){
+            var a = d[i].split('-');
+            if(a.length == 3)
+                d[i] = a[1] + '-' + a[2] + '\n' + a[0];
+        }
+        return d;
+    }
 };
 
 function gourl(url){
