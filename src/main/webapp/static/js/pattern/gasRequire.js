@@ -1,0 +1,595 @@
+$(document).ready(function(){
+	getdata('/pattern/gasRequire/chart1.json',chart1);
+	getdata('/pattern/gasRequire/chart2.json',chart2);
+	getdata('/pattern/gasRequire/chart3.json',chart3);
+	getdata('/pattern/gasRequire/chart4.json',chart4);
+	getdata('/pattern/gasRequire/chart5.json',chart5);
+	main();
+});
+
+function chart1(data){
+	var pieData = data[3];
+	var legendData = data[1];
+	option = {
+		    tooltip: {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b}: {c} ({d}%)"
+		    },
+		    color: ['#fd9173', '#f36f8a', '#5f71d2', '#42a4eb', '#4ac7f5'],
+		    legend: { //图例组件，颜色和名字
+		        bottom: '5%',
+		        //orient: 'vertical',
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 10,
+		        itemHeight: 10,
+		        icon: 'rect',
+		        data: legendData,
+		        textStyle: {
+		            color: [],
+		            fontStyle: 'normal',
+		            fontFamily: '微软雅黑',
+		            fontSize: 12,
+		        }
+		    },
+		    series: [{
+		        name: '违规次数',
+		        type: 'pie',
+		        clockwise: false, //饼图的扇区是否是顺时针排布
+		        minAngle: 20, //最小的扇区角度（0 ~ 360）
+		        center: ['50%', '40%'], //饼图的中心（圆心）坐标
+		        radius: ['40%', '50%'], //饼图的半径
+		        avoidLabelOverlap: true, ////是否启用防止标签重叠
+		        itemStyle: { //图形样式
+		            normal: {
+		                borderColor: '#1e2239',
+		                borderWidth: 1.5,
+		            },
+		        },
+		        label: {
+	                normal: {
+	                    formatter: '{b}\n{d}%'
+	                },
+	          
+	            },
+		        data: pieData
+		    }]
+		};
+	var myChart = echarts.init($('#chart1')[0]);
+    myChart.setOption(option);
+}
+
+function chart2(data){
+	var yData = data[2];
+	var barData1 = data[3];
+	var barData2 = data[4];
+	option = {
+		    tooltip : {
+		        trigger: 'axis',
+		        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+		            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+		        }
+		    },
+		    grid: {
+		        left: '3%',
+		        right: '4%',
+		        bottom: '3%',
+		        top:'3%',
+		        containLabel: true
+		    },
+		    xAxis : [
+		        {
+		            type : 'value',
+		            splitLine: {
+			        	 show: false,
+			             lineStyle: {
+			                 color: '#fff',
+			             }
+			         },
+			         splitArea: {
+			             show: false
+			         },
+			         axisLabel: {
+			             textStyle: {
+			                 color: '#fff',
+			                 fontWeight: 'normal',
+			                 fontSize: 6
+			             },
+			             formatter: '{value}',
+			         }
+		        }
+		    ],
+		    yAxis : [
+		        {
+		            type : 'category',
+		            axisTick : {show: false},
+		            splitLine: {
+			        	 show: false,
+			             lineStyle: {
+			                 color: '#fff',
+			             }
+			         },
+			         axisLabel: {
+			             textStyle: {
+			                 color: '#fff',
+			                 fontSize: 6
+			             }
+			         },
+		            data : yData
+		        }
+		    ],
+		    series : [
+		        {
+		            name:'同比增长率',
+		            type:'bar',
+		            
+		            itemStyle: {
+		                normal: {
+		                	 color: '#00FFFF',
+		                }
+		            },
+		            data:barData1
+		        },
+		        {
+		            name:'产量占比',
+		            type:'bar',
+		            stack: '总量',
+		            
+		            itemStyle: {
+		                normal: {
+		                	 color: '#87CEFA',
+		                }
+		            },
+		            data:barData2
+		        }
+		    ]
+		};
+	var myChart = echarts.init($('#chart2')[0]);
+    myChart.setOption(option);
+}
+
+function chart3(data){
+	var xData = data[2];
+	var lineData = data[3];
+	var barData1 = data[4];
+	var barData2 = data[5];
+	    var option =  {
+	        grid:{
+	            top:'7%',
+	            left:'10%',
+	            right:'10%',
+	            bottom:'25%',
+	        },
+	        tooltip: {
+	            trigger: 'axis',
+	            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+	                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+	            }
+	        },
+	        xAxis: [{
+	            position: "bottom",
+	            type: "category",
+	            axisLabel: {
+	                //interval: 0,
+	                textStyle: {
+	                    color: '#fff',
+	                    fontSize:8
+	                },
+	                rotate: 30,
+	            },
+	            axisLine:{
+	                lineStyle:{
+	                    color: '#0177d4'
+	                }
+	            },
+	            data: xData,
+	        }],
+	        yAxis: [{
+	            name: '',
+	            type: 'value',
+	            min:36,
+	            position: 'left',
+	            axisLabel: {
+	                textStyle: {
+	                    color: '#fff',
+	                    fontStyle: 'normal',
+	                    fontSize:8
+	                }
+	            },
+	            axisLine: {
+	            	lineStyle:{
+	                    color: '#0177d4'
+	                }
+	            },
+	            axisTick: {
+	            	color: '#0177d4',
+	                show: true
+	            },
+	            splitLine: {
+	                show: false
+	            }
+	        },{
+	            type: "value",
+	            position: 'right',
+	            axisLine: {
+	            	lineStyle:{
+	                    color: '#fff'
+	                }
+	            },
+	            axisTick: {
+	                show: true
+	            },
+	            axisLine: {
+	            	lineStyle:{
+	                    color: '#0177d4'
+	                }
+	            },
+	            splitLine: {
+	                show: false
+	            },
+	            axisLabel: {
+	                show: true,
+	                textStyle: {
+	                    color: '#fff',
+	                    fontSize:8
+	                }
+	            }
+	        }],
+	        series: [{
+	            name: "产量",
+	            type: "bar",
+	            barWidth: '30%',
+	            itemStyle: {
+	                normal: {
+	                	 color: '#1E90FF',
+	                	 barBorderRadius: 50,
+	                },
+	            },
+	            data: barData1,
+
+	        },{
+	            name: "消费量",
+	            type: "bar",
+	            barWidth: '30%',
+	            itemStyle: {
+	                normal: {
+	                	 color: '#00FFFF',
+	                	 barBorderRadius: 50,
+	                },
+	            },
+	            data: barData2,
+
+	        }, {
+	            name: "PI",
+	            type: "line",
+	            yAxisIndex: 1,
+	            itemStyle: {
+	                normal: {
+	                    color: '#E9DC37'
+	                },
+	            },
+	            data: lineData,
+
+	        }]
+	    }
+	var myChart = echarts.init($('#chart3')[0]);
+    myChart.setOption(option);
+}
+
+function chart4(data){
+	var xData = data[2];
+	var lineData1 = data[3];
+	var lineData2 = data[4];
+	option = {
+		    tooltip: {
+		        trigger: 'axis'
+		    },
+		    grid:{
+	            top:'10%',
+	            left:'10%',
+	            right:'10%',
+	            bottom:'20%',
+	        },
+		    xAxis: {
+		    	type: "category",
+		        axisLine: {
+		            lineStyle: {
+		            	 color: 'rgba(255,255,255,0.6)',
+		            }
+		        },
+		        splitLine: {
+		        	show: false,
+		            lineStyle: {
+		                color: '#fff ',
+		            }
+		        },
+		        boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
+		        axisTick: {
+	            	color: '#0177d4',
+	                show: true
+	            },
+		        splitArea: {
+		            show: false
+		        },
+		        axisLabel: {
+		            inside: false,
+		            textStyle: {
+		                color: '#fff',
+		                fontWeight: 'normal',
+		                fontSize: 8
+		            },
+		        },
+		        data:xData
+		    },
+		    yAxis: {
+		    	 type: 'value',
+		    	 min:410,
+		    	 axisTick: {
+		            	color: '#0177d4',
+		                show: true
+		            },
+		         axisLine: {
+		             show: true,
+		             lineStyle: {
+		                 color: 'rgba(255,255,255,0.6)',
+		             }
+		         },
+		         splitLine: {
+		        	 show: false,
+		             lineStyle: {
+		                 color: '#fff',
+		             }
+		         },
+		         axisLabel: {
+		             textStyle: {
+		                 color: '#fff',
+		                 fontWeight: 'normal',
+		                 fontSize: 8
+		             },
+		             formatter: '{value}'
+		         }
+		    },
+		    series: [{
+		        name: '2018/6/22',
+		        type: 'line',
+		        smooth: true,
+		        symbol:'circle',
+		        showSymbol: false,
+		        itemStyle: {
+	                normal: {
+	                    color: '#54FF9F'
+	                },
+	            },
+		        data: lineData1
+		    },
+		    {
+		        name: '2018/6/15',
+		        type: 'line',
+		        smooth: true,//值为true折线平滑    值为false折线曲折
+		        symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
+		        showSymbol: false,//true 为拐点处有点  false 为没有
+		        itemStyle: {
+	                normal: {
+	                    color: '#FFD700'
+	                },
+	            },
+		        data: lineData2
+		    }]
+		};
+	var myChart = echarts.init($('#chart4')[0]);
+    myChart.setOption(option);
+}
+
+function chart5(data){
+    var xData = data[2];
+    var barData = data[3];
+	option = {
+	    tooltip: {
+	        trigger: 'axis',
+	        axisPointer: {
+	            type: 'none'
+	        },
+	        formatter: function (params) {
+	            return params[0].name + ': ' + params[0].value;
+	        }
+	    },
+	    grid:{
+            top:'10%',
+            left:'10%',
+            right:'10%',
+            bottom:'20%',
+        },
+	    xAxis: {
+	    	type: "category",
+	        axisLine: {
+	            lineStyle: {
+	            	 color: 'rgba(255,255,255,0.6)',
+	            }
+	        },
+	        splitLine: {
+	        	show: false,
+	            lineStyle: {
+	                color: '#fff ',
+	            }
+	        },
+	        //boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
+	        axisTick: {
+            	color: '#0177d4',
+                show: true
+            },
+	        splitArea: {
+	            show: false
+	        },
+	        axisLabel: {
+	            inside: false,
+	            textStyle: {
+	                color: '#fff',
+	                fontWeight: 'normal',
+	                fontSize: 8
+	            },
+	        },
+	        data: xData
+	    },
+	    yAxis: {
+	    	 type: 'value',
+	    	 axisTick: {
+	            	color: '#0177d4',
+	                show: true
+	            },
+	         axisLine: {
+	             show: true,
+	             lineStyle: {
+	                 color: 'rgba(255,255,255,0.6)',
+	             }
+	         },
+	         splitLine: {
+	        	 show: false,
+	             lineStyle: {
+	                 color: '#fff',
+	             }
+	         },
+	         axisLabel: {
+	             textStyle: {
+	                 color: '#fff',
+	                 fontWeight: 'normal',
+	                 fontSize: 8
+	             },
+	             formatter: '{value}'
+	         }
+	    },
+	    color: ['#00FFFF'],
+	    series: [{
+	        name: 'hill',
+	        type: 'pictorialBar',
+	        //barCategoryGap: '-130%',
+	        symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
+	        itemStyle: {
+	            normal: {
+	                opacity: 0.5
+	            },
+	            emphasis: {
+	                opacity: 1
+	            }
+	        },
+	        data: barData,
+	        z: 10
+	    }
+	    ]
+	};
+	var myChart = echarts.init($('#chart5')[0]);
+    myChart.setOption(option);
+}
+
+function main(data){
+	 getdata('/pattern/index/main.json', function(data){
+	        var routes, regionData = [];
+	        function getAirportCoord(idx) {
+	            return [data.airports[idx][3], data.airports[idx][4]];
+	        }
+	        data.airports.forEach(function(item){
+	            var b = false;
+	            for(var i = 0; i <regionData.length; i++){
+	                if(regionData[i].name == item[2]){
+	                    regionData[i].value++;
+	                    b = true;
+	                    break;
+	                }
+	            }
+	            if(!b){
+	                regionData.push({"name":item[2], "value":0});
+	            }
+	        });
+	        routes = data.routes.map(function(airline) {
+	            return [
+	                getAirportCoord(airline[1]),
+	                getAirportCoord(airline[2])
+	            ];
+	        });
+
+	        var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#ffffff"];
+	        var regionCss = [];
+	        for(var i = 0; i < regionData.length; i++){
+	            var c = '', v = regionData[i].value;
+	            if(v >= 200)
+	                c = color[0];
+	            else if(v >= 100 & v < 200)
+	                c = color[1];
+	            else if(v > 60 & v < 100)
+	                c = color[2];
+	            else if(v > 30 & v < 61)
+	                c = color[3];
+	            else if(v > 0)
+	                c = color[4];
+	            else
+	                c = color[5];
+	            regionCss.push({
+	                name:regionData[i].name,
+	                itemStyle:{
+	                    color:c
+	                }
+	            });
+	        }
+	        var data1 = data.airports.filter(function(datItem, index){
+	            return index < 100;
+	        }).map(function (dataItem) {
+	            return {name:dataItem[1], value:[dataItem[3], dataItem[4], 0, Math.floor((Math.random()*10)+1)]}
+	        });
+
+	        var option = {
+	            geo3D: {
+	                map: 'world',
+	                shading: 'color',
+	                silent: true,
+	                groundPlane: {
+	                    show: false
+	                },
+	                light: {
+	                    main: {
+	                        intensity: 0
+	                    },
+	                    ambient: {
+	                        intensity: 0
+	                    }
+	                },
+	                regions: regionCss,
+	                viewControl: {
+	                    distance: 100
+	                },
+	                itemStyle: {
+	                    color: '#fff',
+	                    borderWidth:0.3
+	                },
+	                regionHeight: 0.5
+	            },
+	            series: [{
+	                type: 'scatter3D',
+	                coordinateSystem: 'geo3D',
+	                //blendMode: 'lighter',
+	                symbolSize: function(item){
+	                    return item[3];
+	                },
+	                itemStyle: {
+	                    color: 'rgb(253, 235, 59)',
+	                    opacity: 1
+	                },
+	                data: data1
+	            },{
+	                type: 'lines3D',
+	                coordinateSystem: 'geo3D',
+	                effect: {
+	                    show: true,
+	                    trailWidth: 2,
+	                    trailLength: 0.4
+	                },
+	                blendMode: 'lighter',
+	                lineStyle: {
+	                    width: 0,
+	                    color: 'rgb(20, 15, 2)',
+	                    opacity: 1
+	                },
+	                data: routes
+	            }]
+	        };
+	var myChart = echarts.init($('#main')[0]);
+    myChart.setOption(option);
+	 });
+}
