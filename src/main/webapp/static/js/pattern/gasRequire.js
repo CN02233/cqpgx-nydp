@@ -79,6 +79,7 @@ function chart2(data){
 		    xAxis : [
 		        {
 		            type : 'value',
+		            min:-1,
 		            splitLine: {
 			        	 show: false,
 			             lineStyle: {
@@ -479,117 +480,150 @@ function chart5(data){
     myChart.setOption(option);
 }
 
-function main(data){
-	 getdata('/pattern/index/main.json', function(data){
-	        var routes, regionData = [];
-	        function getAirportCoord(idx) {
-	            return [data.airports[idx][3], data.airports[idx][4]];
-	        }
-	        data.airports.forEach(function(item){
-	            var b = false;
-	            for(var i = 0; i <regionData.length; i++){
-	                if(regionData[i].name == item[2]){
-	                    regionData[i].value++;
-	                    b = true;
-	                    break;
-	                }
-	            }
-	            if(!b){
-	                regionData.push({"name":item[2], "value":0});
-	            }
-	        });
-	        routes = data.routes.map(function(airline) {
-	            return [
-	                getAirportCoord(airline[1]),
-	                getAirportCoord(airline[2])
-	            ];
-	        });
+function main(){
+    var cnMap = {};
+    for(var n in _country){
+        cnMap[_country[n]] = n;
+    }
+    getdata('/pattern/index/main.json', function(data){
+        var db = data.country;
+        for(var i = 0; i < db.length; i++){
+            db[i].name = _country[db[i].name];
+        }
+        var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#b9e1f2", "#ffffff"];
+        /*var regionCss = [];
+        for(var i = 0; i < regionData.length; i++){
+            var c = '', v = regionData[i].value;
+            if(v < 1)
+                c = color[0];
+            else if(v >= 100 & v < 200)
+                c = color[1];
+            else if(v > 60 & v < 100)
+                c = color[2];
+            else if(v > 30 & v < 61)
+                c = color[3];
+            else if(v > 0)
+                c = color[4];
+            else
+                c = color[5];
+            regionCss.push({
+                name:regionData[i].name,
+                itemStyle:{
+                    color:c
+                }
+            });
+        }*/
+        var data1 = db.filter(function(datItem, index){
+            return index < 2;
+        }).map(function(d,i){
+            return {"name": d.name, value: [data.top[i][0], data.top[i][1], 0, d.value]};
+        });
 
-	        var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#ffffff"];
-	        var regionCss = [];
-	        for(var i = 0; i < regionData.length; i++){
-	            var c = '', v = regionData[i].value;
-	            if(v >= 200)
-	                c = color[0];
-	            else if(v >= 100 & v < 200)
-	                c = color[1];
-	            else if(v > 60 & v < 100)
-	                c = color[2];
-	            else if(v > 30 & v < 61)
-	                c = color[3];
-	            else if(v > 0)
-	                c = color[4];
-	            else
-	                c = color[5];
-	            regionCss.push({
-	                name:regionData[i].name,
-	                itemStyle:{
-	                    color:c
-	                }
-	            });
-	        }
-	        var data1 = data.airports.filter(function(datItem, index){
-	            return index < 100;
-	        }).map(function (dataItem) {
-	            return {name:dataItem[1], value:[dataItem[3], dataItem[4], 0, Math.floor((Math.random()*10)+1)]}
-	        });
-
-	        var option = {
-	            geo3D: {
-	                map: 'world',
-	                shading: 'color',
-	                silent: true,
-	                groundPlane: {
-	                    show: false
-	                },
-	                light: {
-	                    main: {
-	                        intensity: 0
-	                    },
-	                    ambient: {
-	                        intensity: 0
-	                    }
-	                },
-	                regions: regionCss,
-	                viewControl: {
-	                    distance: 100
-	                },
-	                itemStyle: {
-	                    color: '#fff',
-	                    borderWidth:0.3
-	                },
-	                regionHeight: 0.5
-	            },
-	            series: [{
-	                type: 'scatter3D',
-	                coordinateSystem: 'geo3D',
-	                //blendMode: 'lighter',
-	                symbolSize: function(item){
-	                    return item[3];
-	                },
-	                itemStyle: {
-	                    color: 'rgb(253, 235, 59)',
-	                    opacity: 1
-	                },
-	                data: data1
-	            },{
-	                type: 'lines3D',
-	                coordinateSystem: 'geo3D',
-	                effect: {
-	                    show: true,
-	                    trailWidth: 2,
-	                    trailLength: 0.4
-	                },
-	                blendMode: 'lighter',
-	                lineStyle: {
-	                    width: 0,
-	                    color: 'rgb(20, 15, 2)',
-	                    opacity: 1
-	                },
-	                data: routes
-	            }]
-	        };
-	var myChart = echarts.init($('#main')[0]);
-    myChart.setOption(option);
-	 });
+        var option = {
+            visualMap: {
+                type: 'piecewise',
+                splitNumber: 6,
+                inverse: true,
+                seriesIndex:0,
+                pieces: [{
+                    min: 0,
+                    max: 0.99,
+                    label:'<10',
+                    color: '#fff'
+                }, {
+                    min: 1,
+                    max: 1.99,
+                    label:'10-20',
+                    color: '#b4e0f3'
+                }, {
+                    min: 2,
+                    max: 4.99,
+                    label:'20-50',
+                    color: '#70b4eb'
+                }, {
+                    min: 5,
+                    max: 9.99,
+                    label:'50-100',
+                    color: '#1482e5'
+                }, {
+                    min: 10,
+                    max: 29.99,
+                    label:'100-300',
+                    color: '#1c3fbf'
+                }, {
+                    min: 30,
+                    label:'>300',
+                    color: '#070093'
+                }],
+                left: 'left',
+                top: 'bottom',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            geo3D: {
+                map: 'world',
+                shading: 'color',
+                silent: true,
+                groundPlane: {
+                    show: false
+                },
+                light: {
+                    main: {
+                        intensity: 0
+                    },
+                    ambient: {
+                        intensity: 0
+                    }
+                },
+                //regions: regionCss,
+                viewControl: {
+                    distance: 100
+                },
+                itemStyle: {
+                    color: '#fff',
+                    borderWidth:0.3
+                },
+                regionHeight: 0.5
+            },
+            series: [{
+                type:'map3D',
+                map: 'world',
+                shading: 'color',
+                label:{
+                    textStyle:{
+                        distance:10,
+                        color:'#2874ff'
+                    },
+                    formatter:function(o){
+                        if(o.value)
+                            return cnMap[o.name] + " - " + o.value * 10 + "亿吨";
+                        return cnMap[o.name];
+                    }
+                },
+                itemStyle: {
+                    color: '#fff',
+                    borderWidth:0.3
+                },
+                viewControl: {
+                    distance: 100
+                },
+                regionHeight: 0.5,
+                data:db
+            }/*,{
+                type: 'scatter3D',
+                coordinateSystem: 'geo3D',
+                symbolSize: function(item){
+                    return 20;
+                },
+                itemStyle: {
+                    color: 'rgb(253, 235, 59)',
+                    opacity: 1
+                },
+                data: data1
+            }*/]
+        };
+        var myChart = echarts.init($('#main')[0]);
+        myChart.setOption(option);
+    });
 }

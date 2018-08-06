@@ -215,7 +215,7 @@ function main(data){
 			'Ukraine':'乌克兰',
 			'United Arab Emirates':'阿联酋',
 			'United Kingdom':'英国',
-			'United States of America':'美国',
+			'United States':'美国',
 			'Uruguay':'乌拉圭',
 			'Uzbekistan':'乌兹别克斯坦',
 			'Vanuatu':'瓦努阿图',
@@ -273,7 +273,7 @@ function main(data){
 	    tooltip: {
 	        trigger: 'item',
 	        formatter:function(param){
-	        	//alert(JSON.stringify(param));
+	        	//alert(JSON.stringify(param.name));
 	        	return param.name+'</br>'+
 	        	param.seriesName+'：'+param.data.value+
 	        	'</br>消费量：'+getValue(mapData2,param.name);
