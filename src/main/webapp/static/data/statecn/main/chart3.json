@@ -1,0 +1,669 @@
+[{
+		        name: '北京',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['9%','20%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 10.83,
+		            name: '总资产收入率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color:'#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 89.17,
+		            label: {
+		            	show:false,
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },{
+		        name: '北京',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['9%','65%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 3.69,
+		            name: '总资产利润率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color: '#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 96.31,
+		            name: '占位',
+		            label: {
+		              show:false
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },{
+		        name: '天津',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['20.8%','20%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 56.88,
+		            name: '总资产收入率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color:'#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 43.12,
+		            name: '占位',
+		            label: {
+		            	show:false,
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },{
+		        name: '天津',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['20.8%','65%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 1.04,
+		            name: '总资产利润率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color: '#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 98.96,
+		            name: '占位',
+		            label: {
+		              show:false
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },
+		    //河北省
+		    {
+		        name: '河北省',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['32.7%','20%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 58.03,
+		            name: '总资产收入率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color:'#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 41.97,
+		            name: '占位',
+		            label: {
+		            	show:false,
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },{
+		        name: '河北省',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['32.7%','65%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 1.88,
+		            name: '总资产利润率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color: '#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 98.12,
+		            name: '占位',
+		            label: {
+		              show:false
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },
+		    //山西省
+		    {
+		        name: '山西省',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['44.5%','20%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 44.98,
+		            name: '总资产收入率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color:'#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 55.02,
+		            name: '占位',
+		            label: {
+		            	show:false,
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },{
+		        name: '山西省',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['44.5%','65%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 0.30,
+		            name: '总资产利润率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color: '#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 99.70,
+		            name: '占位',
+		            label: {
+		              show:false
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },
+		    //吉林省
+		    {
+		        name: '吉林省',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['56.3%','20%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 35.50,
+		            name: '总资产收入率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color:'#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 64.50,
+		            name: '占位',
+		            label: {
+		            	show:false,
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },{
+		        name: '吉林省',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['56.3%','65%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 2.52,
+		            name: '总资产利润率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color: '#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 97.48,
+		            name: '占位',
+		            label: {
+		              show:false
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },
+		    //内蒙古
+		    {
+		        name: '内蒙古',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['67.9%','20%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 43.56,
+		            name: '总资产收入率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color:'#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 56.44,
+		            name: '占位',
+		            label: {
+		            	show:false,
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },{
+		        name: '内蒙古',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['67.9%','65%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 3.50,
+		            name: '总资产利润率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color: '#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 96.50,
+		            name: '占位',
+		            label: {
+		              show:false
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },
+		    //辽宁省
+		    {
+		        name: '辽宁省',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['79.6%','20%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 41.57,
+		            name: '总资产收入率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color:'#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 58.43,
+		            name: '占位',
+		            label: {
+		            	show:false,
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },{
+		        name: '辽宁省',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['79.6%','65%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 1.90,
+		            name: '总资产利润率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color: '#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 98.10,
+		            name: '占位',
+		            label: {
+		              show:false
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },
+		    //黑龙江
+		    {
+		        name: '黑龙江',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['91.3%','20%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 38.04,
+		            name: '总资产收入率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    y:'50%',
+		                    textStyle: {
+		                    	color:'#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 61.96,
+		            name: '占位',
+		            label: {
+		            	show:false,
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    },{
+		        name: '黑龙江',
+		        type: 'pie',
+		        radius: ['25%', '35%'],
+		        center:['91.3%','65%'],
+		        label: {
+		            normal: {
+		                position: 'center'
+		            }
+		        },
+		        data: [{
+		            value: 0,
+		            name: '总资产利润率',
+		            label: {
+		                normal: {
+		                    formatter: '{d} %',
+		                    textStyle: {
+		                    	color: '#00D9FE',
+		                        fontSize: 8
+		                    }
+		                }
+		            }
+		        }, {
+		            value: 100,
+		            name: '占位',
+		            label: {
+		              show:false
+		            },
+		            tooltip: {
+		                show: false
+		            },
+		            itemStyle: {
+		                normal: {
+		                    color: '#00D9FE'
+		                },
+		                emphasis: {
+		                    color: '#00D9FE'
+		                }
+		            },
+		            hoverAnimation: false
+		        }]
+		    }]
