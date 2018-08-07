@@ -91,22 +91,29 @@ function main(){
                         }
                     }
                 },
-                /*{
+                {
                     name:'航线',
                     type:'lines',
                     coordinateSystem: 'geo',
                     large: true,
+                    zlevel: 2,
                     largeThreshold: 100,
+                    effect: {
+                        show: true,
+                        constantSpeed: 30,
+                        symbol: 'arrow',
+                        symbolSize: 8,
+                        trailLength: 0,
+                    },
                     lineStyle: {
                         normal: {
-                            opacity: 0.05,
-                            width: 0.5,
+                            width: 1,
                             curveness: 0.3
                         }
                     },
                     blendMode: 'lighter',
                     data:convertLines(data1)
-                }*/
+                }
             ]
         };
         var myChart = echarts.init($('#main')[0]);
@@ -114,12 +121,13 @@ function main(){
     });
 }
 function convertLines(d){
-    var o = {
-        coords:[],
-        lineStyle:{}
-    };
+    var o = [];
     for(var i = 0; i < d.length; i++){
-        o.coords.push([121.336319, 31.197], [d[i].value[0],d[i].value[1]]);
+        o.push({
+            fromName: "中国",
+            toName: d[i].name,
+            coords:[ [121.336319, 31.197], [d[i].value[0],d[i].value[1]] ]
+        });
     }
     return o;
 }
