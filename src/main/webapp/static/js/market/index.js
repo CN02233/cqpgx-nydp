@@ -245,6 +245,9 @@ function main(data){
 	            mapType: 'world',
 	            nameMap: nameMap,
 	            roam: true,
+	            symbolSize: function(val) {
+                    return 30;
+                },
 	            itemStyle:{
 	                normal: {
 		                color: '#66CD00'

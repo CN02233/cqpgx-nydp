@@ -56,6 +56,14 @@ public class PatternController extends BaseController {
      * 首页-供给
      */
     @RequestMapping
+    public String gasSupply(ModelMap map){
+        return "page/pattern/gasSupply";
+    }
+    
+    /**
+     * 首页-需求
+     */
+    @RequestMapping
     public String gasRequire(ModelMap map){
         return "page/pattern/gasRequire";
     }
