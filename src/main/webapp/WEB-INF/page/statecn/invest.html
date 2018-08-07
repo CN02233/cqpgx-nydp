@@ -1,21 +1,20 @@
 <#include "/WEB-INF/include/base.html" />
 <#macro head>
     <script src="${host}/static/lib/echarts/echarts-gl.js"></script>
-    <script src="${host}/static/lib/echarts/map/world.js"></script>
-    <script src="${host}/static/data/public/country.json"></script>
-    <script src="${host}/static/js/statecn/index.js"></script>
+    <script src="${host}/static/lib/echarts/map/china.js"></script>
+    <script src="${host}/static/js/statecn/invest.js"></script>
 </#macro>
 
 <#macro body>
     <@topbar title="中国能源态势<div class='circlebox'><div class='circle1' title='石油' onclick=\"gourl('index')\"></div><div class='circle2' title='天然气' onclick=\"gourl('gasIndex')\"></div></div>">
     <div class="btn-group" style="width:55px;">
-        <button class="btn btn-primary barbtn" type="button" onclick="gourl('index')">供需</button>
+        <button class="btn btn-default barbtn" type="button" onclick="gourl('index')">供需</button>
     </div>
     <div class="btn-group" style="width:55px;">
         <button class="btn btn-default barbtn" type="button" onclick="gourl('market')">市场</button>
     </div>
     <div class="btn-group" style="width:55px;">
-        <button class="btn btn-default barbtn" type="button" onclick="gourl('invest')">投资</button>
+        <button class="btn btn-primary barbtn" type="button" onclick="gourl('invest')">投资</button>
     </div>
     <div class="btn-group" style="width:55px;">
         <button class="btn btn-default barbtn" type="button" onclick="gourl('main')">主体</button>
@@ -32,6 +31,28 @@
 </@topbar>
 <div class="qmain container-fluid animated fadeInRight">
     <div id="page" class="row qpage">
+        <div class="col-sm-7 h12">
+            <div id="main" class="w12 h12 qpanel"></div>
+        </div>
+
+
+        <div class="col-sm-5 h12">
+            <div class="w12 h12 qpanel">
+                <div class="col-sm-12 h4 qpanel">
+                    <div class="qs_header"><span class="qs_title2">石化产业投资总趋势</span><span class="qs_title1">\01</span></div>
+                    <div id="chart1" class="qs_body"></div>
+                </div>
+                <div class="w12 h4 qpanel">
+                    <div class="qs_header"><span class="qs_title2">接收站项目投资</span><span class="qs_title1">\02</span></div>
+                    <div id="chart2" class="qs_body"></div>
+                </div>
+                <div class="w12 h4 qpanel">
+                    <div class="qs_header"><span class="qs_title2">储气库项目</span><span class="qs_title1">\03</span></div>
+                    <div id="chart3" class="qs_body"></div>
+                </div>
+            </div>
+            <div id="main" class="col-sm-7 h12 qpanel"></div>
+        </div>
 
     </div>
 </div>
