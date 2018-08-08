@@ -12,28 +12,18 @@ function main(){
     }
     getdata('/statecn/trade/main.json', function(data){
         var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#b9e1f2", "#ffffff"];
-        var regionCss = [{name:"China", itemStyle:{color:'#ffa24c'}}];
-        /*for(var i = 0; i < regionData.length; i++){
-            var c = '', v = regionData[i].value;
-            if(v < 1)
-                c = color[0];
-            else if(v >= 100 & v < 200)
-                c = color[1];
-            else if(v > 60 & v < 100)
-                c = color[2];
-            else if(v > 30 & v < 61)
-                c = color[3];
-            else if(v > 0)
-                c = color[4];
-            else
-                c = color[5];
+        var regionCss = [];
+        for(var i = 0; i < data.top.length; i++){
+            var c = data.top[i].name, v = data.top[i].value;
             regionCss.push({
-                name:regionData[i].name,
-                itemStyle:{
-                    color:c
+                name: _country[c],
+                itemStyle: {
+                    normal: {
+                        areaColor: '#2874ff',
+                    }
                 }
             });
-        }*/
+        }
         var data1 = data.top.map(function(o){
            return o;
         });
@@ -41,6 +31,8 @@ function main(){
             geo: {
                 show: true,
                 map: 'world',
+                regions:regionCss,
+                left: '20%', top: 5, right: '20%', bottom: 5,
                 label: {
                     normal: {
                         show: false
@@ -96,6 +88,7 @@ function main(){
                     type:'lines',
                     coordinateSystem: 'geo',
                     large: true,
+                    polyline:true,
                     zlevel: 2,
                     largeThreshold: 100,
                     effect: {
@@ -107,12 +100,12 @@ function main(){
                     },
                     lineStyle: {
                         normal: {
-                            width: 1,
+                            width: 2,
                             curveness: 0.3
                         }
                     },
                     blendMode: 'lighter',
-                    data:convertLines(data1)
+                    data:convertLines(data1, data.route)
                 }
             ]
         };
@@ -120,13 +113,20 @@ function main(){
         myChart.setOption(option);
     });
 }
-function convertLines(d){
+function convertLines(d, m){
     var o = [];
-    for(var i = 0; i < d.length; i++){
+    for(var i = 2; i < d.length; i++){
         o.push({
-            fromName: "中国",
-            toName: d[i].name,
-            coords:[ [121.336319, 31.197], [d[i].value[0],d[i].value[1]] ]
+            fromName:d[i].name,
+            toName:"中国",
+            coords:[ [d[i].value[0],d[i].value[1]], [113.298786, 23.39] ]
+        });
+    }
+    for(var i = 0; i < m.length; i++){
+        o.push({
+            fromName: m[i].name,
+            toName: "中国",
+            coords:m[i].value
         });
     }
     return o;

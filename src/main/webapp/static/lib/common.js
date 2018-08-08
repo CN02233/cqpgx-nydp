@@ -12,6 +12,15 @@ var $chart = {
                 d[i] = a[1] + '-' + a[2] + '\n' + a[0];
         }
         return d;
+    },
+    init:function(id, option, style){
+        style = style || {
+
+        };
+        option = $.extend(style, option);
+        var myChart = echarts.init($(id)[0]);
+        myChart.setOption(option);
+        return myChart;
     }
 };
 
