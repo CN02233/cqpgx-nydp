@@ -81,4 +81,12 @@ public class StateCNController extends BaseController {
     public String gasMarketDetail5(ModelMap map){
         return "page/statecn/gasMarketDetail5";
     }
+    
+    /**
+     * 安全 (天然气)
+     */
+    @RequestMapping
+    public String gasSecurity(ModelMap map){
+        return "page/statecn/gasSecurity";
+    }
 }

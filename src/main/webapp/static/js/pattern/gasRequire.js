@@ -977,6 +977,103 @@ function main(data){
 		        value: 3590
 		    }]
 		];
+		var ds =
+			   [{
+			        name: '尼日利亚',
+			        value: 19100
+			    },
+			    {
+			        name: '美国洛杉矶',
+			        value: 2370
+			    },
+			    {
+			        name: '香港邦泰',
+			        value: 3130
+			    },
+			    {
+			        name: '美国芝加哥',
+			        value: 2350
+			    },
+			    {
+			        name: '加纳库马西',
+			        value: 5120
+			    },
+			    {
+			        name: '英国曼彻斯特',
+			        value: 3110
+			    },
+			    {
+			        name: '德国汉堡',
+			        value: 6280
+			    },
+			    {
+			        name: '哈萨克斯坦阿拉木图',
+			        value: 7255
+			    },
+			    {
+			        name: '俄罗斯伊尔库茨克',
+			        value: 8125
+			    },
+			    {
+			        name: '巴西',
+			        value: 3590
+			    },
+			    {
+			        name: '埃及达米埃塔',
+			        value: 3590
+			    },
+			    {
+			        name: '西班牙巴塞罗纳',
+			        value: 3590
+			    },
+			    {
+			        name: '柬埔寨金边',
+			        value: 3590
+			    },
+			    {
+			        name: '意大利米兰',
+			        value: 3590
+			    },
+			    {
+			        name: '乌拉圭蒙得维的亚',
+			        value: 3590
+			    },
+			    {
+			        name: '莫桑比克马普托',
+			        value: 3590
+			    },
+			    {
+			        name: '阿尔及利亚阿尔及尔',
+			        value: 3590
+			    },
+			    {
+			        name: '阿联酋迪拜',
+			        value: 3590
+			    },
+			    {
+			        name: '匈牙利布达佩斯',
+			        value: 3590
+			    },
+			    {
+			        name: '澳大利亚悉尼',
+			        value: 3590
+			    },
+			    {
+			        name: '美国加州',
+			        value: 3590
+			    },
+			    {
+			        name: '澳大利亚墨尔本',
+			        value: 3590
+			    },
+			    {
+			        name: '墨西哥',
+			        value: 3590
+			    },
+			    {
+			        name: '加拿大温哥华',
+			        value: 3590
+			    }];
 		var convertData = function(data) {
 		    var res = [];
 		    for (var i = 0; i < data.length; i++) {
