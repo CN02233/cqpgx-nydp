@@ -8,75 +8,10 @@ $(document).ready(function(){
 
 function main(){
     getdata('/statecn/market/main.json', function(data){
-        var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#b9e1f2", "#ffffff"];
-        /*var data1 = data.top.map(function(o){
-            return {
-                value: parseFloat(o.value[0])
-            };
-        });*/
-        var province = ['北京', '天津', '河北', '山西', '内蒙古', '辽宁', '吉林', '黑龙江', '上海', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '重庆', '四川', '贵州', '云南', '西藏', '陕西', '甘肃', '青海', '宁夏', '新疆'];
-        var gdp = [
-            //['第一产业','第二产业','第三产业',‘GDP’]
-            [129.79, 4944.44, 20594.9, 25669.13],
-            [220.22, 7571.35, 10093.82, 17885.39],
-            [3492.81, 15256.93, 13320.71, 32070.45],
-            [784.78, 5028.99, 7236.64, 13050.41],
-            [1637.39, 8553.63, 7937.08, 18128.1],
-            [2173.06, 8606.54, 11467.3, 22246.9],
-            [1498.52, 7004.95, 6273.33, 14776.8],
-            [2670.46, 4400.69, 8314.94, 15386.09],
-            [109.47, 8406.28, 19662.9, 28178.65],
-            [4077.18, 34619.5, 38691.6, 77388.28],
-            [1965.18, 21194.61, 24091.57, 47251.36],
-            [2567.72, 11821.58, 10018.32, 24407.62],
-            [2363.22, 14093.47, 12353.89, 28810.58],
-            [1904.53, 8829.54, 7764.93, 18499],
-            [4929.13, 31343.67, 31751.69, 68024.49],
-            [4286.21, 19275.82, 16909.76, 40471.79],
-            [3659.33, 14654.38, 14351.67, 32665.38],
-            [3578.37, 13341.17, 14631.83, 31551.37],
-            [3694.37, 35109.66, 42050.88, 80854.91],
-            [2796.8, 8273.66, 7247.18, 18317.64],
-            [948.35, 905.95, 2198.9, 4053.2],
-            [1303.24, 7898.92, 8538.43, 17740.59],
-            [3929.33, 13448.92, 15556.29, 32934.54],
-            [1846.19, 4669.53, 5261.01, 11776.73],
-            [2195.11, 5690.16, 6903.15, 14788.42],
-            [115.78, 429.17, 606.46, 1151.41],
-            [1693.85, 9490.72, 8215.02, 19399.59],
-            [983.39, 2515.56, 3701.42, 7200.37],
-            [221.19, 1249.98, 1101.32, 2572.49],
-            [241.6, 1488.44, 1438.55, 3168.59],
-            [1648.97, 3647.01, 4353.72, 9649.7]
-        ]
+        var province = data.province, db = data.pie;
         var typeIndex = 1;
-        var selectedRange = null;
         var option = null;
-        var str = "";
-        var data = [];
-        var geoCoordMap = {};
-        var name = "2016年各省市GDP及各产业占比"
-        var mapName = 'china'
-// 地图特征
-        var mapFeatures = echarts.getMap(mapName).geoJson.features;
-        for (var i = 0; i < province.length; i++) {
-            data.push({
-                "name": province[i],
-                "value": [{
-                    "name": "原油",
-                    value: gdp[i][0]
-                },
-                    {
-                        "name": "汽油",
-                        value: gdp[i][1]
-                    },
-                    {
-                        "name": "柴油",
-                        value: gdp[i][2]
-                    }
-                ]
-            })
-        }
+        var pieData = [];
         var geoCoordMap = { //为了保证饼图不互相重叠，我对经纬坐标进行了调整
             '上海':  [121.472644,  31.231706],
             '云南':  [102.712251,  24.040609],
@@ -112,72 +47,59 @@ function main(){
             '青海':  [100.578916,  36.623178],
             // '香港': [114.173355, 22.320048],
             '黑龙江':  [126.642464,  46.756967],
+        };
+        for (var i = 0; i < province.length; i++) {
+            pieData.push({
+                "name": province[i],
+                "value": [{
+                    "name": "原油",
+                    value: db[i][0],
+                    itemStyle:{
+                        color:'#ffd700'
+                    }
+                },
+                    {
+                        "name": "汽油",
+                        value: db[i][1],
+                        itemStyle:{
+                            color:'#61ffff'
+                        }
+                    },
+                    {
+                        "name": "柴油",
+                        value: db[i][2],
+                        itemStyle:{
+                            color:'#2e8b57'
+                        }
+                    }
+                ]
+            })
         }
-// 地理坐标图(打印出来方便查看)
-        console.log("===========geoCoordMap===============");
-        for (var i in geoCoordMap) {
-            console.log(geoCoordMap[i]);
-        }
-        console.log(geoCoordMap);
-        console.log("==============data===============");
-        console.log(data);
-
-        /*变换地图数据（格式）：pie*/
         function convertMapDta(type, data) {
             var mapData = [];
             for (var i = 0; i < data.length; i++) {
                 mapData.push({
                     'name': province[i],
-                    "value": gdp[i][3]
+                    "value": data[i][3]
                 })
             }
             return mapData;
         }
-        /*resetPie*/
-        function resetPie(myChart, params, geoCoordMap, typeIndex) {
-            var op = myChart.getOption();
-            var ops = op.series;
-            ops.forEach(function(v, i) {
-                if (i > 0) {
-                    var geoCoord = geoCoordMap[v.name];
-                    var p = myChart.convertToPixel({
-                        seriesIndex: 0
-                    }, geoCoord);
-                    v.center = p;
-                    if (params != 0 && params.zoom) {
-                        v.radius = v.radius * params.zoom;
-                    }
-                    if (params != 0 && params.selected) {
-                        var rangeFirstNumber = params.selected[0];
-                        var rangeSecondNumber = params.selected[1];
-                        var pd = v.data[typeIndex].value;
-                        if (pd < rangeFirstNumber || pd > rangeSecondNumber) {
-                            v.itemStyle.normal.opacity = 0;
-                        } else {
-                            v.itemStyle.normal.opacity = 1;
-                        }
-                    }
-                }
-            });
-            myChart.setOption(op, true);
-        }
-
-        /*addPie*/
         function addPie(chart, data) {
-            var op = chart.getOption();
             var sd = option.series;
             for (var i = 0; i < data.length; i++) {
-                var randomValue = 15;
-                var radius = randomValue;
+                var val0 = data[i].value[0].value, val1 = data[i].value[1].value;
+                var radius = val0 > 800 ? 15 : 10;
                 var geoCoord = geoCoordMap[data[i].name];
-                if (geoCoord) {
+                if (geoCoord && (val0>0 || val1 > 0)) {
                     var vr = [];
                     (data[i].value).map(function(v) {
                         vr.push({
                             name: v.name,
                             value: v.value,
+                            itemStyle: v.itemStyle,
                             visualMap: false
-                        }); //饼图的数据不进行映射
+                        });
                     });
                     var p = chart.convertToPixel({
                         seriesIndex: 0
@@ -185,10 +107,9 @@ function main(){
                     sd.push({
                         name: data[i].name,
                         type: 'pie',
-                        // roseType: 'radius',
                         tooltip: {
                             formatter: function(params) {
-                                return params.seriesName + "<br/>" + params.name + " : " + params.value + ' 亿元';
+                                return params.seriesName + "<br/>" + params.name + " : " + params.value + ' 万吨';
                             }
                         },
                         radius: radius,
@@ -196,7 +117,7 @@ function main(){
                         data: vr,
                         zlevel: 4,
                         tooltip: {
-                            formatter: '{a}<br/>{b}: {c}亿元 ({d}%)'
+                            formatter: '{a}<br/>{b}: {c}万吨 ({d}%)'
                         },
                         label: {
                             normal: {
@@ -217,16 +138,8 @@ function main(){
             return sd;
         };
 
-
         /* 指定图表的配置项和数据:pie*/
         var option = {
-            title: {
-                text: name,
-                left: 'center',
-                textStyle: {
-                    color: 'black'
-                }
-            },
             legend: {
                 data: ["原油","汽油","柴油"],
                 orient: 'vertical',
@@ -237,18 +150,11 @@ function main(){
                 },
                 zlevel: 4
             },
-            toolbox: {
-                feature: {
-                    saveAsImage: {
-                        pixelRatio: 5
-                    }
-                }
-            },
             tooltip: {
                 trigger: 'item',
                 formatter: function(params) {
                     if (params.value) {
-                        return params.name + "<br/>" + "GDP: " + params.value + "亿元";
+                        return params.name + "<br/>" + "总消费量: " + params.value + "万吨";
                     }
                 }
             },
@@ -256,35 +162,36 @@ function main(){
                 type: 'continuous',
                 show: true,
                 min: 0,
-                max: 100000,
+                max: 10000,
                 left: 'left',
                 top: 'bottom',
-                text: ['高    (亿吨)', '低    (亿吨)'], // 文本，默认为数值文本
+                text: ['高    (万吨)', '低    (万吨)'], // 文本，默认为数值文本
                 calculable: true,
                 // seriesIndex: [0],
                 inRange: {
-                    color: color
+                    color: ["#ffffff","#70b4eb","#1482e5", "#070093" ]
                 },
                 textStyle:{
                     color:'#fff'
                 },
             },
             series: [{
-                name: 'chinaMap',
+                name: 'total',
                 type: 'map',
-                mapType: mapName,
-                roam: true,
+                mapType: 'china',
+                roam: false,
+                showLegendSymbol:false,
                 label: {
                     normal: {
                         show: false,
                     },
                     emphasis: {
-                        show: true
+                        show: false
                     }
                 },
                 geo: {
                     show: true,
-                    map: mapName,
+                    map: 'china',
                     label: {
                         normal: {
                             show: false
@@ -293,7 +200,7 @@ function main(){
                             show: false,
                         }
                     },
-                    roam: true,
+                    roam: false,
                     itemStyle: {
                         normal: {
                             areaColor: '#031525',
@@ -304,8 +211,7 @@ function main(){
                         }
                     }
                 },
-
-                data: convertMapDta(province[typeIndex], data),
+                data: convertMapDta(province[typeIndex], db),
                 zlevel: 3
             }]
         };
@@ -314,8 +220,7 @@ function main(){
             myChart.setOption(option, true);
         }
         /*pie*/
-        addPie(myChart, data);
-
+        addPie(myChart, pieData);
         myChart.setOption(option);
     });
 }
