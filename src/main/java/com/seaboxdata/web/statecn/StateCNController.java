@@ -54,6 +54,13 @@ public class StateCNController extends BaseController {
         return "page/statecn/trade";
     }
     /**
+     * 贸易-天然气
+     */
+    @RequestMapping
+    public String gasTrade(ModelMap map){
+        return "page/statecn/gasTrade";
+    }
+    /**
      * 安全
      */
     @RequestMapping
