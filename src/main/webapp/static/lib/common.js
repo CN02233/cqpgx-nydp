@@ -3,7 +3,71 @@ if (!String.prototype.trim) {
         return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
     };
 }
-
+var $style = {
+    base:'oil',
+    gas:{
+        color:'#38b8ff'
+    },
+    oil:{
+        color:'#59ebe8'
+    },
+    setTheme:function(g){
+        if(g!='gas') return;
+        var c = $style[g].color;
+        $style.bar.xAxis.axisLine.lineStyle.color = c;
+        $style.bar.yAxis.axisLine.lineStyle.color = c;
+    },
+    bar:{
+        grid:{
+            top:'10%',
+            bottom:'5%',
+        },
+        legend: {  //图例组件，颜色和名字
+            show:true,
+            itemGap: 12, //图例每项之间的间隔
+            itemWidth: 8,
+            itemHeight: 8,
+            textStyle: {
+                fontStyle: 'normal',
+                fontFamily: '微软雅黑',
+                fontSize: 8,
+            }
+        },
+        tooltip:{},
+        xAxis: {
+            type: 'category',
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
+                }
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#ffffff'
+                }
+            }
+        },
+        yAxis: {
+            splitLine: {
+                show: false
+            },
+            type: 'value',
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
+                }
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#ffffff'
+                }
+            }
+        },
+    }
+};
 var $chart = {
     xtime:function(d){
         for(var i = 0, l = d.length; i<l; i++){
@@ -14,10 +78,13 @@ var $chart = {
         return d;
     },
     init:function(id, option, style){
-        style = style || {
-
-        };
-        option = $.extend(style, option);
+        style = style || {};
+        if(typeof(style)=="string"){
+            style = $style[style];
+            if(style == null)
+                style = {};
+        }
+        option = $.extend(true, style, option);
         var myChart = echarts.init($(id)[0]);
         myChart.setOption(option);
         return myChart;

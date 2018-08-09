@@ -35,7 +35,7 @@ function main(){
                 left: '20%', top: 5, right: '20%', bottom: 5,
                 label: {
                     normal: {
-                        show: false
+                        show: false,
                     },
                     emphasis: {
                         show: false,
@@ -72,7 +72,8 @@ function main(){
                     label: {
                         normal: {
                             position: 'left',
-                            show: true
+                            show: true,
+                            formatter: function(v){return v.value[2];}
                         }
                     },
                     itemStyle: {
@@ -95,7 +96,7 @@ function main(){
                         show: true,
                         constantSpeed: 30,
                         symbol: 'arrow',
-                        symbolSize: 8,
+                        symbolSize: 5,
                         trailLength: 0,
                     },
                     lineStyle: {
@@ -115,13 +116,6 @@ function main(){
 }
 function convertLines(d, m){
     var o = [];
-    for(var i = 2; i < d.length; i++){
-        o.push({
-            fromName:d[i].name,
-            toName:"中国",
-            coords:[ [d[i].value[0],d[i].value[1]], [113.298786, 23.39] ]
-        });
-    }
     for(var i = 0; i < m.length; i++){
         o.push({
             fromName: m[i].name,

@@ -344,8 +344,7 @@ function chart2(data){
         }],
         series : seriesData
     };
-    var myChart = echarts.init($('#chart2')[0]);
-    myChart.setOption(option);
+    var myChart = $chart.init('#chart2', option, 'bar');
 }
 
 function chart3(data){
