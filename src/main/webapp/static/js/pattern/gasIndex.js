@@ -739,7 +739,7 @@ baseOption: {
  left: 'left',
  top: 'bottom',
  textStyle: {
-     color: '#000'
+     color: '#fff'
  },
  //min: 0,
  //max: 60000,

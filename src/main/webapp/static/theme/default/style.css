@@ -6,7 +6,8 @@
     background-image: url(bg.png);
 }
 .qheader{
-    height:58px;
+    height:48px;
+    margin-bottom:20px;
     width: 100%;
     background-repeat: no-repeat;
     background-position: 50%;
@@ -25,7 +26,7 @@
 }
 .qheader-title1{
     font-size: 1.25em;
-    line-height: 58px;
+    line-height: 48px;
     vertical-align: top;
     text-align: center;
     color: #fff;
@@ -45,14 +46,14 @@
 .qmain{
     margin: 0;
     width:100%;
-    min-height: 90%;/*to不支持calc()的浏览器*/
+    min-height: 88%;/*to不支持calc()的浏览器*/
     min-height: -moz-calc(100vh - 68px);
     min-height: -webkit-calc(100vh - 68px);
     min-height: calc(100vh - 68px);
     overflow: hidden;
 }
 .qpage{
-    padding:10px;height:calc(100vh - 68px);width:100%;
+    padding:10px 5px 10px 5px;height:calc(100vh - 88px);width:100%;
 }
 .qsection{
     display: flex;
@@ -130,7 +131,7 @@
 .sidenav i {  display: block; width: 50px; float: left;  font-size: 16px; line-height: 30px; text-align: center;  }
 /*.sidenav li:before {height:30px;line-height:30px;width:0px;content:'';position:absolute;left:0;background-color:blue;transition: all 0.2s ease-in; }
 .sidenav li:hover:before {  width: 80%;  }*/
-.circlebox{margin:auto;width:40px;height:12px;}
+.circlebox{margin:auto;width:40px;height:15px; z-index: 5;}
 .circle1,.circle2{width:12px;height:12px;margin:auto;cursor:pointer;border-radius: 20px;}
 .circle1{background-color: #61ffff;float:left;}
 .circle2{background-color: #36b8ff;float:right;}

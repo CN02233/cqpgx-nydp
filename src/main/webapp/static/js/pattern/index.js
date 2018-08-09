@@ -329,6 +329,11 @@ function chart2(data){
                     color: '#ffffff'
                 }
             },
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
+                }
+            },
             data : data[0]
         }],
         yAxis : [{
@@ -338,6 +343,11 @@ function chart2(data){
             axisLabel: {
                 textStyle: {
                     color: '#ffffff'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
                 }
             },
             type : 'value'
