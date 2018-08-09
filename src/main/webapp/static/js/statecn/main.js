@@ -2,7 +2,6 @@ $(document).ready(function(){
     getdata('/statecn/main/chart1.json',chart1);
     getdata('/statecn/main/chart2.json',chart2);
     chart3();
-    //main();
     getdata('/statecn/main/main.json',main);
     getdata('/statecn/main/chart4.json',chart4);
 
