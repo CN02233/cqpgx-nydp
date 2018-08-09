@@ -343,8 +343,6 @@ function chart3(data){
 	        },
 	        color:["#FFFFFF","#FFD200","#15C0FF","#7C7DFF","#3729FF","#366DFF"],
 		    legend: {
-		        //bottom:30,
-		        //itemGap:30,
 		        itemWidth:20,
 		        itemHeight:2,
 		        	textStyle: {
