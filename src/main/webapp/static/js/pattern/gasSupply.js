@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	getdata('/pattern/gasSupply/chart1.json',chart1);
+	getdata('/pattern/gasSupply/bidCompMapInfo.json',chart1);
 	getdata('/pattern/gasSupply/chart2.json',chart2);
 	getdata('/pattern/gasSupply/chart3.json',chart3);
 	getdata('/pattern/gasSupply/chart4.json',chart4);

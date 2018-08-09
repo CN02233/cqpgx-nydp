@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	getdata('/market/finance/chart1.json',chart1);
+	getdata('/market/finance/bidCompMapInfo.json',chart1);
 	getdata('/market/finance/chart2.json',chart2);
 	getdata('/market/finance/chart3.json',chart3);
 	getdata('/market/finance/chart4.json',chart4);

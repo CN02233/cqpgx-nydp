@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    getdata('/statecn/security/chart1.json',chart1);
+    getdata('/statecn/security/bidCompMapInfo.json',chart1);
     getdata('/statecn/security/chart2.json',chart2);
     getdata('/statecn/security/chart3.json',chart3);
     getdata('/statecn/security/chart4.json',chart4);

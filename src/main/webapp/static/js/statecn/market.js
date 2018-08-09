@@ -1,6 +1,6 @@
 $(document).ready(function(){
     main();
-    getdata('/statecn/market/chart1.json',chart1);
+    getdata('/statecn/market/bidCompMapInfo.json',chart1);
     getdata('/statecn/market/chart2.json',chart2);
     getdata('/statecn/market/chart3.json',chart3);
     getdata('/statecn/market/chart4.json',chart4);
