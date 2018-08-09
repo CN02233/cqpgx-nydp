@@ -3,11 +3,11 @@
     <script src="${host}/static/lib/echarts/echarts-gl.js"></script>
     <script src="${host}/static/lib/echarts/map/world.js"></script>
     <script src="${host}/static/data/public/country.json"></script>
-    <script src="${host}/static/js/statecn/trade.js"></script>
+    <script src="${host}/static/js/statecn/gasTrade.js"></script>
 </#macro>
 
 <#macro body>
-    <@topbar title="中国能源态势<div class='circlebox'><div class='circle1' title='石油' onclick=\"gourl('index')\"></div><div class='circle2' title='天然气' onclick=\"gourl('gasTrade')\"></div></div>">
+    <@topbar title="中国能源态势<div class='circlebox'><div class='circle1' title='石油' onclick=\"gourl('trade')\"></div><div class='circle2' title='天然气' onclick=\"gourl('gasTrade')\"></div></div>">
     <div class="btn-group" style="width:55px;">
         <button class="btn btn-default barbtn" type="button" onclick="gourl('index')">供需</button>
     </div>
@@ -32,21 +32,25 @@
 </@topbar>
 <div class="qmain container-fluid animated fadeInRight">
     <div id="page" class="row qpage">
-        <div class="w12 h7" style="padding:0 15px 0 15px">
+        <div class="w12 h8" style="padding:0 15px 0 15px">
             <div id="main" class="w12 h12 qpanel"></div>
         </div>
-        <div class="w12 h5" style="padding:0 15px 0 15px">
-            <div class="w4 h12 qpanel">
-                <div class="qs_header"><span class="qs_title1">01\</span><span class="qs_title2">10大石油进口来源国</span></div>
+        <div class="w12 h4" style="padding:0 15px 0 15px">
+            <div class="w2 h12 qpanel">
+                <div class="qs_header"><span class="qs_title1">01\</span><span class="qs_title2">中国LNG来源国结构</span></div>
                 <div id="chart1" class="qs_body"></div>
             </div>
-            <div class="w4 h12 qpanel">
-                <div class="qs_header"><span class="qs_title1">02\</span><span class="qs_title2">中国石油进口量总趋势</span></div>
+            <div class="w2 h12 qpanel">
+                <div class="qs_header"><span class="qs_title1">02\</span><span class="qs_title2">中国PNG来源国结构</span></div>
                 <div id="chart2" class="qs_body"></div>
             </div>
             <div class="w4 h12 qpanel">
-                <div class="qs_header"><span class="qs_title1">03\</span><span class="qs_title2">中国石油进口新增需求</span></div>
+                <div class="qs_header"><span class="qs_title1">03\</span><span class="qs_title2">管道进口输气能力</span></div>
                 <div id="chart3" class="qs_body"></div>
+            </div>
+            <div class="w4 h12 qpanel">
+                <div class="qs_header"><span class="qs_title1">04\</span><span class="qs_title2">2017天然气进出口数据</span></div>
+                <div id="chart4" class="qs_body"></div>
             </div>
         </div>
     </div>

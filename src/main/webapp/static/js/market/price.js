@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    getdata('/market/price/chart1.json',function(df){ init_table(df,'tb1');  });
+    getdata('/market/price/bidCompMapInfo.json',function(df){ init_table(df,'tb1');  });
     getdata('/market/price/chart2.json',function(df){ init_table(df,'tb2');  });
     getdata('/market/price/chart3.json',function(df){ init_table(df,'tb3');  });
 });

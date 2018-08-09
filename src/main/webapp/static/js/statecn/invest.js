@@ -1,7 +1,7 @@
 $(document).ready(function(){
     // main();
     getdata('/statecn/invest/main.json',mapChart);
-    getdata('/statecn/invest/chart1.json',chart1);
+    getdata('/statecn/invest/bidCompMapInfo.json',chart1);
     getdata('/statecn/invest/chart2.json',chart2);
     getdata('/statecn/invest/chart3.json',chart3);
 });

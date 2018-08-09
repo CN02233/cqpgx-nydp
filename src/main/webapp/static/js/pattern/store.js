@@ -1,6 +1,6 @@
 $(document).ready(function(){
     main();
-    getdata('/pattern/store/chart1.json',chart1);
+    getdata('/pattern/store/bidCompMapInfo.json',chart1);
     getdata('/pattern/store/chart2.json',chart2);
     getdata('/pattern/store/chart3.json',chart3);
     getdata('/pattern/store/chart4.json',chart4);

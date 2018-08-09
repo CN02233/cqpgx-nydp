@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	main();
-    getdata('/statecn/gasSecurity/chart1.json',chart1);
+    getdata('/statecn/gasSecurity/bidCompMapInfo.json',chart1);
     getdata('/statecn/gasSecurity/chart2.json',chart2);
     getdata('/statecn/gasSecurity/chart3.json',chart3);
     getdata('/statecn/security/chart4.json',chart4);
