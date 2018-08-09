@@ -5,7 +5,17 @@
     <script src="${host}/static/data/public/country.json"></script>
     <script src="${host}/static/js/statecn/main.js"></script>
 </#macro>
-
+<style>
+.a {
+font-size: 12px;
+}
+.a2{
+color:#0078D7;
+}
+.a1{
+color:#fff;
+}
+</style>
 <#macro body>
     <@topbar title="中国能源态势<div class='circlebox'><div class='circle1' title='石油' onclick=\"gourl('index')\"></div><div class='circle2' title='天然气' onclick=\"gourl('gasIndex')\"></div></div>">
     <div class="btn-group" style="width:55px;">
@@ -52,7 +62,8 @@
                 <div id="chart3" class="qs_body"></div>
 		   </div>
 		   <div class="col-sm-6 h12 qpanel">
-		   		 <div class="qs_header"><span class="qs_title1">04\</span><span class="qs_title2">区域企业风险态势</span></div>
+		   		 <div class="qs_header" style="float: right;"><span class="qs_title2">区域企业风险态势</span><span class="qs_title1">/04</span></div>
+                <div class="qs_header"><span id = "d1" class = "a a2" onclick = "switchs(this.id)">亏损面</span><span class = "a a1">&nbsp;&nbsp;/&nbsp;&nbsp;</span><span id = "d2" class = "a a1" onclick = "switchs(this.id)">亏损深度</span><span class = "a a1">&nbsp;&nbsp;/&nbsp;&nbsp;</span><span id = "d3" class = "a a1" onclick = "switchs(this.id)">集中度</span></div>
                 <div id="chart4" class="qs_body"></div>
 		   </div>
 		 </div>
