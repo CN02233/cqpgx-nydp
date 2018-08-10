@@ -7,22 +7,23 @@
     color: #2c3e50;
     background-color:#fff;
 }
-.qpanel{
-    padding:0 0 20px 0;
-}
 .qs_header{
-    color:#fff;
+    padding: 10px 0 0 10px;
 }
 .qs_title1{
-    color:#59ebe8;
-    font-size:24px;
+    background-color: #38b8ff; margin-right: 10px; font-size: 20px;
 }
+
+
 .qs_title2{
-	font-size:16px;
+    font-size:20px;
+    color: #59ebe8;
+    font-family: "Microsoft YaHei" !important;
 }
 .qs_body{
     width:100%;
     height:100%;
+    padding:0 0 0 5px;
 }
 /******bootstrap theme******/
-.btn-primary{background-color:#00ced1;}
+.btn-primary, .btn-primary:hover{background-color:#00ced1;}

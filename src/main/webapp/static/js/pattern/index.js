@@ -15,6 +15,7 @@ function main(){
         var db = data.country;
         for(var i = 0; i < db.length; i++){
             db[i].name = _country[db[i].name];
+            db[i].regionHeight = db[i].value > 10 ? 8 : 4;
         }
         var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#b9e1f2", "#ffffff"];
         /*var regionCss = [];
@@ -48,10 +49,10 @@ function main(){
         var option = {
             visualMap: {
                 type: 'piecewise',
-                splitNumber: 6,
                 inverse: true,
                 seriesIndex:0,
-                pieces: [{
+                pieces: [
+                    {
                     min: 0,
                     max: 0.99,
                     label:'<10',
@@ -81,13 +82,15 @@ function main(){
                     label:'>300',
                     color: '#070093'
                 }],
-                left: 'left',
+                left: '10%',
                 top: 'bottom',
                 textStyle: {
-                    color: '#fff'
+                    color: '#fff',
+                    itemGap:8,
+                    fontSize:10,
                 }
             },
-            geo3D: {
+            /*geo3D: {
                 map: 'world',
                 shading: 'color',
                 silent: true,
@@ -111,8 +114,9 @@ function main(){
                     borderWidth:0.3
                 },
                 regionHeight: 0.5
-            },
-            series: [{
+            },*/
+            series: [
+                {
                 type:'map3D',
                 map: 'world',
                 shading: 'color',
@@ -132,9 +136,10 @@ function main(){
                     borderWidth:0.3
                 },
                 viewControl: {
-                    distance: 100
+                    distance: 90
                 },
-                regionHeight: 0.5,
+                boxHeight:20,
+                regionHeight: 1,
                 data:db
             }/*,{
                 type: 'scatter3D',
@@ -158,18 +163,29 @@ function chart1(data){
     if(data==null||data.length<2)
         return;
     var option = {
+        grid:{
+            top:'10%',
+            bottom:'5%',
+        },
         legend:{
             show:true,
-            bottom:5,
+            bottom:20,
+            itemWidth: 8,
+            itemHeight: 8,
             textStyle:{
-                color:'#fff'
+                color:'#fff',
+                fontStyle: 'normal',
+                fontFamily: '微软雅黑',
+                fontSize: 8,
             },
             data:['欧佩克']
         },
-        series: [{
+        series: [
+            {
             "name": ' ',
             "type": 'pie',
-            "radius": ['68%', '70%'],
+            center: ['50%', '45%'],
+            "radius": ['66%', '68%'],
             "avoidLabelOverlap": false,
             "startAngle": 90,
             "color": ["#fff", "transparent"],
@@ -193,7 +209,8 @@ function chart1(data){
                     "show": false
                 }
             },
-            "data": [{
+            "data": [
+                {
                 "value": 85,
                 "name": '',
                 "itemStyle": {
@@ -219,7 +236,8 @@ function chart1(data){
         }, {
             "name": '欧佩克',
             "type": 'pie',
-            "radius": ['50%', '68.1%'],
+            "radius": ['48%', '66.1%'],
+             center: ['50%', '45%'],
             "avoidLabelOverlap": false,
             "startAngle": 90,
             "color": ["#2874ff", "transparent"],
@@ -308,14 +326,26 @@ function chart2(data){
                 }
             }
         },
-        legend: {
-            show:false
+        legend:{
+            show:true,
+            bottom : 15,
+            type:'scroll',
+            itemWidth: 16,
+            itemHeight: 8,
+            textStyle:{
+                color:'#fff',
+                fontFamily: '微软雅黑',
+                fontSize: 10,
+            },
+            data:data[1]
         },
-        grid:[{
-            top:20,
-            bottom:20,
+        grid:{
+            top:'10%',
+            left:'10%',
+            right:'10%',
+            bottom:'20%',
             containLabel: true
-        }],
+        },
         dataZoom: [{
             type:'inside',
             show: true
@@ -337,6 +367,14 @@ function chart2(data){
             data : data[0]
         }],
         yAxis : [{
+            name:'10亿吨',
+            nameGap:-5,
+            nameTextStyle:{
+                padding:[0,0,0,45],
+                align:'center',
+                color:'#fff',
+            },
+            splitNumber:6,
             splitLine:{
                 show:false
             },
@@ -446,7 +484,7 @@ function chart3(data){
             show: true,
             formatter: function(param){
                 if (param.name.length>0) {
-                    return param.name+'<br/>'+param.value;
+                    return param.name+'<br/>'+Math.round(param.value*10,2)+' 亿吨';
                 }
             }
         },
@@ -503,12 +541,12 @@ function chart4(data){
         tooltip:{
             formatter:'{b}: {c}%',
         },
-        grid: {
-            bottom: 20,
-            top: 20,
-            containLabel: true
+        grid:{
+            top:'12%',
+            bottom:'38%',
+            right:20,
         },
-        xAxis: {
+        xAxis: [{
             type: 'category',
             data: data[1],
             axisLine: {
@@ -523,13 +561,12 @@ function chart4(data){
                     color: '#ffffff'
                 }
             }
-        },
+        }],
         yAxis: [{
             splitLine: {
                 show: false
             },
             type: 'value',
-            boundaryGap: [0, 0.01],
             splitLine: {
                 show: false
             },
