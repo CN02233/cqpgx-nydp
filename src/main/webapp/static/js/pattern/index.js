@@ -164,12 +164,12 @@ function chart1(data){
         return;
     var option = {
         grid:{
-            top:'10%',
+            top:'5%',
             bottom:'5%',
         },
         legend:{
             show:true,
-            bottom:20,
+            bottom:12,
             itemWidth: 8,
             itemHeight: 8,
             textStyle:{
@@ -199,7 +199,7 @@ function chart1(data){
                 "emphasis": {
                     "show": true,
                     "textStyle": {
-                        "fontSize": '30',
+                        "fontSize": '28',
                         "fontWeight": 'bold'
                     }
                 }
@@ -328,7 +328,7 @@ function chart2(data){
         },
         legend:{
             show:true,
-            bottom : 15,
+            bottom : 10,
             type:'scroll',
             itemWidth: 16,
             itemHeight: 8,

@@ -54,7 +54,7 @@
     overflow: hidden;
 }
 .qpage{
-    height:calc(100vh - 98px);width:100%;
+    height:calc(100vh - 98px);width:100%;margin-left:0px;margin-right:0px;
 }
 .qsection{
     display: flex;

@@ -8,10 +8,10 @@
     background-color:#fff;
 }
 .qs_header{
-    padding: 10px 0 0 10px;
+    height:30px;line-height: 30px;
 }
 .qs_title1{
-    background-color: #38b8ff; margin-right: 10px; font-size: 1.25em;
+    background-color: #38b8ff; margin:0 10px 0 10px; font-size: 1.25em;
 }
 
 
@@ -21,9 +21,7 @@
     font-family: "Microsoft YaHei" !important;
 }
 .qs_body{
-    width:100%;
-    height:100%;
-    padding:0 0 0 5px;
+    height:calc(100% - 30px);
 }
 /******bootstrap theme******/
 .btn-primary, .btn-primary:hover{background-color:#00ced1;}
