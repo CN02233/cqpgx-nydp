@@ -16,8 +16,9 @@
 }
 
 .qs_title2{
-    font-size:20px;
+    font-size: 1.25em;
     color: #38b8ff;
+    font-family: "Microsoft YaHei" !important;
 }
 .qs_body{
     width:100%;
