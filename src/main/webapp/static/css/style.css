@@ -9,10 +9,10 @@ html,body {
 .y0{top:0;}.y1{top:8.3333%;}.y2{top:16.6667%;}.y3{top:25%;}.y4{top:33%;}.y5{top:41.6667%;}.y6{top:50%;}
 .y7{top:58.3333%;}.y8{top:66.6667%;}.y9{top:75%;}.y10{top:83.3333%;}.y11{top:91.6667%;}.y12{top:100%;}
 .w0{width:0;}.w1{width:8.3333%;}.w2{width:16.6667%;}.w3{width:25%;}.w4{width:33%;}.w5{width:41.6667%;}.w6{width:50%;}
-.w7{width:58.3333%;}.w8{width:66.6667%;}.w9{width:75%;}.w10{width:83.3333%;}.w11{width:91.6667%;}.w12{width:100%;}.w3_5{width:29.2%;}
-.h0{height:0;}.h1{height:8.3333%;}.h2{height:16.6667%;}.h3{height:25%;}.h4{height:33%;}.h5{height:41.6667%;}.h6{height:50%;}.h3_5{width:29.2%;}
+.w7{width:58.3333%;}.w8{width:66.6667%;}.w9{width:75%;}.w10{width:83.3333%;}.w11{width:91.6667%;}.w12{width:100%;}.w35{width:29.2%;}
+.h0{height:0;}.h1{height:8.3333%;}.h2{height:16.6667%;}.h3{height:25%;}.h4{height:33%;}.h5{height:41.6667%;}.h6{height:50%;}.h35{width:29.2%;}
 .h7{height:58.3333%;}.h8{height:66.6667%;}.h9{height:75%;}.h10{height:83.3333%;}.h11{height:91.6667%;}.h12{height:100%;}
-.w1,.w2,.w3,.w4,.w5,.w6,.w7,.w8,.w9.w10,.w11,.w12,.w3_5{float:left;}
+.w1,.w2,.w3,.w4,.w5,.w6,.w7,.w8,.w9.w10,.w11,.w12,.w35{float:left;}
 div.h1,div.h2,div.h3,div.h4,div.h5,div.h6,div.h7{margin-top:0px;margin-bottom:0px;}
 /***bootstrap fix***/
 .btn{padding: 4px 10px;}

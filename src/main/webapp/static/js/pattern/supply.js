@@ -675,10 +675,10 @@ function main(){
 	    visualMap: {
 	        min: 0,
 	        max: 1000000,
+	        text:['High','Low'],
 	        itemHeight:100,
 	        itemWidth:15,
 	        left:'5%',
-	        text:['High','Low'],
 	       textStyle:{
 	    	   color:'#fff',
 	    	   fontSize: 10
