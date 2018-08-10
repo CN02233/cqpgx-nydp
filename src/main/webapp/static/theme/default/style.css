@@ -54,7 +54,7 @@
     overflow: hidden;
 }
 .qpage{
-    padding:0px 0px 0px 0px;height:calc(100vh - 98px);width:100%;margin:0 auto;
+    height:calc(100vh - 98px);width:100%;
 }
 .qsection{
     display: flex;
@@ -67,8 +67,10 @@
 }
 div.qpanel0{padding:0 0 20px 0;}
 div.qpanel{
-    padding:0 0 20px 0;
-    margin:10px;
+    width:calc(100% - 20px);
+    height:calc(100% - 20px);
+    margin:10px 10px 10px 10px;
+
     background-color:rgba(0, 20, 63,0.35);
 }
 
