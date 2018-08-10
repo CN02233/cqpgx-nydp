@@ -1,40 +1,52 @@
 $(document).ready(function(){
 	main();
-	chart1();
-	chart2();
+	getdata('/pattern/supply/chart1.json',chart1);
+	getdata('/pattern/supply/chart2.json',chart2);
 	getdata('/pattern/supply/chart3.json',chart3);
 	chart4();
-	chart5();
+	getdata('/pattern/supply/chart5.json',chart5);
 });
 
-function chart1(){
+function chart1(data){
 	option = {
 		    tooltip : {
 		        trigger: 'axis'
 		    },
 		     grid: {
-		        left: '3%',
+		        left: '10%',
 		        right:'3%',
-		        top:'12%',
-		        bottom:'5%',
-		        containLabel: true
+		        top:'10%',
+		        bottom:'30%',
+		        //containLabel: true
 		    },
+		    legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'9%',
+		        data: data[0],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },    
 		xAxis : {
 		type: "category",
-        axisLine: {
-            lineStyle: {
-            	 color: 'rgba(255,255,255,0.6)',
-            }
-        },
+		 axisLine: {
+	            lineStyle: {
+	                color: '#38b8ff'
+	            }
+	        },
         splitLine: {
         	show: false,
             lineStyle: {
-                color: '#fff ',
+                color: '#59ebe8 ',
             }
         },
-        boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
+        //boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
         axisTick: {
-            show: false
+            show: true
         },
         splitArea: {
             show: false
@@ -44,22 +56,21 @@ function chart1(){
             textStyle: {
                 color: '#fff',
                 fontWeight: 'normal',
-                fontSize: 6
+                fontSize: 10
             },
         },
-		            data : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+		            data : data[2]
 		        },
 		    yAxis : {
 		    	 type: 'value',
 		         axisTick: {
-		             show: false
+		             show: true
 		         },
 		         axisLine: {
-		             show: true,
-		             lineStyle: {
-		                 color: 'rgba(255,255,255,0.6)',
-		             }
-		         },
+			            lineStyle: {
+			                color: '#59ebe8'
+			            }
+			        },
 		         splitLine: {
 		        	 show: false,
 		             lineStyle: {
@@ -70,14 +81,14 @@ function chart1(){
 		             textStyle: {
 		                 color: '#fff',
 		                 fontWeight: 'normal',
-		                 fontSize: 6
+		                 fontSize: 10
 		             },
 		             formatter: '{value}%',
 		         },
 		        },
 		    series : [
 		        {
-		            name:'新办数',
+		            name:'美国增长率',
 		            type:'line',
 		            areaStyle: {
 		                normal: {type: 'default',
@@ -96,10 +107,10 @@ function chart1(){
 		                	color:'#00F5FF',
 		                	areaStyle: {type: 'default'}}    
 		            },
-		            data:[136,375,380,449,114,267,142,318,357,193,421,391]
+		            data:data[3]
 		        },
 		         {
-		            name:'注销数',
+		            name:'俄罗斯增长率',
 		            type:'line',
 		            areaStyle: {
 		                normal: {type: 'default',
@@ -117,7 +128,27 @@ function chart1(){
 		            	normal: {
 		            	color:'#0000FF',	
 		            	areaStyle: {type: 'default'}}},
-		            data:[610, 312, 221,654, 910, 630, 310, 521, 354, 560, 830, 310]
+		            data:data[4]
+		        },{
+		            name:'OPEC增长率',
+		            type:'line',
+		            areaStyle: {
+		                normal: {type: 'default',
+		                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+		                        offset: 0,
+		                        color: 'rgba(19, 37, 250,0.2)'
+		                    }, {
+		                        offset: 1,
+		                        color: 'rgba(19, 37, 250,0.2)'
+		                    }], false)
+		                }
+		            },
+		            smooth:true,
+		            itemStyle: {
+		            	normal: {
+		            	color:'#ffd100',	
+		            	areaStyle: {type: 'default'}}},
+		            data:data[5]
 		        }
 		    ]
 		};
@@ -127,98 +158,58 @@ function chart1(){
 }
 
 
-function chart2(){
-	var data = [{
-	    "name": "一月",
-	    "value": 80
-	}, {
-	    "name": "二月",
-	    "value": 87.8
-	}, {
-	    "name": "三月",
-	    "value": 71
-	}, {
-	    "name": "四月",
-	    "value": 80
-	}, {
-	    "name": "五月",
-	    "value": -30
-	}, {
-	    "name": "六月",
-	    "value": -60
-	}, {
-	    "name": "七月",
-	    "value": -40
-	}];
-	var xData = [],
-	    yData = [];
-	var min = 50; 
-	data.map(function(a, b) {
-	    xData.push(a.name);
-	    if (a.value === 0) {
-	        yData.push(a.value + min);
-	    } else {
-	        yData.push(a.value);
-	    }
-	});
+function chart2(data){
 	option = {
 	    color: ['#3398DB'],
-	    tooltip: {
-	        trigger: 'axis',
-	        axisPointer: {
-	            type: 'line',
-	            lineStyle: {
-	                opacity: 0
-	            }
-	        },
-	        formatter: function(prams) {
-	            if (prams[0].data === min) {
-	                return "合格率：0%"
-	            } else {
-	                return "合格率：" + prams[0].data + "%"
-	            }
+	    tooltip : {
+	        trigger: 'axis'
+	    },
+	    legend: { //图例组件，颜色和名字
+	        itemGap: 12, //图例每项之间的间隔
+	        itemWidth: 16,
+	        itemHeight: 8,
+	        x:'center',
+	        bottom:'9%',
+	        data: data[0],
+	        textStyle: {
+	            color: '#fff',
+	            fontSize: 10,
 	        }
-	    },
-	    legend: {
-	        data: ['直接访问', '背景'],
-	        show: false
-	    },
+	    },    
 	    grid: {
-	        left: '0%',
-	        right: '0%',
-	        bottom: '5%',
-	        top: '7%',
-	        height: '85%',
-	        containLabel: true,
-	        z: 22
+	        left: '10%',
+	        right:'3%',
+	        top:'10%',
+	        bottom:'30%',
+	        //containLabel: true
 	    },
 	    xAxis: [{
 	        type: 'category',
 	        gridIndex: 0,
-	        data: xData,
+	        data: data[2],
 	        axisLine: {
 	            lineStyle: {
-	                color: '#0177d4'
+	                color: '#38b8ff'
 	            }
 	        },
 	        axisLabel: {
 	            color: '#fff',
-	            fontSize: 6
+	            fontSize: 10
 	        }
 	    }],
 	    yAxis: [{
 	    	 nameTextStyle: {
 	             color: '#fff',
-	             fontSize: 16
+	             fontSize: 10
 	         },
 	         axisLine: {
-	             lineStyle: {
-	                 color: '#0177d4'
-	             }
-	         },
+		            lineStyle: {
+		                color: '#38b8ff'
+		            }
+		        },
 	         axisLabel: {
 	             color: '#fff',
-	             fontSize: 6
+	             fontSize: 10
 	         },
 	         splitLine: {
 	             show:false,
@@ -228,7 +219,7 @@ function chart2(){
 	         }
 	        }],
 	    series: [{
-	            name: '合格率',
+	            name: '世界产量异动',
 	            type: 'bar',
 	            barWidth: '30%',
 	            itemStyle: {
@@ -251,8 +242,7 @@ function chart2(){
 	                    )
 	                }
 	            },
-	            data: yData,
-	            zlevel: 11
+	            data: data[3]
 
 	        }]
 	};
@@ -262,18 +252,26 @@ function chart2(){
 }
 
 function chart3(data){
-	//alert(JSON.stringify(data));
-	var xData = data[1];
-	var lineData1 = data[2];
-	var lineData2 = data[3];
-	var barData = data[4];
 	    var option =  {
-	        grid:{
-	            top:'7%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'25%',
-	        },
+	    		 legend: { //图例组件，颜色和名字
+	    		        itemGap: 12, //图例每项之间的间隔
+	    		        itemWidth: 16,
+	    		        itemHeight: 8,
+	    		        x:'center',
+	    		        bottom:'2%',
+	    		        data: data[0],
+	    		        textStyle: {
+	    		            color: '#fff',
+	    		            fontSize: 10,
+	    		        }
+	    		    },    
+	    		    grid: {
+	    		        left: '12%',
+	    		        right:'10%',
+	    		        top:'10%',
+	    		        bottom:'34%',
+	    		        //containLabel: true
+	    		    },
 	        tooltip: {
 	            trigger: 'axis',
 	            axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -281,77 +279,74 @@ function chart3(data){
 	            }
 	        },
 	        xAxis: [{
-	            position: "bottom",
-	            type: "category",
-	            axisLabel: {
-	                interval: 0,
-	                textStyle: {
-	                    color: '#fff',
-	                    fontSize:6
-	                },
-	                rotate: 30,
-	            },
-	            axisLine:{
-	                lineStyle:{
-	                    color: '#0177d4'
-	                }
-	            },
-	            data: xData,
-	        }],
-	        yAxis: [{
-	            name: '',
-	            type: 'value',
-	            position: 'left',
-	            axisLabel: {
-	                textStyle: {
-	                    color: '#fff',
-	                    fontStyle: 'normal',
-	                    fontSize:6
-	                }
-	            },
-	            axisLine: {
-	            	lineStyle:{
-	                    color: '#0177d4'
-	                }
-	            },
-	            axisTick: {
-	            	color: '#0177d4',
-	                show: true
-	            },
-	            splitLine: {
-	                show: false
-	            }
-	        },{
-	            type: "value",
-	            position: 'right',
-	            axisLine: {
-	            	lineStyle:{
-	                    color: '#fff'
-	                }
-	            },
-	            axisTick: {
-	                show: true
-	            },
-	            axisLine: {
-	            	lineStyle:{
-	                    color: '#0177d4'
-	                }
-	            },
-	            splitLine: {
-	                show: false
-	            },
-	            axisLabel: {
-	                show: true,
-	                formatter: function(param) {
-	                    return param + '%';
-	                },
-	                textStyle: {
-	                    color: '#fff',
-	                    fontSize:6
-	                }
-	            }
-	        }],
+		        type: 'category',
+		        gridIndex: 0,
+		        data: data[2],
+		        axisLine: {
+		            lineStyle: {
+		                color: '#38b8ff'
+		            }
+		        },
+		        axisLabel: {
+		            color: '#fff',
+		            fontSize: 10
+		        }
+		    }],
+		    yAxis: [{
+		    	 nameTextStyle: {
+		             color: '#fff',
+		             fontSize: 10
+		         },
+		         axisLine: {
+			            lineStyle: {
+			                color: '#38b8ff'
+			            }
+			        },
+		         axisLabel: {
+		             color: '#fff',
+		             fontSize: 10
+		         },
+		         splitLine: {
+		             show:false,
+		             lineStyle: {
+		                 color: '#0177d4'
+		             }
+		         }
+		        },{
+			    	 nameTextStyle: {
+			             color: '#fff',
+			             fontSize: 10
+			         },
+			         axisLine: {
+				            lineStyle: {
+				                color: '#38b8ff'
+				            }
+				        },
+			         axisLabel: {
+			             color: '#fff',
+			             fontSize: 10,
+			             formatter: '{value}%'
+			         },
+			         splitLine: {
+			             show:false,
+			             lineStyle: {
+			                 color: '#0177d4'
+			             }
+			         }
+			        }],
 	        series: [{
+	            name: "产量",
+	            type: "bar",
+	            barWidth: '30%',
+	            itemStyle: {
+	                normal: {
+	                	 color: '#28B7FF',
+	                	 barBorderRadius: 50,
+	                },
+	            },
+	            data: data[4],
+
+	        }, {
 	            name: "消费量",
 	            type: "bar",
 	            barWidth: '30%',
@@ -361,10 +356,10 @@ function chart3(data){
 	                	 barBorderRadius: 50,
 	                },
 	            },
-	            data: barData,
+	            data: data[5],
 
-	        }, {
-	            name: "占比",
+	        },{
+	            name: "PI",
 	            type: "line",
 	            yAxisIndex: 1,
 	            itemStyle: {
@@ -372,18 +367,7 @@ function chart3(data){
 	                    color: '#E9DC37'
 	                },
 	            },
-	            data: lineData1,
-
-	        }, {
-	            name: "增长率",
-	            type: "line",
-	            yAxisIndex: 1,
-	            itemStyle: {
-	                normal: {
-	                    color: '#E9DC37'
-	                },
-	            },
-	            data: lineData2,
+	            data: data[3],
 
 	        }]
 	    }
@@ -392,7 +376,7 @@ function chart3(data){
     setH('chart3');
 }
 
-function chart4(){
+function chart4(data){
 	 var dataStyle1 = {
 		        normal: {
 		            color: 'rgba(0,0,0,0)',
@@ -443,12 +427,12 @@ function chart4(){
 			            fontSize: 16,
 			        }
 			    },
-		   /* tooltip : {
+		  /* tooltip : {
 		        trigger: 'item',
 		        formatter: "{a} <br/>{b} : {c} ({d}%)"
 		    },*/
 		    series : [
-		        {
+		       /* {
 		            name: '访问来源',
 		            type: 'pie',
 		            radius : '60%',
@@ -481,7 +465,7 @@ function chart4(){
 		                }
 		            },
 		            animation: false
-		        },{
+		        },*/{
 		            type: 'pie',
 		            radius : ["73%","80%"],
 		            center: ['50%', '50%'],
@@ -508,6 +492,10 @@ function chart4(){
 		                    }
 		                }
 		            },
+		            tooltip:{
+            			trigger: 'item',
+        		        formatter: "{b} : {c} ({d}%)"
+            		},
 		            itemStyle: {
 		                emphasis: {
 		                    shadowBlur: 10,
@@ -515,16 +503,16 @@ function chart4(){
 		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
 		                }
 		            }
-		        },{
+		        }/*,{
 		            type: 'pie',
 		            radius : ["61%","63%"],
 		            center: ['50%', '50%'],
 		            hoverAnimation: false,
 		            data:[
-		                {value:42.56, name:'1',itemStyle:dataStyle2},
-		                {value:57.44, name:'1',itemStyle:dataStyle1},
-		                {value:57.44, name:'1',itemStyle:dataStyle1},
-		                {value:57.44, name:'1',itemStyle:dataStyle1}
+		                {value:1.3, name:'1',itemStyle:dataStyle2},
+		                {value:1, name:'1',itemStyle:dataStyle1},
+		                {value:1, name:'1',itemStyle:dataStyle1},
+		                {value:1, name:'1',itemStyle:dataStyle1}
 		            ],
 		            color:["#E43715","#00d6ff"],
 		            labelLine: {
@@ -558,10 +546,10 @@ function chart4(){
 		            center: ['50%', '50%'],
 		            hoverAnimation: false,
 		            data:[
-		                 {value:42.56, name:'2',itemStyle:dataStyle1},
-		                {value:57.44, name:'2',itemStyle:dataStyle2},
-		                {value:57.44, name:'2',itemStyle:dataStyle1},
-		                {value:57.44, name:'2',itemStyle:dataStyle1}
+		                 {value:1, name:'2',itemStyle:dataStyle1},
+		                {value:1, name:'2',itemStyle:dataStyle1},
+		                {value:1, name:'2',itemStyle:dataStyle1},
+		                {value:1.3, name:'2',itemStyle:dataStyle2}
 		            ],
 		            color:["#E43715","#00d6ff"],
 		            labelLine: {
@@ -595,10 +583,10 @@ function chart4(){
 		            center: ['50%', '50%'],
 		            hoverAnimation: false,
 		            data:[
-		                  {value:42.56, name:'3',itemStyle:dataStyle1},
-			                {value:57.44, name:'3',itemStyle:dataStyle1},
-			                {value:57.44, name:'3',itemStyle:dataStyle2},
-			                {value:57.44, name:'3',itemStyle:dataStyle1}
+		                  {value:1, name:'3',itemStyle:dataStyle1},
+			                {value:1, name:'3',itemStyle:dataStyle1},
+			                {value:1.4, name:'3',itemStyle:dataStyle2},
+			                {value:1, name:'3',itemStyle:dataStyle1}
 		            ],
 		            color:["#E43715","#00d6ff"],
 		            labelLine: {
@@ -632,10 +620,10 @@ function chart4(){
 		            center: ['50%', '50%'],
 		            hoverAnimation: false,
 		            data:[
-		                  {value:42.56, name:'4',itemStyle:dataStyle1},
-			                {value:57.44, name:'4',itemStyle:dataStyle1},
-			                {value:57.44, name:'4',itemStyle:dataStyle1},
-			                {value:57.44, name:'4',itemStyle:dataStyle2}
+		                  {value:1, name:'4',itemStyle:dataStyle1},
+			                {value:1.5, name:'4',itemStyle:dataStyle2},
+			                {value:1, name:'4',itemStyle:dataStyle1},
+			                {value:1, name:'4',itemStyle:dataStyle1}
 		            ],
 		            color:["#E43715","#00d6ff"],
 		            labelLine: {
@@ -651,7 +639,7 @@ function chart4(){
 		                emphasis: {
 		                    show: false,
 		                    textStyle: {
-		                        fontSize: '30',
+		                        fontSize: 10,
 		                        fontWeight: 'bold'
 		                    }
 		                }
@@ -663,13 +651,15 @@ function chart4(){
 		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
 		                }
 		            }
-		        }
+		        }*/
 		    ]
 		};
 	var myChart = echarts.init($('#chart4')[0]);
     myChart.setOption(option);
     setH('chart4');
 }
+
+
 
 function main(){
 	option = {
@@ -685,7 +675,14 @@ function main(){
 	    visualMap: {
 	        min: 0,
 	        max: 1000000,
+	        itemHeight:100,
+	        itemWidth:15,
+	        left:'5%',
 	        text:['High','Low'],
+	       textStyle:{
+	    	   color:'#fff',
+	    	   fontSize: 10
+	       },
 	        realtime: false,
 	        calculable: true,
 	        color: ['orangered','yellow','lightskyblue']
@@ -886,10 +883,7 @@ myChart.setOption(option);
 setH('main');
 }
 
-function chart5(){
-	var barData1 = [100, 100, 120,12,13,-64,-75,-83];
-	var xData = ['1', '2', '3', '4', '5','6','7','8'];
-	var data1= [16, 16, 16,16,16,-16,-16,-16];
+function chart5(data){
 	option = {
 		    tooltip: {
 	        show:"true",
@@ -898,78 +892,111 @@ function chart5(){
 	            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
 	        }
 	        },
-	    
-	    xAxis: [{
-	        show: true,
-	        axisLine: {
-	            show: false
-	        },
-	        axisTick: {
-	            show: false
-	        },
-	        axisLabel: {
-	            show: false
-	        },
-	        splitLine: {
-	            show: false
-	        },
-	        data: xData
-	    },{
-	        show: true,
-	        axisLine: {
-	            show: false
-	        },
-	        axisTick: {
-	            show: false
-	        },
-	        axisLabel: {
-	            show: false
-	        },
-	        splitLine: {
-	            show: false
-	        },
-	        data: xData
-	    }],
-	    yAxis: [ {
-	        position: "left",
-	        type: 'value',
-	        axisLine: {
-	            show: false
-	        },
-	        axisTick: {
-	            show: false
-	        },
-	        axisLabel: {
-	            show: true,
-	            color:'#fff'
-	        },
-	        splitLine: {
-	            show: false
-	        }
-	    },{
-	        position: "left",
-	        type: 'value',
-	        axisLine: {
-	            show: false
-	        },
-	        axisTick: {
-	            show: false
-	        },
-	        axisLabel: {
-	            show: true,
-	            color:'#fff'
-	        },
-	        splitLine: {
-	            show: false
-	        }
-	    }],
-	    grid: {
-	        left: '0%',
-	        right: '0%',
-	        bottom: '5%',
-	        top: '10%',
-	    },
+	        legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'2%',
+		        data: data[0],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },    
+		    grid: {
+		        left: '12%',
+		        right:'10%',
+		        top:'10%',
+		        bottom:'34%',
+		        //containLabel: true
+		    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    xAxis: [{
+        type: 'category',
+        gridIndex: 0,
+        data: data[2],
+        axisLine: {
+            lineStyle: {
+                color: '#38b8ff'
+            }
+        },
+        axisLabel: {
+            color: '#fff',
+            fontSize: 10
+        }
+    }],
+    yAxis: [{
+	    	 nameTextStyle: {
+	             color: '#fff',
+	             fontSize: 10
+	         },
+	         axisLine: {
+		            lineStyle: {
+		                color: '#38b8ff'
+		            }
+		        },
+	         axisLabel: {
+	             color: '#fff',
+	             fontSize: 10,
+	             formatter: '{value}%'
+	         },
+	         splitLine: {
+	             show:false,
+	             lineStyle: {
+	                 color: '#0177d4'
+	             }
+	         }
+	        }],
 	    series: [{
+            name:'同比增长率',
+            type:'line',
+            areaStyle: {
+                normal: {type: 'default',
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(199, 37, 50,0.2)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(199, 37, 50,0.2)'
+                    }], false)
+                }
+            },
+            smooth:true,
+            itemStyle: {
+                normal: {
+                	color:'#00F5FF',
+                	areaStyle: {type: 'default'}}    
+            },
+            data:data[3]
+        },
+         {
+            name:'产量占比',
+            type:'line',
+            areaStyle: {
+                normal: {type: 'default',
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(19, 37, 250,0.2)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(19, 37, 250,0.2)'
+                    }], false)
+                }
+            },
+            smooth:true,
+            itemStyle: {
+            	normal: {
+            	color:'#0000FF',	
+            	areaStyle: {type: 'default'}}},
+            data:data[4]
+        }
+	             /*{
 	        name: '',
 	        type: 'bar',
 	        barWidth: 2,
@@ -985,7 +1012,7 @@ function chart5(){
 	                    offset: 0.8,
 	                    color: '#7052f4'
 	                }], false),
-	             /* label: {
+	              label: {
 	                show: true,
 	                position: function(){
 	                	return 'top';
@@ -997,7 +1024,7 @@ function chart5(){
 	                borderWidth: 6,
 	                borderRadius: 10,
 	                color: '#fff'
-	              }*/
+	              }
 	            }
 	        },
 	        data: barData1
@@ -1044,7 +1071,7 @@ function chart5(){
 	            }
 	        },
 	        data: data1
-	    }]
+	    }*/]
 	};
 	var myChart = echarts.init($('#chart5')[0]);
     myChart.setOption(option);

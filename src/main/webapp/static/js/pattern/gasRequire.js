@@ -28,7 +28,7 @@ function chart1(data){
 		        itemGap: 12, //图例每项之间的间隔
 		        itemWidth: 8,
 		        itemHeight: 8,
-		        icon: 'rect',
+		        //icon: 'rect',
 		        orient: 'vertical',
 		        left:'right',
 		        top:'9%',
@@ -195,9 +195,9 @@ function chart2(data){
 		        legend: { //图例组件，颜色和名字
 			        //orient: 'vertical',
 			        itemGap: 12, //图例每项之间的间隔
-			        itemWidth: 8,
+			        itemWidth: 16,
 			        itemHeight: 8,
-			        icon: 'rect',
+			       // icon: 'rect',
 			        //orient: 'vertical',
 			        left:'right',
 			        data: data[0],

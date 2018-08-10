@@ -17,20 +17,17 @@ function chart1(data){
 		    },
 		    color: ['#fd9173', '#f36f8a', '#5f71d2', '#42a4eb', '#4ac7f5'],
 		    legend: { //图例组件，颜色和名字
-		        bottom: '5%',
-		        //orient: 'vertical',
 		        itemGap: 12, //图例每项之间的间隔
-		        itemWidth: 10,
-		        itemHeight: 10,
-		        icon: 'rect',
-		        data: legendData,
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'9%',
+		        data: data[0],
 		        textStyle: {
-		            color: [],
-		            fontStyle: 'normal',
-		            fontFamily: '微软雅黑',
-		            fontSize: 12,
+		            color: '#fff',
+		            fontSize: 10,
 		        }
-		    },
+		    },    
 		    series: [{
 		        name: '违规次数',
 		        type: 'pie',
@@ -47,6 +44,7 @@ function chart1(data){
 		        },
 		        label: {
 	                normal: {
+	                	color:'#fff',
 	                    formatter: '{b}\n{d}%'
 	                },
 	          
@@ -69,10 +67,22 @@ function chart2(data){
 		            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
 		        }
 		    },
+		    legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'5%',
+		        data: data[0],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },  
 		    grid: {
 		        left: '3%',
-		        right: '4%',
-		        bottom: '3%',
+		        right: '8%',
+		        bottom: '15%',
 		        top:'3%',
 		        containLabel: true
 		    },
@@ -86,6 +96,11 @@ function chart2(data){
 			                 color: '#fff',
 			             }
 			         },
+			         axisLine: {
+				            lineStyle: {
+				                color: '#59ebe8'
+				            }
+				        },
 			         splitArea: {
 			             show: false
 			         },
@@ -93,7 +108,7 @@ function chart2(data){
 			             textStyle: {
 			                 color: '#fff',
 			                 fontWeight: 'normal',
-			                 fontSize: 6
+			                 fontSize: 10
 			             },
 			             formatter: '{value}',
 			         }
@@ -109,10 +124,15 @@ function chart2(data){
 			                 color: '#fff',
 			             }
 			         },
+			         axisLine: {
+				            lineStyle: {
+				                color: '#59ebe8'
+				            }
+				        },
 			         axisLabel: {
 			             textStyle: {
 			                 color: '#fff',
-			                 fontSize: 6
+			                 fontSize: 10
 			             }
 			         },
 		            data : yData
@@ -154,12 +174,25 @@ function chart3(data){
 	var barData1 = data[4];
 	var barData2 = data[5];
 	    var option =  {
-	        grid:{
-	            top:'7%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'25%',
-	        },
+	    		 legend: { //图例组件，颜色和名字
+	 		        itemGap: 12, //图例每项之间的间隔
+	 		        itemWidth: 16,
+	 		        itemHeight: 8,
+	 		        x:'center',
+	 		        bottom:'5%',
+	 		        data: data[0],
+	 		        textStyle: {
+	 		            color: '#fff',
+	 		            fontSize: 10,
+	 		        }
+	 		    },
+	 		   grid: {
+			        left: '10%',
+			        right:'9%',
+			        top:'10%',
+			        bottom:'35%',
+			        //containLabel: true
+			    },
 	        tooltip: {
 	            trigger: 'axis',
 	            axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -170,16 +203,16 @@ function chart3(data){
 	            position: "bottom",
 	            type: "category",
 	            axisLabel: {
-	                //interval: 0,
+	                interval: 0,
 	                textStyle: {
 	                    color: '#fff',
-	                    fontSize:8
+	                    fontSize:10
 	                },
 	                rotate: 30,
 	            },
 	            axisLine:{
 	                lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#59ebe8'
 	                }
 	            },
 	            data: xData,
@@ -187,18 +220,18 @@ function chart3(data){
 	        yAxis: [{
 	            name: '',
 	            type: 'value',
-	            min:36,
+	            //min:36,
 	            position: 'left',
 	            axisLabel: {
 	                textStyle: {
 	                    color: '#fff',
 	                    fontStyle: 'normal',
-	                    fontSize:8
+	                    fontSize:10
 	                }
 	            },
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#59ebe8'
 	                }
 	            },
 	            axisTick: {
@@ -221,7 +254,7 @@ function chart3(data){
 	            },
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#59ebe8'
 	                }
 	            },
 	            splitLine: {
@@ -231,7 +264,7 @@ function chart3(data){
 	                show: true,
 	                textStyle: {
 	                    color: '#fff',
-	                    fontSize:8
+	                    fontSize:10
 	                }
 	            }
 	        }],
@@ -287,20 +320,32 @@ function chart4(data){
 		    grid:{
 	            top:'10%',
 	            left:'10%',
-	            right:'10%',
-	            bottom:'20%',
+	            right:'9%',
+	            bottom:'30%',
 	        },
+	        legend: { //图例组件，颜色和名字
+ 		        itemGap: 12, //图例每项之间的间隔
+ 		        itemWidth: 16,
+ 		        itemHeight: 8,
+ 		        x:'center',
+ 		        bottom:'5%',
+ 		        data: data[0],
+ 		        textStyle: {
+ 		            color: '#fff',
+ 		            fontSize: 10,
+ 		        }
+ 		    },
 		    xAxis: {
 		    	type: "category",
 		        axisLine: {
 		            lineStyle: {
-		            	 color: 'rgba(255,255,255,0.6)',
+		            	 color: '#59ebe8',
 		            }
 		        },
 		        splitLine: {
 		        	show: false,
 		            lineStyle: {
-		                color: '#fff ',
+		                color: '#59ebe8 ',
 		            }
 		        },
 		        boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
@@ -316,7 +361,7 @@ function chart4(data){
 		            textStyle: {
 		                color: '#fff',
 		                fontWeight: 'normal',
-		                fontSize: 8
+		                fontSize: 10
 		            },
 		        },
 		        data:xData
@@ -331,7 +376,7 @@ function chart4(data){
 		         axisLine: {
 		             show: true,
 		             lineStyle: {
-		                 color: 'rgba(255,255,255,0.6)',
+		                 color: '#59ebe8',
 		             }
 		         },
 		         splitLine: {
@@ -344,13 +389,13 @@ function chart4(data){
 		             textStyle: {
 		                 color: '#fff',
 		                 fontWeight: 'normal',
-		                 fontSize: 8
+		                 fontSize: 10
 		             },
 		             formatter: '{value}'
 		         }
 		    },
 		    series: [{
-		        name: '2018/6/22',
+		        name: '美国',
 		        type: 'line',
 		        smooth: true,
 		        symbol:'circle',
@@ -363,7 +408,7 @@ function chart4(data){
 		        data: lineData1
 		    },
 		    {
-		        name: '2018/6/15',
+		        name: '俄罗斯',
 		        type: 'line',
 		        smooth: true,//值为true折线平滑    值为false折线曲折
 		        symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
@@ -396,14 +441,26 @@ function chart5(data){
 	    grid:{
             top:'10%',
             left:'10%',
-            right:'10%',
-            bottom:'20%',
+            right:'9%',
+            bottom:'30%',
         },
+        legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'5%',
+		        data: data[0],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },
 	    xAxis: {
 	    	type: "category",
 	        axisLine: {
 	            lineStyle: {
-	            	 color: 'rgba(255,255,255,0.6)',
+	            	 color: '#59ebe8',
 	            }
 	        },
 	        splitLine: {
@@ -421,12 +478,12 @@ function chart5(data){
 	            show: false
 	        },
 	        axisLabel: {
-	            inside: false,
-	            textStyle: {
-	                color: '#fff',
-	                fontWeight: 'normal',
-	                fontSize: 8
-	            },
+	        	 //interval: 0,
+	                textStyle: {
+	                    color: '#fff',
+	                    fontSize:10
+	                },
+	                //rotate: 30,
 	        },
 	        data: xData
 	    },
@@ -439,7 +496,7 @@ function chart5(data){
 	         axisLine: {
 	             show: true,
 	             lineStyle: {
-	                 color: 'rgba(255,255,255,0.6)',
+	                 color: '#59ebe8',
 	             }
 	         },
 	         splitLine: {
@@ -452,14 +509,14 @@ function chart5(data){
 	             textStyle: {
 	                 color: '#fff',
 	                 fontWeight: 'normal',
-	                 fontSize: 8
+	                 fontSize: 10
 	             },
 	             formatter: '{value}'
 	         }
 	    },
 	    color: ['#00FFFF'],
 	    series: [{
-	        name: 'hill',
+	        name: '产量异动',
 	        type: 'pictorialBar',
 	        //barCategoryGap: '-130%',
 	        symbol: 'path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z',
