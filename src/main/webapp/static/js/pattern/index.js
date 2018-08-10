@@ -84,9 +84,9 @@ function main(){
                 }],
                 left: '10%',
                 top: 'bottom',
+                itemGap:8,
                 textStyle: {
                     color: '#fff',
-                    itemGap:8,
                     fontSize:10,
                 }
             },
@@ -136,7 +136,7 @@ function main(){
                     borderWidth:0.3
                 },
                 viewControl: {
-                    distance: 90
+                    distance: 80
                 },
                 boxHeight:20,
                 regionHeight: 1,
@@ -341,8 +341,8 @@ function chart2(data){
         },
         grid:{
             top:'10%',
-            left:'10%',
-            right:'10%',
+            left:'5%',
+            right:'5%',
             bottom:'20%',
             containLabel: true
         },
@@ -374,7 +374,7 @@ function chart2(data){
                 align:'center',
                 color:'#fff',
             },
-            splitNumber:6,
+            splitNumber:3,
             splitLine:{
                 show:false
             },
