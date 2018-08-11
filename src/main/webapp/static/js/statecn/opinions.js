@@ -10,24 +10,26 @@ $(document).ready(function(){
 
 function chart1(data){
 	option = {
-			grid:{
-	            top:'18%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'16%',
-	        },
-	        color:["#28B7FF","#57FFFF","#226FFF"],
-		    legend: {
-		        //bottom:30,
-		        //itemGap:30,
-		        itemWidth:20,
-		        itemHeight:2,
-		        	textStyle: {
-	                    color: '#fff',
-	                    fontSize:8
-	                },
-		        data: data[0]
+			grid: {
+		        left: '13%',
+		        right:'3%',
+		        top:'10%',
+		        bottom:'30%',
+		        //containLabel: true
 		    },
+		    legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'4%',
+		        data: data[0],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },    
+	        color:["#28B7FF","#57FFFF","#226FFF"],
 		    tooltip: {
 		        trigger: 'axis'
 		    },
@@ -38,13 +40,13 @@ function chart1(data){
 		                //interval: 0,
 		                textStyle: {
 		                    color: '#fff',
-		                    fontSize:8
+		                    fontSize:10
 		                },
 		                //rotate: 30,
 		            },
 		            axisLine:{
 		                lineStyle:{
-		                    color: '#0177d4'
+		                    color: '#38b8ff'
 		                }
 		            },
 		        data: data[2]
@@ -56,17 +58,16 @@ function chart1(data){
 	            axisLabel: {
 	                textStyle: {
 	                    color: '#fff',
-	                    fontStyle: 'normal',
-	                    fontSize:8
+	                    fontSize:10
 	                }
 	            },
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#38b8ff'
 	                }
 	            },
 	            axisTick: {
-	            	color: '#0177d4',
+	            	color: '#38b8ff',
 	                show: true
 	            },
 	            splitLine: {
@@ -76,7 +77,7 @@ function chart1(data){
 		    series: [{
 		        name: '石油上游',
 		        type: 'line',
-		      //  z:5,
+		        symbol:'circle',
 		        stack: '总量',
 		        itemStyle: {
 		            normal: {
@@ -98,7 +99,7 @@ function chart1(data){
 		    }, {
 		        name: '石油中游',
 		        type: 'line',
-		      //  z:4,
+		        symbol:'circle',
 		        stack: '总量',
 		        itemStyle: {
 		            normal: {
@@ -120,7 +121,7 @@ function chart1(data){
 		    },{
 		        name: '石油下游',
 		        type: 'line',
-		      //  z:3,
+		        symbol:'circle',
 		        stack: '总量',
 		        itemStyle: {
 		            normal: {
@@ -148,24 +149,26 @@ function chart1(data){
 
 function chart2(data){
 	option = {
-			grid:{
-	            top:'18%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'16%',
-	        },
-	        color:["#FFD844","#226FFF","#FFF8DA"],
-		    legend: {
-		        //bottom:30,
-		        //itemGap:30,
-		        itemWidth:20,
-		        itemHeight:2,
-		        	textStyle: {
-	                    color: '#fff',
-	                    fontSize:8
-	                },
-		        data: data[0]
+			grid: {
+		        left: '13%',
+		        right:'3%',
+		        top:'10%',
+		        bottom:'30%',
+		        //containLabel: true
 		    },
+		    legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'4%',
+		        data: data[0],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },   
+	        color:["#FFD844","#226FFF","#FFF8DA"],
 		    tooltip: {
 		        trigger: 'axis'
 		    },
@@ -176,13 +179,13 @@ function chart2(data){
 		                //interval: 0,
 		                textStyle: {
 		                    color: '#fff',
-		                    fontSize:8
+		                    fontSize:10
 		                },
 		                //rotate: 30,
 		            },
 		            axisLine:{
 		                lineStyle:{
-		                    color: '#0177d4'
+		                    color: '#38b8ff'
 		                }
 		            },
 		        data: data[2]
@@ -194,17 +197,16 @@ function chart2(data){
 	            axisLabel: {
 	                textStyle: {
 	                    color: '#fff',
-	                    fontStyle: 'normal',
-	                    fontSize:8
+	                    fontSize:10
 	                }
 	            },
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#38b8ff'
 	                }
 	            },
 	            axisTick: {
-	            	color: '#0177d4',
+	            	color: '#38b8ff',
 	                show: true
 	            },
 	            splitLine: {
@@ -251,12 +253,6 @@ function chart2(data){
 		                color:'#226FFF'
 		            }
 		        },
-		       /* areaStyle: {
-		            normal: {
-		                color: '#57FFFF',
-		                 opacity:1
-		            }
-		        },*/
 		        data: data[4]
 		    },{
 		        name: '天然气下游',
@@ -300,17 +296,30 @@ function chart3(data){
 		    tooltip: {
 		        trigger: 'axis'
 		    },
-		    grid:{
-	            top:'18%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'16%',
-	        },
+		    grid: {
+		        left: '13%',
+		        right:'6%',
+		        top:'10%',
+		        bottom:'30%',
+		        //containLabel: true
+		    },
+		    legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'4%',
+		        data: data[0],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },  
 		    xAxis: {
 		    	type: "category",
 		        axisLine: {
 		            lineStyle: {
-		            	 color: 'rgba(255,255,255,0.6)',
+		            	 color: '#38b8ff',
 		            }
 		        },
 		        splitLine: {
@@ -321,7 +330,7 @@ function chart3(data){
 		        },
 		        boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
 		        axisTick: {
-	            	color: '#0177d4',
+	            	color: '#38b8ff',
 	                show: true
 	            },
 		        splitArea: {
@@ -331,8 +340,7 @@ function chart3(data){
 		            inside: false,
 		            textStyle: {
 		                color: '#fff',
-		                fontWeight: 'normal',
-		                fontSize: 8
+		                fontSize: 10
 		            },
 		        },
 		        data:xData
@@ -340,13 +348,13 @@ function chart3(data){
 		    yAxis: {
 		    	 type: 'value',
 		    	 axisTick: {
-		            	color: '#0177d4',
+		            	color: '#38b8ff',
 		                show: true
 		            },
 		         axisLine: {
 		             show: true,
 		             lineStyle: {
-		                 color: 'rgba(255,255,255,0.6)',
+		                 color: '#38b8ff',
 		             }
 		         },
 		         splitLine: {
@@ -358,8 +366,7 @@ function chart3(data){
 		         axisLabel: {
 		             textStyle: {
 		                 color: '#fff',
-		                 fontWeight: 'normal',
-		                 fontSize: 8
+		                 fontSize: 10
 		             },
 		             formatter: '{value}'
 		         }
@@ -618,17 +625,30 @@ function chart5(data){
 		    tooltip: {
 		        trigger: 'axis'
 		    },
-		    grid:{
-	            top:'18%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'16%',
-	        },
+		    grid: {
+		        left: '13%',
+		        right:'3%',
+		        top:'10%',
+		        bottom:'36%',
+		        //containLabel: true
+		    },
+		    legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'2%',
+		        data: data[0],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },  
 		    xAxis: {
 		    	type: "category",
 		        axisLine: {
 		            lineStyle: {
-		            	 color: 'rgba(255,255,255,0.6)',
+		            	 color: '#38b8ff',
 		            }
 		        },
 		        splitLine: {
@@ -639,7 +659,7 @@ function chart5(data){
 		        },
 		        boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
 		        axisTick: {
-	            	color: '#0177d4',
+	            	color: '#38b8ff',
 	                show: true
 	            },
 		        splitArea: {
@@ -649,8 +669,7 @@ function chart5(data){
 		            inside: false,
 		            textStyle: {
 		                color: '#fff',
-		                fontWeight: 'normal',
-		                fontSize: 8
+		                fontSize: 10
 		            },
 		        },
 		        data:xData
@@ -658,13 +677,13 @@ function chart5(data){
 		    yAxis: {
 		    	 type: 'value',
 		    	 axisTick: {
-		            	color: '#0177d4',
+		            	color: '#38b8ff',
 		                show: true
 		            },
 		         axisLine: {
 		             show: true,
 		             lineStyle: {
-		                 color: 'rgba(255,255,255,0.6)',
+		                 color: '#38b8ff',
 		             }
 		         },
 		         splitLine: {
@@ -676,8 +695,8 @@ function chart5(data){
 		         axisLabel: {
 		             textStyle: {
 		                 color: '#fff',
-		                 fontWeight: 'normal',
-		                 fontSize: 8
+		                 //fontWeight: 'normal',
+		                 fontSize: 10
 		             },
 		             formatter: '{value}'
 		         }
@@ -777,17 +796,30 @@ function chart6(data){
 		    tooltip: {
 		        trigger: 'axis'
 		    },
-		    grid:{
-	            top:'18%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'16%',
-	        },
+		    grid: {
+		        left: '13%',
+		        right:'3%',
+		        top:'10%',
+		        bottom:'36%',
+		        //containLabel: true
+		    },
+		    legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'2%',
+		        data: data[0],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },  
 		    xAxis: {
 		    	type: "category",
 		        axisLine: {
 		            lineStyle: {
-		            	 color: 'rgba(255,255,255,0.6)',
+		            	 color: '#38b8ff',
 		            }
 		        },
 		        splitLine: {
@@ -798,7 +830,7 @@ function chart6(data){
 		        },
 		        boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
 		        axisTick: {
-	            	color: '#0177d4',
+	            	color: '#38b8ff',
 	                show: true
 	            },
 		        splitArea: {
@@ -808,8 +840,7 @@ function chart6(data){
 		            inside: false,
 		            textStyle: {
 		                color: '#fff',
-		                fontWeight: 'normal',
-		                fontSize: 8
+		                fontSize:10
 		            },
 		        },
 		        data:xData
@@ -818,13 +849,13 @@ function chart6(data){
 		    	 type: 'value',
 		    	 min:0.6,
 		    	 axisTick: {
-		            	color: '#0177d4',
+		            	color: '#38b8ff',
 		                show: true
 		            },
 		         axisLine: {
 		             show: true,
 		             lineStyle: {
-		                 color: 'rgba(255,255,255,0.6)',
+		                 color: '#38b8ff',
 		             }
 		         },
 		         splitLine: {
@@ -836,8 +867,8 @@ function chart6(data){
 		         axisLabel: {
 		             textStyle: {
 		                 color: '#fff',
-		                 fontWeight: 'normal',
-		                 fontSize: 8
+		                 //fontWeight: 'normal',
+		                 fontSize: 10
 		             },
 		             formatter: '{value}%'
 		         }

@@ -21,7 +21,7 @@ function chart1(data){
 		        itemWidth: 16,
 		        itemHeight: 8,
 		        x:'center',
-		        bottom:'9%',
+		        bottom:'2%',
 		        data: data[0],
 		        textStyle: {
 		            color: '#fff',
@@ -72,7 +72,7 @@ function chart2(data){
 		        itemWidth: 16,
 		        itemHeight: 8,
 		        x:'center',
-		        bottom:'5%',
+		        bottom:'2%',
 		        data: data[0],
 		        textStyle: {
 		            color: '#fff',
@@ -179,7 +179,7 @@ function chart3(data){
 	 		        itemWidth: 16,
 	 		        itemHeight: 8,
 	 		        x:'center',
-	 		        bottom:'5%',
+	 		        bottom:'2%',
 	 		        data: data[0],
 	 		        textStyle: {
 	 		            color: '#fff',
@@ -190,7 +190,7 @@ function chart3(data){
 			        left: '10%',
 			        right:'9%',
 			        top:'10%',
-			        bottom:'35%',
+			        bottom:'37%',
 			        //containLabel: true
 			    },
 	        tooltip: {
@@ -321,14 +321,14 @@ function chart4(data){
 	            top:'10%',
 	            left:'10%',
 	            right:'9%',
-	            bottom:'30%',
+	            bottom:'28%',
 	        },
 	        legend: { //图例组件，颜色和名字
  		        itemGap: 12, //图例每项之间的间隔
  		        itemWidth: 16,
  		        itemHeight: 8,
  		        x:'center',
- 		        bottom:'5%',
+ 		        bottom:'2%',
  		        data: data[0],
  		        textStyle: {
  		            color: '#fff',
@@ -442,14 +442,14 @@ function chart5(data){
             top:'10%',
             left:'10%',
             right:'9%',
-            bottom:'30%',
+            bottom:'28%',
         },
         legend: { //图例组件，颜色和名字
 		        itemGap: 12, //图例每项之间的间隔
 		        itemWidth: 16,
 		        itemHeight: 8,
 		        x:'center',
-		        bottom:'5%',
+		        bottom:'2%',
 		        data: data[0],
 		        textStyle: {
 		            color: '#fff',

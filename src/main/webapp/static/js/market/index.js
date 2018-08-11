@@ -285,8 +285,10 @@ function main(data){
 	    },
 	    legend: {
 	        orient: 'vertical',
-	        right: '3%',
-	        bottom:'3%',
+	        left: '3%',
+	        bottom:'5%',
+	        itemHeight:10,
+	        itemWidth:20,
 	        textStyle: {
                 color: '#fff'
             },
@@ -295,12 +297,15 @@ function main(data){
 	    visualMap: {
 	        min: 0,
 	        max: 1000,
-	        left: 'left',
-	        bottom: '3%',
-	        text: ['高','低'],           // 文本，默认为数值文本
-	        textStyle: {
-                color: '#fff'
-            },
+	        text: ['高','低'],
+	        itemHeight:100,
+	        itemWidth:15,
+	        left:'3%',
+	        bottom:'15%',
+	       textStyle:{
+	    	   color:'#fff',
+	    	   fontSize: 10
+	       },
 	        //calculable: true,
 	       color: ['#1E90FF','#BBFFFF']
 	    },
@@ -324,12 +329,25 @@ function chart1(data){
 	var barData1 = data[4];
 	var barData2 = data[5];
 	    var option =  {
-	        grid:{
-	            top:'10%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'20%',
-	        },
+	 		     grid: {
+	 		        left: '10%',
+	 		        right:'9%',
+	 		        top:'10%',
+	 		        bottom:'30%',
+	 		        //containLabel: true
+	 		    },
+	 		    legend: { //图例组件，颜色和名字
+	 		        itemGap: 12, //图例每项之间的间隔
+	 		        itemWidth: 16,
+	 		        itemHeight: 8,
+	 		        x:'center',
+	 		        bottom:'2%',
+	 		        data: data[0],
+	 		        textStyle: {
+	 		            color: '#fff',
+	 		            fontSize: 10,
+	 		        }
+	 		    },    
 	        tooltip: {
 	            trigger: 'axis',
 	            axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -343,13 +361,13 @@ function chart1(data){
 	                //interval: 0,
 	                textStyle: {
 	                    color: '#fff',
-	                    fontSize:8
+	                    fontSize:10
 	                },
 	                rotate: 30,
 	            },
 	            axisLine:{
 	                lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#38b8ff'
 	                }
 	            },
 	            data: xData,
@@ -362,16 +380,16 @@ function chart1(data){
 	                textStyle: {
 	                    color: '#fff',
 	                    fontStyle: 'normal',
-	                    fontSize:8
+	                    fontSize:10
 	                }
 	            },
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#38b8ff'
 	                }
 	            },
 	            axisTick: {
-	            	color: '#0177d4',
+	            	color: '#38b8ff',
 	                show: true
 	            },
 	            splitLine: {
@@ -380,17 +398,12 @@ function chart1(data){
 	        },{
 	            type: "value",
 	            min:45,
-	            axisLine: {
-	            	lineStyle:{
-	                    color: '#fff'
-	                }
-	            },
 	            axisTick: {
 	                show: true
 	            },
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#38b8ff'
 	                }
 	            },
 	            splitLine: {
@@ -400,7 +413,7 @@ function chart1(data){
 	                show: true,
 	                textStyle: {
 	                    color: '#fff',
-	                    fontSize:8
+	                    fontSize:10
 	                }
 	            }
 	        }],
@@ -442,20 +455,30 @@ function chart2(data){
 	var lineData1 = data[2];
 	var lineData2 = data[3];
 	option = {
-		    tooltip : {
-		        trigger: 'axis'
-		    },
-		     grid: {
-		        left: '13%',
-		        right:'3%',
-		        top:'12%',
-		        bottom:'25%',
-		    },
+			 grid: {
+	 		        left: '10%',
+	 		        right:'9%',
+	 		        top:'10%',
+	 		        bottom:'26%',
+	 		        //containLabel: true
+	 		    },
+	 		    legend: { //图例组件，颜色和名字
+	 		        itemGap: 12, //图例每项之间的间隔
+	 		        itemWidth: 16,
+	 		        itemHeight: 8,
+	 		        x:'center',
+	 		        bottom:'2%',
+	 		        data: data[0],
+	 		        textStyle: {
+	 		            color: '#fff',
+	 		            fontSize: 10,
+	 		        }
+	 		    },   
 		xAxis : {
 		type: "category",
         axisLine: {
             lineStyle: {
-            	 color: 'rgba(255,255,255,0.6)',
+            	 color: '#38b8ff',
             }
         },
         splitLine: {
@@ -476,10 +499,10 @@ function chart2(data){
             textStyle: {
                 color: '#fff',
                 fontWeight: 'normal',
-                fontSize: 6
+                fontSize: 10
             },
         },
-		            data : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+		            data : xData
 		        },
 		    yAxis : [{
 		    	 type: 'value',
@@ -490,7 +513,7 @@ function chart2(data){
 		         axisLine: {
 		             show: true,
 		             lineStyle: {
-		                 color: 'rgba(255,255,255,1)',
+		                 color: '#38b8ff',
 		             }
 		         },
 		         splitLine: {
@@ -503,7 +526,7 @@ function chart2(data){
 		             textStyle: {
 		                 color: '#fff',
 		                 fontWeight: 'normal',
-		                 fontSize: 6
+		                 fontSize: 10
 		             },
 		             formatter: '{value}%',
 		         },
@@ -520,7 +543,7 @@ function chart2(data){
 		            },
 		            axisLine: {
 		            	lineStyle:{
-		                    color: '#0177d4'
+		                    color: '#38b8ff'
 		                }
 		            },
 		            splitLine: {
@@ -530,7 +553,7 @@ function chart2(data){
 		                show: true,
 		                textStyle: {
 		                    color: '#fff',
-		                    fontSize:8
+		                    fontSize:10
 		                }
 		            }
 		        }],
@@ -597,11 +620,24 @@ function chart3(data){
 	        },
 	    },
 	    grid: {
-	        left: '14%',
-	        right: '4%',
-	        bottom: '25%',
-	        top: '10%',
-	    },
+		        left: '10%',
+		        right:'3%',
+		        top:'10%',
+		        bottom:'28%',
+		        //containLabel: true
+		    },
+		legend: { //图例组件，颜色和名字
+		   itemGap: 12, //图例每项之间的间隔
+		   itemWidth: 16,
+		   itemHeight: 8,
+		   x:'center',
+		   bottom:'2%',
+		   data: ["汽油"],
+		   textStyle: {
+		     color: '#fff',
+		     fontSize: 10,
+		   }
+		},  
 	    yAxis: [{
 	    	 name: '',
 	            type: 'value',
@@ -610,16 +646,16 @@ function chart3(data){
 	                textStyle: {
 	                    color: '#fff',
 	                    fontStyle: 'normal',
-	                    fontSize:8
+	                    fontSize:10
 	                }
 	            },
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#38b8ff'
 	                }
 	            },
 	            axisTick: {
-	            	color: '#0177d4',
+	            	color: '#38b8ff',
 	                show: true
 	            },
 	            splitLine: {
@@ -630,16 +666,16 @@ function chart3(data){
 	    	position: "bottom",
             type: "category",
             axisLabel: {
-                interval: 0,
+                //interval: 0,
                 textStyle: {
                     color: '#fff',
-                    fontSize:8
+                    fontSize:10
                 },
-                rotate: 30,
+                //rotate: 30,
             },
             axisLine:{
                 lineStyle:{
-                    color: '#0177d4'
+                    color: '#38b8ff'
                 }
             },
 	        data: [
@@ -670,7 +706,7 @@ function chart3(data){
 	            }
 	        }
 	    },{
-	        name: '出行方式',
+	        name: '汽油',
 	        type: 'bar',
 	        stack: '总量',
 	        z: 3,
@@ -738,21 +774,33 @@ function chart4(data){
 	var lineData1 = data[2];
 	var lineData2 = data[3];
 	option = {
-		    tooltip : {
-		        trigger: 'axis'
-		    },
-		     grid: {
-		        left: '3%',
-		        right:'3%',
-		        top:'12%',
-		        bottom:'5%',
-		        containLabel: true
-		    },
+		tooltip : {
+		  trigger: 'axis'
+		},
+		grid: {
+		  left: '14%',
+		  right:'12%',
+		  top:'10%',
+		  bottom:'28%',
+		        //containLabel: true
+		 },
+		legend: { //图例组件，颜色和名字
+		   itemGap: 12, //图例每项之间的间隔
+		   itemWidth: 16,
+		   itemHeight: 8,
+		   x:'center',
+		   bottom:'2%',
+		   data: data[0],
+		   textStyle: {
+		     color: '#fff',
+		     fontSize: 10,
+		   }
+		},      
 		xAxis : {
 		type: "category",
         axisLine: {
             lineStyle: {
-            	 color: 'rgba(255,255,255,0.6)',
+            	 color: '#38b8ff',
             }
         },
         splitLine: {
@@ -763,7 +811,7 @@ function chart4(data){
         },
         boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
         axisTick: {
-            show: false
+            show: true
         },
         splitArea: {
             show: false
@@ -773,7 +821,7 @@ function chart4(data){
             textStyle: {
                 color: '#fff',
                 fontWeight: 'normal',
-                fontSize: 6
+                fontSize: 10
             },
         },
 		            data : xData
@@ -782,12 +830,12 @@ function chart4(data){
 		    	 type: 'value',
 		    	 min: 2500,
 		         axisTick: {
-		             show: false
+		             show: true
 		         },
 		         axisLine: {
 		             show: true,
 		             lineStyle: {
-		                 color: 'rgba(255,255,255,0.6)',
+		                 color: '#38b8ff',
 		             }
 		         },
 		         splitLine: {
@@ -800,19 +848,19 @@ function chart4(data){
 		             textStyle: {
 		                 color: '#fff',
 		                 fontWeight: 'normal',
-		                 fontSize: 6
+		                 fontSize: 10
 		             },
 		             formatter: '{value}',
 		         },
 		        },{
 			    	 type: 'value',
 			         axisTick: {
-			             show: false
+			             show: true
 			         },
 			         axisLine: {
 			             show: true,
 			             lineStyle: {
-			                 color: 'rgba(255,255,255,0.6)',
+			                 color: '#38b8ff',
 			             }
 			         },
 			         splitLine: {
@@ -825,7 +873,7 @@ function chart4(data){
 			             textStyle: {
 			                 color: '#fff',
 			                 fontWeight: 'normal',
-			                 fontSize: 6
+			                 fontSize: 10
 			             },
 			             formatter: '{value}',
 			         },
@@ -883,15 +931,28 @@ function chart4(data){
 
 function chart5(data){
 	var xData = data[2];
-	var barData = data[5];
-	var lineData = data[4];
+	var lineData1 = data[4];
+	var lineData2 = data[5];
 	  var option =  {
-		        grid:{
-		            top:'7%',
-		            left:'10%',
-		            right:'10%',
-		            bottom:'25%',
-		        },
+			  grid: {
+				  left: '10%',
+				  right:'10%',
+				  top:'10%',
+				  bottom:'28%',
+				        //containLabel: true
+				 },
+				legend: { //图例组件，颜色和名字
+				   itemGap: 12, //图例每项之间的间隔
+				   itemWidth: 16,
+				   itemHeight: 8,
+				   x:'center',
+				   bottom:'2%',
+				   data: data[0],
+				   textStyle: {
+				     color: '#fff',
+				     fontSize: 10,
+				   }
+				}, 
 		        tooltip: {
 		            trigger: 'axis',
 		            axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -905,13 +966,13 @@ function chart5(data){
 		                //interval: 0,
 		                textStyle: {
 		                    color: '#fff',
-		                    fontSize:8
+		                    fontSize:10
 		                },
-		                rotate: 30,
+		                //rotate: 30,
 		            },
 		            axisLine:{
 		                lineStyle:{
-		                    color: '#0177d4'
+		                    color: '#38b8ff'
 		                }
 		            },
 		            data: xData,
@@ -924,17 +985,16 @@ function chart5(data){
 		            axisLabel: {
 		                textStyle: {
 		                    color: '#fff',
-		                    fontStyle: 'normal',
-		                    fontSize:8
+		                    fontSize:10
 		                }
 		            },
 		            axisLine: {
 		            	lineStyle:{
-		                    color: '#0177d4'
+		                    color: '#38b8ff'
 		                }
 		            },
 		            axisTick: {
-		            	color: '#0177d4',
+		            	color: '#38b8ff',
 		                show: true
 		            },
 		            splitLine: {
@@ -945,16 +1005,11 @@ function chart5(data){
 		            position: 'right',
 		            axisLine: {
 		            	lineStyle:{
-		                    color: '#fff'
+		                    color: '#38b8ff'
 		                }
 		            },
 		            axisTick: {
 		                show: true
-		            },
-		            axisLine: {
-		            	lineStyle:{
-		                    color: '#0177d4'
-		                }
 		            },
 		            splitLine: {
 		                show: false
@@ -963,24 +1018,22 @@ function chart5(data){
 		                show: true,
 		                textStyle: {
 		                    color: '#fff',
-		                    fontSize:8
+		                    fontSize:10
 		                }
 		            }
 		        }],
 		        series: [{
-		            name: "OPEC产量(百万桶/天)",
-		            type: "bar",
-		            barWidth: '30%',
+		            name: "Brent-Dubai",
+		            type: "line",
 		            itemStyle: {
 		                normal: {
-		                	 color: '#00FFFF',
-		                	 barBorderRadius: 50,
+		                    color: '#00FFFF'
 		                },
 		            },
-		            data: barData,
+		            data: lineData2,
 
 		        }, {
-		            name: "Brent油价(美元/桶)",
+		            name: "OPEC产量增长率",
 		            type: "line",
 		            yAxisIndex: 1,
 		            itemStyle: {
@@ -988,7 +1041,7 @@ function chart5(data){
 		                    color: '#E9DC37'
 		                },
 		            },
-		            data: lineData,
+		            data: lineData1,
 
 		        }]
 		    }
@@ -999,16 +1052,29 @@ function chart5(data){
 
 
 function chart6(data){
-	var xData = data[1];
-	var lineData = data[3];
-	var barData = data[2];
+	var xData = data[2];
+	var lineData = data[4];
+	var barData = data[3];
 	    var option =  {
-	        grid:{
-	            top:'7%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'25%',
-	        },
+	    		grid: {
+	    			  left: '10%',
+	    			  right:'10%',
+	    			  top:'10%',
+	    			  bottom:'28%',
+	    			        //containLabel: true
+	    			 },
+	    			legend: { //图例组件，颜色和名字
+	    			   itemGap: 12, //图例每项之间的间隔
+	    			   itemWidth: 16,
+	    			   itemHeight: 8,
+	    			   x:'center',
+	    			   bottom:'2%',
+	    			   data: data[0],
+	    			   textStyle: {
+	    			     color: '#fff',
+	    			     fontSize: 10,
+	    			   }
+	    			}, 
 	        tooltip: {
 	            trigger: 'axis',
 	            axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -1024,7 +1090,7 @@ function chart6(data){
 	                    color: '#fff',
 	                    fontSize:8
 	                },
-	                rotate: 30,
+	                //rotate: 30,
 	            },
 	            axisLine:{
 	                lineStyle:{
@@ -1036,7 +1102,7 @@ function chart6(data){
 	        yAxis: [{
 	            name: '',
 	            type: 'value',
-	            min:36,
+	            min:0.8,
 	            position: 'left',
 	            axisLabel: {
 	                textStyle: {
@@ -1085,9 +1151,9 @@ function chart6(data){
 	            }
 	        }],
 	        series: [{
-	            name: "OPEC产量(百万桶/天)",
+	            name: "OPEC剩余产量",
 	            type: "bar",
-	            barWidth: '30%',
+	            barWidth: '60%',
 	            itemStyle: {
 	                normal: {
 	                	 color: '#00FFFF',
@@ -1097,7 +1163,7 @@ function chart6(data){
 	            data: barData,
 
 	        }, {
-	            name: "Brent油价(美元/桶)",
+	            name: "WTI油价",
 	            type: "line",
 	            yAxisIndex: 1,
 	            itemStyle: {

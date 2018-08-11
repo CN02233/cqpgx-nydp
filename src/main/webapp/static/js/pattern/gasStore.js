@@ -20,7 +20,7 @@ function chart1(data){
 		        itemWidth: 16,
 		        itemHeight: 8,
 		        x:'center',
-		        bottom:'9%',
+		        bottom:'2%',
 		        data: data[0],
 		        textStyle: {
 		            color: '#fff',
@@ -31,7 +31,7 @@ function chart1(data){
 		        left: '14%',
 		        right:'3%',
 		        top:'10%',
-		        bottom:'30%',
+		        bottom:'24%',
 		        //containLabel: true
 		    },
 		    xAxis: {
@@ -167,7 +167,7 @@ function chart2(data){
 			        itemWidth: 16,
 			        itemHeight: 8,
 			        x:'center',
-			        bottom:'9%',
+			        bottom:'2%',
 			        data: data[0],
 			        textStyle: {
 			            color: '#fff',
@@ -178,7 +178,7 @@ function chart2(data){
 			        left: '14%',
 			        right:'3%',
 			        top:'10%',
-			        bottom:'35%',
+			        bottom:'30%',
 			        //containLabel: true
 			    },
 	        xAxis: [{
@@ -259,7 +259,7 @@ function chart3(data){
 		        itemWidth: 16,
 		        itemHeight: 8,
 		        x:'center',
-		        bottom:'9%',
+		        bottom:'2%',
 		        data: ["东部地区库存","中西部地区","中南部地区","洛基山地区","太平洋地区","阿拉斯加地区"],
 		        textStyle: {
 		            color: '#fff',
@@ -340,7 +340,7 @@ function chart4(data){
 		        itemWidth: 16,
 		        itemHeight: 8,
 		        x:'center',
-		        bottom:'9%',
+		        bottom:'2%',
 		        data: data[0],
 		        textStyle: {
 		            color: '#fff',
@@ -351,7 +351,7 @@ function chart4(data){
 		        left: '3%',
 		        right:'3%',
 		        top:'10%',
-		        bottom:'41%',
+		        bottom:'35%',
 		        containLabel: true
 		    },
 	        color:["#FFFFFF","#FFD200","#15C0FF","#7C7DFF","#3729FF","#366DFF"],

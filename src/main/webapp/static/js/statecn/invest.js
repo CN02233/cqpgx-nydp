@@ -103,26 +103,43 @@ function mapChart(data){
 
 function chart1(data){
     var option = {
-        tooltip:{},
+    		tooltip: {
+    	        trigger: 'axis',
+    	        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+    	            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+    	        }
+    	    },  
         grid:{left:40},
-        legend:{
-            left : 50,
-            icon: 'rect', //设置图例的图形形状，circle为圆，rect为矩形
-            itemWidth: 15, //图例标记的图形宽度[ default: 25 ]
-            // itemHeight: 5, //图例标记的图形高度。[ default: 14 ]
-            // itemGap: 13, //图例每项之间的间隔。横向布局时为水平间隔，纵向布局时为纵向间隔。[ default: 10 ]
-            data: data[0],
-            // right: '4%', //图例组件离容器右侧的距离
-            textStyle: {
-                // fontSize: 6,
-                color: '#F1F1F3'
-            }
-        },
+        legend: { //图例组件，颜色和名字
+	        itemGap: 12, //图例每项之间的间隔
+	        itemWidth: 16,
+	        itemHeight: 8,
+	        x:'center',
+	        bottom:'4%',
+	        data: data[0],
+	        textStyle: {
+	            color: '#fff',
+	            fontSize: 10,
+	        }
+	    },    
+	    grid: {
+	        left: '12%',
+	        right:'10%',
+	        top:'10%',
+	        bottom:'34%',
+	        //containLabel: true
+	    },
         color:['#69D5FF','#216EFF','#FFA33E'],
         xAxis: {
             axisLabel: {
                 textStyle: {
-                    color: '#fff'
+                    color: '#fff',
+                    fontSize: 10
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
                 }
             },
             splitLine: {
@@ -132,22 +149,20 @@ function chart1(data){
             data:data[1]
         },
         yAxis: {
-            axisLine: {
-                show: false
-            },
             axisLabel: {
                 textStyle: {
-                    color: '#fff'
+                    color: '#fff',
+                    fontSize: 10
                 }
             },
-            // axisLabel: {
-            //     textStyle: {
-            //         color: '#fff'
-            //     },
-            //     formatter:function(v){
-            //         return v + '%';
-            //     }
-            // },
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
+                }
+            },
+            splitLine: {
+                show: false
+            },
             type: 'value'
         },
         series: [
@@ -155,33 +170,18 @@ function chart1(data){
                 name:data[0][0],
                 type:'line',
                 symbolSize:0,
-                // itemStyle:{
-                //     normal:{
-                //         color:'#8121dd'
-                //     }
-                // },
                 data: data[1]
             },
             {
                 name:data[0][1],
                 type:'line',
                 symbolSize:0,
-                // itemStyle:{
-                //     normal:{
-                //         color:'#8121dd'
-                //     }
-                // },
                 data: data[2]
             },
             {
                 name:data[0][2],
                 type:'line',
                 symbolSize:0,
-                // itemStyle:{
-                //     normal:{
-                //         color:'#8121dd'
-                //     }
-                // },
                 data: data[3]
             }
         ]
@@ -204,45 +204,66 @@ function chart2(data){
         seriesData.push(o);
     }
     var option = {
-        tooltip:{},
-        grid:{left:40},
+    		tooltip: {
+    	        trigger: 'axis',
+    	        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+    	            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+    	        }
+    	    },  
         color:['#FFD743','#2AB7FF','#30FFFE','#216FFF'],
-        legend:{
-            left : 50,
-            textStyle:{
-                color:'#fff'
-            },
-            data:data[0]
-        },
+        legend: { //图例组件，颜色和名字
+	        itemGap: 12, //图例每项之间的间隔
+	        itemWidth: 16,
+	        itemHeight: 8,
+	        x:'center',
+	        bottom:'4%',
+	        data: data[0],
+	        textStyle: {
+	            color: '#fff',
+	            fontSize: 10,
+	        }
+	    },    
+	    grid: {
+	        left: '12%',
+	        right:'10%',
+	        top:'10%',
+	        bottom:'34%',
+	        //containLabel: true
+	    },
         xAxis: {
-            axisLabel: {
-                textStyle: {
-                    color: '#fff'
+        	axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
                 }
+            },
+            axisLabel: {
+                color: '#fff',
+                fontSize: 10
             },
             splitLine: {
                 show: false
             },
             axisTick:{
-                show:false
+                show:true
             },
             type: 'category',
             data:data[1]
         },
         yAxis: {
-            axisLine: {
-                show: false
+        	axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
+                }
             },
             axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                }
+                color: '#fff',
+                fontSize: 10
             },
             splitLine: {
                 show: false
             },
             axisTick:{
-                show:false
+                show:true
             },
             type: 'value'
         },
@@ -266,45 +287,66 @@ function chart3(data){
         seriesData.push(o);
     }
     var option = {
-        tooltip:{},
-        grid:{left:40},
+    		tooltip: {
+    	        trigger: 'axis',
+    	        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+    	            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+    	        }
+    	    },   		
         color:['#28B7FF','#FFA33F','#FFD844'],
-        legend:{
-            left : 50,
-            textStyle:{
-                color:'#fff'
-            },
-            data:data[0]
-        },
+        legend: { //图例组件，颜色和名字
+	        itemGap: 12, //图例每项之间的间隔
+	        itemWidth: 16,
+	        itemHeight: 8,
+	        x:'center',
+	        bottom:'4%',
+	        data: data[0],
+	        textStyle: {
+	            color: '#fff',
+	            fontSize: 10,
+	        }
+	    },    
+	    grid: {
+	        left: '12%',
+	        right:'10%',
+	        top:'10%',
+	        bottom:'34%',
+	        //containLabel: true
+	    },
         xAxis: {
-            axisLabel: {
-                textStyle: {
-                    color: '#fff'
+        	axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
                 }
+            },
+            axisLabel: {
+                color: '#fff',
+                fontSize: 10
             },
             splitLine: {
                 show: false
             },
             axisTick:{
-                show:false
+                show:true
             },
             type: 'category',
             data:data[1]
         },
         yAxis: {
-            axisLine: {
-                show: false
+        	axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
+                }
             },
             axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                }
+                color: '#fff',
+                fontSize: 10
             },
             splitLine: {
                 show: false
             },
             axisTick:{
-                show:false
+                show:true
             },
             type: 'value'
         },

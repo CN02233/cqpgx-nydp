@@ -24,7 +24,7 @@ function chart1(data){
 		        itemWidth: 16,
 		        itemHeight: 8,
 		        x:'center',
-		        bottom:'9%',
+		        bottom:'4%',
 		        data: data[0],
 		        textStyle: {
 		            color: '#fff',
@@ -169,7 +169,7 @@ function chart2(data){
 	        itemWidth: 16,
 	        itemHeight: 8,
 	        x:'center',
-	        bottom:'9%',
+	        bottom:'4%',
 	        data: data[0],
 	        textStyle: {
 	            color: '#fff',
@@ -258,7 +258,7 @@ function chart3(data){
 	    		        itemWidth: 16,
 	    		        itemHeight: 8,
 	    		        x:'center',
-	    		        bottom:'2%',
+	    		        bottom:'4%',
 	    		        data: data[0],
 	    		        textStyle: {
 	    		            color: '#fff',
@@ -897,7 +897,7 @@ function chart5(data){
 		        itemWidth: 16,
 		        itemHeight: 8,
 		        x:'center',
-		        bottom:'2%',
+		        bottom:'4%',
 		        data: data[0],
 		        textStyle: {
 		            color: '#fff',

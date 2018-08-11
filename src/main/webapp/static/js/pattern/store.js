@@ -103,7 +103,7 @@ function chart1(data){
     	        itemWidth: 16,
     	        itemHeight: 8,
     	        x:'center',
-    	        bottom:'9%',
+    	        bottom:'3%',
     	        data: data[0],
     	        textStyle: {
     	            color: '#fff',
@@ -114,7 +114,7 @@ function chart1(data){
     	        left: '3%',
     	        right:'3%',
     	        top:'10%',
-    	        bottom:'25%',
+    	        bottom:'18%',
     	        containLabel: true
     	    },
         tooltip: {
@@ -215,7 +215,7 @@ function chart2(data){
     	        itemWidth: 16,
     	        itemHeight: 8,
     	        x:'center',
-    	        bottom:'9%',
+    	        bottom:'3%',
     	        data: data[0],
     	        textStyle: {
     	            color: '#fff',
@@ -226,7 +226,7 @@ function chart2(data){
     	        left: '5%',
     	        right:'3%',
     	        top:'15%',
-    	        bottom:'25%',
+    	        bottom:'18%',
     	        containLabel: true
     	    },
     	    tooltip: {
@@ -333,7 +333,7 @@ function chart3(data){
 	        itemWidth: 16,
 	        itemHeight: 8,
 	        x:'center',
-	        bottom:'4%',
+	        bottom:'3%',
 	        data: ["2014","2015","2016","2017","2018"],
 	        textStyle: {
 	            color: '#fff',
@@ -344,7 +344,7 @@ function chart3(data){
 	        left: '7%',
 	        right:'3%',
 	        top:'15%',
-	        bottom:'20%',
+	        bottom:'18%',
 	        containLabel: true
 	    },
 	    tooltip: {
@@ -394,7 +394,7 @@ function chart4(data){
 	        itemWidth: 16,
 	        itemHeight: 8,
 	        x:'center',
-	        bottom:'4%',
+	        bottom:'3%',
 	        data: ["2014","2015","2016","2017","2018"],
 	        textStyle: {
 	            color: '#fff',
@@ -405,7 +405,7 @@ function chart4(data){
 	        left: '4%',
 	        right:'3%',
 	        top:'15%',
-	        bottom:'20%',
+	        bottom:'18%',
 	        containLabel: true
 	    },
 	    tooltip: {
@@ -521,7 +521,7 @@ function chart5(data){
 	        itemWidth: 16,
 	        itemHeight: 8,
 	        x:'center',
-	        bottom:'4%',
+	        bottom:'3%',
 	        data: ["2014","2015","2016","2017","2018"],
 	        textStyle: {
 	            color: '#fff',
@@ -532,7 +532,7 @@ function chart5(data){
 	        left: '4%',
 	        right:'3%',
 	        top:'15%',
-	        bottom:'20%',
+	        bottom:'18%',
 	        containLabel: true
 	    },
 	    tooltip: {
@@ -648,7 +648,7 @@ function chart6(data){
 	        itemWidth: 16,
 	        itemHeight: 8,
 	        x:'center',
-	        bottom:'4%',
+	        bottom:'3%',
 	        data: ["2014","2015","2016","2017","2018"],
 	        textStyle: {
 	            color: '#fff',
@@ -659,7 +659,7 @@ function chart6(data){
 	        left: '4%',
 	        right:'3%',
 	        top:'15%',
-	        bottom:'20%',
+	        bottom:'18%',
 	        containLabel: true
 	    },
 	    tooltip: {

@@ -1,9 +1,11 @@
 $(document).ready(function(){
     getdata('/statecn/main/chart1.json',chart1);
     getdata('/statecn/main/chart2.json',chart2);
-    chart3();
+    getdata('/statecn/main/chart3.json',chart3);
     getdata('/statecn/main/main.json',main);
-    getdata('/statecn/main/chart41.json',chart4);
+    getdata('/statecn/main/chart41.json',chart41);
+    getdata('/statecn/main/chart42.json',chart42);
+    getdata('/statecn/main/chart43.json',chart43);
 
 });
 
@@ -12,12 +14,25 @@ function chart1(data){
 	var lineData = data[4];
 	var barData = data[3];
 	    var option =  {
-	        grid:{
-	            top:'7%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'25%',
-	        },
+	    		 legend: { //图例组件，颜色和名字
+	 		        itemGap: 12, //图例每项之间的间隔
+	 		        itemWidth: 16,
+	 		        itemHeight: 8,
+	 		        x:'center',
+	 		        bottom:'2%',
+	 		        data: data[0],
+	 		        textStyle: {
+	 		            color: '#fff',
+	 		            fontSize: 10,
+	 		        }
+	 		    },    
+	 		    grid: {
+	 		        left: '10%',
+	 		        right:'10%',
+	 		        top:'10%',
+	 		        bottom:'34%',
+	 		        //containLabel: true
+	 		    },
 	        tooltip: {
 	            trigger: 'axis',
 	            axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -26,18 +41,17 @@ function chart1(data){
 	        },
 	        xAxis: [{
 	            position: "bottom",
-	            type: "category",
 	            axisLabel: {
 	                //interval: 0,
 	                textStyle: {
 	                    color: '#fff',
-	                    fontSize:8
+	                    fontSize:10
 	                },
 	                rotate: 30,
 	            },
 	            axisLine:{
 	                lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#38b8ff'
 	                }
 	            },
 	            data: xData,
@@ -49,17 +63,16 @@ function chart1(data){
 	            axisLabel: {
 	                textStyle: {
 	                    color: '#fff',
-	                    fontStyle: 'normal',
-	                    fontSize:8
+	                    fontSize:10
 	                }
 	            },
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#38b8ff'
 	                }
 	            },
 	            axisTick: {
-	            	color: '#0177d4',
+	            	color: '#38b8ff',
 	                show: true
 	            },
 	            splitLine: {
@@ -71,16 +84,11 @@ function chart1(data){
 	            //min:16,
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#fff'
+	                    color: '#38b8ff'
 	                }
 	            },
 	            axisTick: {
 	                show: true
-	            },
-	            axisLine: {
-	            	lineStyle:{
-	                    color: '#0177d4'
-	                }
 	            },
 	            splitLine: {
 	                show: false
@@ -90,7 +98,7 @@ function chart1(data){
 	                show: true,
 	                textStyle: {
 	                    color: '#fff',
-	                    fontSize:8
+	                    fontSize:10
 	                }
 	            }
 	        }],
@@ -131,12 +139,25 @@ function chart2(data){
 	var barData3 = data[5];
 	var barData4 = data[6];
 	    var option =  {
-	        grid:{
-	            top:'7%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'25%',
-	        },
+	    		legend: { //图例组件，颜色和名字
+	 		        itemGap: 12, //图例每项之间的间隔
+	 		        itemWidth: 16,
+	 		        itemHeight: 8,
+	 		        x:'center',
+	 		        bottom:'2%',
+	 		        data: data[0],
+	 		        textStyle: {
+	 		            color: '#fff',
+	 		            fontSize: 10,
+	 		        }
+	 		    },    
+	 		    grid: {
+	 		        left: '10%',
+	 		        right:'5%',
+	 		        top:'10%',
+	 		        bottom:'34%',
+	 		        //containLabel: true
+	 		    },
 	        tooltip: {
 	            trigger: 'axis',
 	            axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -150,13 +171,13 @@ function chart2(data){
 	                //interval: 0,
 	                textStyle: {
 	                    color: '#fff',
-	                    fontSize:8
+	                    fontSize:10
 	                },
 	                rotate: 30,
 	            },
 	            axisLine:{
 	                lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#38b8ff'
 	                }
 	            },
 	            data: xData,
@@ -168,17 +189,16 @@ function chart2(data){
 	            axisLabel: {
 	                textStyle: {
 	                    color: '#fff',
-	                    fontStyle: 'normal',
-	                    fontSize:8
+	                    fontSize:10
 	                }
 	            },
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#38b8ff'
 	                }
 	            },
 	            axisTick: {
-	            	color: '#0177d4',
+	            	color: '#38b8ff',
 	                show: true
 	            },
 	            splitLine: {
@@ -246,723 +266,142 @@ function chart2(data){
 function chart3(data){
 	option = {
 		    tooltip: {
-		        trigger: 'item',
-		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+	        show:"true",
+	        trigger: 'item',
+	        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+	            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+	        }
+	        },
+	        legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'4%',
+		        data: data[0],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },    
+		    grid: {
+		        left: '12%',
+		        right:'5%',
+		        top:'10%',
+		        bottom:'34%',
+		        //containLabel: true
 		    },
-		    grid:[{
-		    	id:1,
-	            top:'7%',
-	            left:'3%',
-	            right:'3%',
-	            bottom:'15%',
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    xAxis: [{
+        type: 'category',
+        gridIndex: 0,
+        data: data[2],
+        axisLine: {
+            lineStyle: {
+                color: '#38b8ff'
+            }
+        },
+        axisLabel: {
+            color: '#fff',
+            fontSize: 10
+        }
+    }],
+    yAxis: [{
+	    	 nameTextStyle: {
+	             color: '#fff',
+	             fontSize: 10
+	         },
+	         axisLine: {
+		            lineStyle: {
+		                color: '#38b8ff'
+		            }
+		        },
+	         axisLabel: {
+	             color: '#fff',
+	             fontSize: 10,
+	             formatter: '{value}%'
+	         },
+	         splitLine: {
+	             show:false,
+	             lineStyle: {
+	                 color: '#0177d4'
+	             }
+	         }
 	        }],
-		    xAxis: [{
-	            //position: "bottom",
-	            type: "category",
-	            axisLabel: {
-	                //interval: 0,
-	                textStyle: {
-	                    color: '#fff',
-	                    fontSize:8
-	                },
-	                //rotate: 30,
-	            },
-	            axisTick: {
-	                show: false
-	            },
-	            axisLine:{
-	            	show:false,
-	                lineStyle:{
-	                    color: '#0177d4'
-	                }
-	            },
-	            data: ["北京","天津","河北省","山西省","吉林省","内蒙古","辽宁省","黑龙江"],
-	        }],
-	        yAxis: [{
-	            show:false
-	        }],
-		    series: [{
-		        name: '北京',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['9%','20%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 10.83,
-		            name: '总资产收入率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color:'#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 89.17,
-		            label: {
-		            	show:false,
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },{
-		        name: '北京',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['9%','65%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 3.69,
-		            name: '总资产利润率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color: '#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 96.31,
-		            name: '占位',
-		            label: {
-		              show:false
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },{
-		        name: '天津',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['20.8%','20%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 56.88,
-		            name: '总资产收入率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color:'#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 43.12,
-		            name: '占位',
-		            label: {
-		            	show:false,
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },{
-		        name: '天津',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['20.8%','65%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 1.04,
-		            name: '总资产利润率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color: '#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 98.96,
-		            name: '占位',
-		            label: {
-		              show:false
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },
-		    //河北省
-		    {
-		        name: '河北省',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['32.7%','20%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 58.03,
-		            name: '总资产收入率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color:'#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 41.97,
-		            name: '占位',
-		            label: {
-		            	show:false,
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },{
-		        name: '河北省',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['32.7%','65%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 1.88,
-		            name: '总资产利润率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color: '#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 98.12,
-		            name: '占位',
-		            label: {
-		              show:false
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },
-		    //山西省
-		    {
-		        name: '山西省',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['44.5%','20%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 44.98,
-		            name: '总资产收入率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color:'#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 55.02,
-		            name: '占位',
-		            label: {
-		            	show:false,
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },{
-		        name: '山西省',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['44.5%','65%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 0.30,
-		            name: '总资产利润率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color: '#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 99.70,
-		            name: '占位',
-		            label: {
-		              show:false
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },
-		    //吉林省
-		    {
-		        name: '吉林省',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['56.3%','20%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 35.50,
-		            name: '总资产收入率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color:'#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 64.50,
-		            name: '占位',
-		            label: {
-		            	show:false,
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },{
-		        name: '吉林省',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['56.3%','65%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 2.52,
-		            name: '总资产利润率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color: '#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 97.48,
-		            name: '占位',
-		            label: {
-		              show:false
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },
-		    //内蒙古
-		    {
-		        name: '内蒙古',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['67.9%','20%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 43.56,
-		            name: '总资产收入率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color:'#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 56.44,
-		            name: '占位',
-		            label: {
-		            	show:false,
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },{
-		        name: '内蒙古',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['67.9%','65%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 3.50,
-		            name: '总资产利润率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color: '#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 96.50,
-		            name: '占位',
-		            label: {
-		              show:false
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },
-		    //辽宁省
-		    {
-		        name: '辽宁省',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['79.6%','20%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 41.57,
-		            name: '总资产收入率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color:'#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 58.43,
-		            name: '占位',
-		            label: {
-		            	show:false,
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },{
-		        name: '辽宁省',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['79.6%','65%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 1.90,
-		            name: '总资产利润率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color: '#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 98.10,
-		            name: '占位',
-		            label: {
-		              show:false
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },
-		    //黑龙江
-		    {
-		        name: '黑龙江',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['91.3%','20%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 38.04,
-		            name: '总资产收入率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    y:'50%',
-		                    textStyle: {
-		                    	color:'#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 61.96,
-		            name: '占位',
-		            label: {
-		            	show:false,
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    },{
-		        name: '黑龙江',
-		        type: 'pie',
-		        radius: ['25%', '35%'],
-		        center:['91.3%','65%'],
-		        label: {
-		            normal: {
-		                position: 'center'
-		            }
-		        },
-		        data: [{
-		            value: 0,
-		            name: '总资产利润率',
-		            label: {
-		                normal: {
-		                    formatter: '{d} %',
-		                    textStyle: {
-		                    	color: '#00D9FE',
-		                        fontSize: 8
-		                    }
-		                }
-		            }
-		        }, {
-		            value: 100,
-		            name: '占位',
-		            label: {
-		              show:false
-		            },
-		            tooltip: {
-		                show: false
-		            },
-		            itemStyle: {
-		                normal: {
-		                    color: '#00D9FE'
-		                },
-		                emphasis: {
-		                    color: '#00D9FE'
-		                }
-		            },
-		            hoverAnimation: false
-		        }]
-		    }]
-		};
+	    series: [{
+            name:'总资产收入率',
+            type:'line',
+            areaStyle: {
+                normal: {type: 'default',
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(199, 37, 50,0.2)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(199, 37, 50,0.2)'
+                    }], false)
+                }
+            },
+            smooth:true,
+            itemStyle: {
+                normal: {
+                	color:'#00F5FF',
+                	areaStyle: {type: 'default'}}    
+            },
+            data:data[3]
+        },
+         {
+            name:'总资产利润率',
+            type:'line',
+            areaStyle: {
+                normal: {type: 'default',
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgba(19, 37, 250,0.2)'
+                    }, {
+                        offset: 1,
+                        color: 'rgba(19, 37, 250,0.2)'
+                    }], false)
+                }
+            },
+            smooth:true,
+            itemStyle: {
+            	normal: {
+            	color:'#0000FF',	
+            	areaStyle: {type: 'default'}}},
+            data:data[4]
+        }]
+	};
 	var myChart = echarts.init($('#chart3')[0]);
     myChart.setOption(option);	
 }
 
-function chart4(data,idx){
+function chart41(data){
 	 var option =  {
-		        grid:{
-		            top:'7%',
-		            left:'10%',
-		            right:'10%',
-		            bottom:'15%',
-		        },
+			 legend: { //图例组件，颜色和名字
+			        itemGap: 12, //图例每项之间的间隔
+			        itemWidth: 16,
+			        itemHeight: 8,
+			        x:'center',
+			        bottom:'4%',
+			        data: data[0],
+			        textStyle: {
+			            color: '#fff',
+			            fontSize: 10,
+			        }
+			    },    
+			    grid: {
+			        left: '12%',
+			        right:'2%',
+			        top:'10%',
+			        bottom:'34%',
+			        //containLabel: true
+			    },
 		        tooltip: {
 		            trigger: 'axis',
 		            axisPointer: { // 坐标轴指示器，坐标轴触发有效
@@ -976,13 +415,13 @@ function chart4(data,idx){
 		                //interval: 0,
 		                textStyle: {
 		                    color: '#fff',
-		                    fontSize:8
+		                    fontSize:10
 		                },
 		                //rotate: 30,
 		            },
 		            axisLine:{
 		                lineStyle:{
-		                    color: '#0177d4'
+		                    color: '#38b8ff'
 		                }
 		            },
 		            data: data[2],
@@ -995,17 +434,16 @@ function chart4(data,idx){
 		            	formatter:'{value}%',
 		                textStyle: {
 		                    color: '#fff',
-		                    fontStyle: 'normal',
-		                    fontSize:8
+		                    fontSize:10
 		                }
 		            },
 		            axisLine: {
 		            	lineStyle:{
-		                    color: '#0177d4'
+		                    color: '#38b8ff'
 		                }
 		            },
 		            axisTick: {
-		            	color: '#0177d4',
+		            	color: '#38b8ff',
 		                show: true
 		            },
 		            splitLine: {
@@ -1013,9 +451,10 @@ function chart4(data,idx){
 		            }
 		        }],
 		        series: [{
-		            name: 'dotted',
+		            name: '亏损面',
 		            type: 'pictorialBar',
 		            symbol: 'rect',
+		            barWidth: '60%',
 		            itemStyle: {
 		                normal: {
 		                    color: new echarts.graphic.LinearGradient(
@@ -1029,13 +468,209 @@ function chart4(data,idx){
 		                }
 		            },
 		            symbolRepeat: true,
-		            symbolSize: [12, 4],
+		            //symbolSize: [12, 4],
 		            symbolMargin: 1,
 		            z: -10,
 		            data: data[3]
 		        }]
 		    }
-	var myChart = echarts.init($('#chart4')[0]);
+	var myChart = echarts.init($('#chart41')[0]);
+	 myChart.setOption(option);	
+}
+
+function chart42(data){
+	 var option =  {
+			 legend: { //图例组件，颜色和名字
+			        itemGap: 12, //图例每项之间的间隔
+			        itemWidth: 16,
+			        itemHeight: 8,
+			        x:'center',
+			        bottom:'4%',
+			        data: data[0],
+			        textStyle: {
+			            color: '#fff',
+			            fontSize: 10,
+			        }
+			    },    
+			    grid: {
+			        left: '21%',
+			        right:'2%',
+			        top:'10%',
+			        bottom:'34%',
+			        //containLabel: true
+			    },
+		        tooltip: {
+		            trigger: 'axis',
+		            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+		                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+		            }
+		        },
+		        xAxis: [{
+		            position: "bottom",
+		            type: "category",
+		            axisLabel: {
+		                //interval: 0,
+		                textStyle: {
+		                    color: '#fff',
+		                    fontSize:10
+		                },
+		                //rotate: 30,
+		            },
+		            axisLine:{
+		                lineStyle:{
+		                    color: '#38b8ff'
+		                }
+		            },
+		            data: data[2],
+		        }],
+		        yAxis: [{
+		            name: '',
+		            type: 'value',
+		            position: 'left',
+		            axisLabel: {
+		            	formatter:function (v) {
+		            		return v/100000 + '万%';
+		            	},
+		                textStyle: {
+		                    color: '#fff',
+		                    fontSize:10
+		                }
+		            },
+		            axisLine: {
+		            	lineStyle:{
+		                    color: '#38b8ff'
+		                }
+		            },
+		            axisTick: {
+		            	color: '#38b8ff',
+		                show: true
+		            },
+		            splitLine: {
+		                show: false
+		            }
+		        }],
+		        series: [{
+		            name: '亏损深度',
+		            type: 'pictorialBar',
+		            symbol: 'rect',
+		            barWidth: '60%',
+		            itemStyle: {
+		                normal: {
+		                    color: new echarts.graphic.LinearGradient(
+		                        0, 0, 0, 1,
+		                        [
+		                            {offset: 0, color: 'rgba(0,245,255,0.8)'},
+		                            {offset: 0.4, color: 'rgba(0,245,255,0.6)'},
+		                            {offset: 1, color: 'rgba(0,245,255,0.2)'}
+		                        ]
+		                    )
+		                }
+		            },
+		            symbolRepeat: true,
+		            //symbolSize: [12, 4],
+		            symbolMargin: 1,
+		            z: -10,
+		            data: data[3]
+		        }]
+		    }
+	var myChart = echarts.init($('#chart42')[0]);
+	 myChart.setOption(option);	
+}
+
+function chart43(data){
+	 var option =  {
+			 legend: { //图例组件，颜色和名字
+			        itemGap: 12, //图例每项之间的间隔
+			        itemWidth: 16,
+			        itemHeight: 8,
+			        x:'center',
+			        bottom:'4%',
+			        data: data[0],
+			        textStyle: {
+			            color: '#fff',
+			            fontSize: 10,
+			        }
+			    },    
+			    grid: {
+			        left: '12%',
+			        right:'2%',
+			        top:'10%',
+			        bottom:'34%',
+			        //containLabel: true
+			    },
+		        tooltip: {
+		            trigger: 'axis',
+		            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+		                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+		            }
+		        },
+		        xAxis: [{
+		            position: "bottom",
+		            type: "category",
+		            axisLabel: {
+		                //interval: 0,
+		                textStyle: {
+		                    color: '#fff',
+		                    fontSize:10
+		                },
+		                //rotate: 30,
+		            },
+		            axisLine:{
+		                lineStyle:{
+		                    color: '#38b8ff'
+		                }
+		            },
+		            data: data[2],
+		        }],
+		        yAxis: [{
+		            name: '',
+		            type: 'value',
+		            position: 'left',
+		            axisLabel: {
+		            	formatter:'{value}%',
+		                textStyle: {
+		                    color: '#fff',
+		                    fontSize:10
+		                }
+		            },
+		            axisLine: {
+		            	lineStyle:{
+		                    color: '#38b8ff'
+		                }
+		            },
+		            axisTick: {
+		            	color: '#38b8ff',
+		                show: true
+		            },
+		            splitLine: {
+		                show: false
+		            }
+		        }],
+		        series: [{
+		            name: '集中度',
+		            type: 'pictorialBar',
+		            symbol: 'rect',
+		            barWidth: '60%',
+		            itemStyle: {
+		                normal: {
+		                    color: new echarts.graphic.LinearGradient(
+		                        0, 0, 0, 1,
+		                        [
+		                            {offset: 0, color: 'rgba(0,245,255,0.8)'},
+		                            {offset: 0.4, color: 'rgba(0,245,255,0.6)'},
+		                            {offset: 1, color: 'rgba(0,245,255,0.2)'}
+		                        ]
+		                    )
+		                }
+		            },
+		            symbolRepeat: true,
+		            //symbolSize: [12, 4],
+		            symbolMargin: 1,
+		            z: -10,
+		            data: data[3]
+		        }]
+		    }
+	var myChart = echarts.init($('#chart43')[0]);
 	 myChart.setOption(option);	
 }
 
@@ -1088,6 +723,7 @@ function main(da){
 	             top: to+'%',
 	             left:'4%',
 	             textStyle:{
+	            	 fontSize:16,
 	            	 color:'#fff'
 	             },
 	             text: day
@@ -1113,7 +749,8 @@ function main(da){
 	             },
 	             axisLine:{
 	            	 lineStyle:{
-	            		 color:'#fff',
+	            		 width:2,
+	            		 color:'#fff'
 	            	 }
 	             }
 	         });
@@ -1152,17 +789,5 @@ function main(da){
     myChart.setOption(option);	
 }
 
-function switchs(param) {
-	var id ="#"+param;
-	$(".a").attr("class","a a1");
-	$(id).attr("class","a a2");
-	if (param == 'd1') {
-		 getdata('/statecn/main/chart41.json',chart4);	
-	}else if (param == 'd2') {
-		 getdata('/statecn/main/chart42.json',chart4);
-	}else{
-		 getdata('/statecn/main/chart43.json',chart4);
-	}
-}
 
 	
