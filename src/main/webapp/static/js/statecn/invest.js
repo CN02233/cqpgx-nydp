@@ -22,7 +22,6 @@ function mapChart(data){
             }
         });
     });
-
     var option = {
         geo: {
             show: true,

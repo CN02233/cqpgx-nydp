@@ -13,12 +13,13 @@ function chart1(data){
 			trigger: 'item',
 			formatter: "{a} <br/>{b} : ({d}%)"
 		},
+		 color: ['#c487ee', '#deb140', '#49dff0', '#034079', '#6f81da', '#00ffb4','#0007ff'],
 		series: [{
 			name: '储量占比',
 			type: 'pie',
-			roseType : 'radius',
-			radius: '60%',
-			center: ["50%", "50%"], //圆心坐标
+			//roseType : 'radius',
+			radius: ['30%','60%'],
+			center: ["50%", "55%"], //圆心坐标
 			labelLine: {
 				length: 8,
 				length2: 4
@@ -30,7 +31,7 @@ function chart1(data){
 					formatter: "{b}\n{c}%",
 					textStyle: {
 						color:'#fff',
-						fontSize: 8
+						//fontSize: 8
 					}
 				},
 				emphasis: {

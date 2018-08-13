@@ -301,7 +301,7 @@ function main(data){
 	        itemHeight:100,
 	        itemWidth:15,
 	        left:'3%',
-	        bottom:'15%',
+	        bottom:'20%',
 	       textStyle:{
 	    	   color:'#fff',
 	    	   fontSize: 10
@@ -329,13 +329,13 @@ function chart1(data){
 	var barData1 = data[4];
 	var barData2 = data[5];
 	    var option =  {
-	 		     grid: {
-	 		        left: '10%',
-	 		        right:'9%',
-	 		        top:'10%',
-	 		        bottom:'30%',
-	 		        //containLabel: true
-	 		    },
+	    		grid: {
+	    			  left: '3%',
+	    			  right:'3%',
+	    			  top:'10%',
+	    			  bottom:'18%',
+	    			 containLabel: true
+	    			 },
 	 		    legend: { //图例组件，颜色和名字
 	 		        itemGap: 12, //图例每项之间的间隔
 	 		        itemWidth: 16,
@@ -375,7 +375,7 @@ function chart1(data){
 	        yAxis: [{
 	            name: '',
 	            type: 'value',
-	            max:5,
+	            //max:5,
 	            axisLabel: {
 	                textStyle: {
 	                    color: '#fff',
@@ -397,7 +397,7 @@ function chart1(data){
 	            }
 	        },{
 	            type: "value",
-	            min:45,
+	            //min:45,
 	            axisTick: {
 	                show: true
 	            },
@@ -455,13 +455,13 @@ function chart2(data){
 	var lineData1 = data[2];
 	var lineData2 = data[3];
 	option = {
-			 grid: {
-	 		        left: '10%',
-	 		        right:'9%',
-	 		        top:'10%',
-	 		        bottom:'26%',
-	 		        //containLabel: true
-	 		    },
+			grid: {
+  			  left: '3%',
+  			  right:'3%',
+  			  top:'10%',
+  			  bottom:'18%',
+  			 containLabel: true
+  			 },
 	 		    legend: { //图例组件，颜色和名字
 	 		        itemGap: 12, //图例每项之间的间隔
 	 		        itemWidth: 16,
@@ -609,162 +609,131 @@ function chart2(data){
 }
 
 function chart3(data){
-	var data = [20, 32, 11, 65, 25, 50, 21];
-	var xMax = 100;
-	var option = {
-	    tooltip: {
-	        trigger: 'item',
-	        formatter: '{a}<br />{b}: {c}%',
-	        "axisPointer": {
-	            "type": "none"
+	var xData = data[2];
+	var barData1 = data[3];
+	var barData2 = data[4];
+	    var option =  {
+	    		grid: {
+	    			  left: '3%',
+	    			  right:'3%',
+	    			  top:'10%',
+	    			  bottom:'18%',
+	    			 containLabel: true
+	    			 },
+	    			legend: { //图例组件，颜色和名字
+	    			   itemGap: 12, //图例每项之间的间隔
+	    			   itemWidth: 16,
+	    			   itemHeight: 8,
+	    			   x:'center',
+	    			   bottom:'2%',
+	    			   data: data[0],
+	    			   textStyle: {
+	    			     color: '#fff',
+	    			     fontSize: 10,
+	    			   }
+	    			}, 
+	        tooltip: {
+	            trigger: 'axis',
+	            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+	                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+	            }
 	        },
-	    },
-	    grid: {
-		        left: '10%',
-		        right:'3%',
-		        top:'10%',
-		        bottom:'28%',
-		        //containLabel: true
-		    },
-		legend: { //图例组件，颜色和名字
-		   itemGap: 12, //图例每项之间的间隔
-		   itemWidth: 16,
-		   itemHeight: 8,
-		   x:'center',
-		   bottom:'2%',
-		   data: ["汽油"],
-		   textStyle: {
-		     color: '#fff',
-		     fontSize: 10,
-		   }
-		},  
-	    yAxis: [{
-	    	 name: '',
+	        xAxis: [{
+	            position: "bottom",
+	            type: "category",
+	            axisLabel: {
+	                //interval: 0,
+	                textStyle: {
+	                    color: '#fff',
+	                    fontSize:8
+	                },
+	                //rotate: 30,
+	            },
+	            axisLine:{
+	                lineStyle:{
+	                    color: '#0177d4'
+	                }
+	            },
+	            data: xData,
+	        }],
+	        yAxis: [{
+	            name: '',
 	            type: 'value',
+	            min:8000,
 	            position: 'left',
 	            axisLabel: {
 	                textStyle: {
 	                    color: '#fff',
 	                    fontStyle: 'normal',
-	                    fontSize:10
+	                    fontSize:8
 	                }
 	            },
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#38b8ff'
+	                    color: '#0177d4'
 	                }
 	            },
 	            axisTick: {
-	            	color: '#38b8ff',
+	            	color: '#0177d4',
 	                show: true
 	            },
 	            splitLine: {
 	                show: false
 	            }
-	    }],
-	    xAxis: [{
-	    	position: "bottom",
-            type: "category",
-            axisLabel: {
-                //interval: 0,
-                textStyle: {
-                    color: '#fff',
-                    fontSize:10
-                },
-                //rotate: 30,
-            },
-            axisLine:{
-                lineStyle:{
-                    color: '#38b8ff'
-                }
-            },
-	        data: [
-	            '自驾车', '公交','出租车', '快车&专车', '步行', '自行车&电动车', '摩托车'
-	        ]}],
-	    series: [{
-	        name: '出行方式',
-	        type: 'bar',
-	        stack: '总量',
-	        z: 3,
-	        barWidth: '15%',
-	        stack: "2",
-	        data: [80, 68, 89, 35, 75, 50, 79],
-	        itemStyle: {
-	            normal: {
-	                //barBorderRadius: 20,
-	                color: 'rgba(222,222,222,0)',
-	                "label": {
-	                    "show": false,
-	                    "textStyle": {
-	                        "color": "rgba(0,0,0,1)"
-	                    },
-	                    position: 'top',
-	                    formatter: function(p) {
-	                        return p.value > 0 ? (p.value + '%') : '';
-	                    }
+	        },{
+	            type: "value",
+	            position: 'right',
+	            axisLine: {
+	            	lineStyle:{
+	                    color: '#fff'
+	                }
+	            },
+	            axisTick: {
+	                show: true
+	            },
+	            axisLine: {
+	            	lineStyle:{
+	                    color: '#0177d4'
+	                }
+	            },
+	            splitLine: {
+	                show: false
+	            },
+	            axisLabel: {
+	                show: true,
+	                textStyle: {
+	                    color: '#fff',
+	                    fontSize:8
 	                }
 	            }
-	        }
-	    },{
-	        name: '汽油',
-	        type: 'bar',
-	        stack: '总量',
-	        z: 3,
-	        barWidth: '15%',
-	        stack: "2",
-	        data: [20, 32, 11, 65, 25, 50, 21],
-	        itemStyle: {
-	            normal: {
-	                //barBorderRadius: 20,
-	                color: function(params) {
-	                    // build a color map as your need.
-	                    var colorList = [
-	                        '#f44120', '#fd7b09', '#ffbf37', '#f2ff36', '#4fae36',
-	                        '#308cef', '#4c41cc'
-	                    ];
-	                    return colorList[params.dataIndex]
+	        }],
+	        series: [{
+	            name: "美国原油产量",
+	            type: "bar",
+	            barWidth: '40%',
+	            itemStyle: {
+	                normal: {
+	                	 color: '#00FFFF',
+	                	 barBorderRadius: 50,
 	                },
-	                "label": {
-	                    "show": false,
-	                    "textStyle": {
-	                        "color": "rgba(0,0,0,1)"
-	                    },
-	                    position: 'top',
-	                    formatter: function(p) {
-	                        return p.value > 0 ? (p.value + '%') : '';
-	                    }
-	                }
-	            }
-	        }
-	    }, {
-	        name: '占位',
-	        type: 'bar',
-	        barWidth: '18%',
-	        barGap: '-124%',
-	        silent: true,
-	        itemStyle: {
-	            normal: {
-	                borderWidth: 0.3,
-	                color: 'transparent',
-	                borderColor: '#00FFFF',
-	                barBorderRadius: 50,
-	                "label": {
-	                    "show": true,
-	                    "textStyle": {
-	                        "color": "rgba(0,0,0,1)"
-	                    },
-	                    "position": "top",
-	                    formatter: function(p) {
-	                        return data[p.dataIndex] + "%";
-	                    }
-	                }
-	            }
-	        },
-	        data: data.map(function(d) {
-	            return xMax
-	        }),
-	    }, ]
-	};
+	            },
+	            data: barData1,
+
+	        }, {
+	            name: "钻机数量",
+	            type: "bar",
+	            barWidth: '40%',
+	            itemStyle: {
+	                normal: {
+	                	 color: '#1E90FF',
+	                	 barBorderRadius: 50,
+	                },
+	            },
+	            data: barData2,
+	            yAxisIndex: 1
+
+	        }]
+	    }
 	var myChart = echarts.init($('#chart3')[0]);
     myChart.setOption(option);
 }
@@ -778,12 +747,12 @@ function chart4(data){
 		  trigger: 'axis'
 		},
 		grid: {
-		  left: '14%',
-		  right:'12%',
-		  top:'10%',
-		  bottom:'28%',
-		        //containLabel: true
-		 },
+			  left: '3%',
+			  right:'3%',
+			  top:'10%',
+			  bottom:'18%',
+			 containLabel: true
+			 },
 		legend: { //图例组件，颜色和名字
 		   itemGap: 12, //图例每项之间的间隔
 		   itemWidth: 16,
@@ -935,12 +904,12 @@ function chart5(data){
 	var lineData2 = data[5];
 	  var option =  {
 			  grid: {
-				  left: '10%',
-				  right:'10%',
-				  top:'10%',
-				  bottom:'28%',
-				        //containLabel: true
-				 },
+    			  left: '3%',
+    			  right:'3%',
+    			  top:'10%',
+    			  bottom:'18%',
+    			 containLabel: true
+    			 },
 				legend: { //图例组件，颜色和名字
 				   itemGap: 12, //图例每项之间的间隔
 				   itemWidth: 16,
@@ -1057,11 +1026,11 @@ function chart6(data){
 	var barData = data[3];
 	    var option =  {
 	    		grid: {
-	    			  left: '10%',
-	    			  right:'10%',
+	    			  left: '3%',
+	    			  right:'3%',
 	    			  top:'10%',
-	    			  bottom:'28%',
-	    			        //containLabel: true
+	    			  bottom:'18%',
+	    			 containLabel: true
 	    			 },
 	    			legend: { //图例组件，颜色和名字
 	    			   itemGap: 12, //图例每项之间的间隔

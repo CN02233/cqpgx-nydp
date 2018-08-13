@@ -460,12 +460,12 @@ function chart4(data){
 		    legend: {
 		        show: true,
 		        icon: 'circle',
-		        bottom: 45,
+		        bottom: '0%',
 		        center: 0,
 		        itemWidth: 8,
 		        itemHeight: 8,
 		        textStyle: {
-		            fontSize: 14,
+		            fontSize: 10,
 		            color: '#ade3ff'
 		        },
 		        data: data[0]
@@ -475,15 +475,15 @@ function chart4(data){
 		        textStyle: {
 		            color: 'red'
 		        },
-		        center: ['50%', '50%'],
+		        center: ['50%', '40%'],
 		        radius: '60%',
-		        startAngle: 90,
+		        startAngle: 60,
 		        splitNumber: 4,
 		        shape: 'circle',
 		        name: {
 		            formatter: '{value}',
 		            textStyle: {
-		                fontSize: 14,
+		                fontSize: 10,
 		                color: '#ffffff'
 		            }
 		        },
@@ -510,35 +510,43 @@ function chart4(data){
 		        name: '雷达图',
 		        type: 'radar',
 		        itemStyle: {
+		        	 normal: {
+		                    shadowBlur: 13,
+		                    shadowColor: 'rgba(0,0,0,.2)',
+		                    shadowOffsetX: 0,
+		                    shadowOffsetY: 0,
+		                    opacity: 1
+		                },
 		            emphasis: {
 		                lineStyle: {
-		                    width: 4
+		                    width: 2
 		                }
 		            }
 		        },
 		        data: [{
 		            name: '上游',
 		            value: data[3],
+		            symbol:'circle',
+			        symbolSize :1,
 		            areaStyle: {
 		                normal: {
 		                    color: 'rgba(245, 166, 35, 0.4)'
 		                }
 		            },
-		            //symbolSize: 2.5,
 		            label: {
 		                normal: {
 		                    position: 'outside',
 		                    formatter: '{b} {d}% ',
 		                    textStyle: {
 		                        color: '#fff',
-		                        fontSize: 8
+		                        fontSize: 10
 		                    }
 		                }
 		            },
 		            itemStyle: {
 		                normal: {
 		                    borderColor: 'rgba(245, 166, 35, 1)',
-		                    borderWidth: 2.5,
+		                    borderWidth: 1
 		                }
 		            },
 		            lineStyle: {
@@ -549,11 +557,12 @@ function chart4(data){
 		        }, {
 		            name: '中游',
 		            value: data[4],
-		            //symbolSize: 2.5,
+		            symbol:'circle',
+			        symbolSize :1,
 		            itemStyle: {
 		                normal: {
 		                    borderColor: 'rgba(19, 173, 255, 1)',
-		                    borderWidth: 2.5,
+		                    borderWidth: 1
 		                }
 		            },
 		            label: {
@@ -562,7 +571,7 @@ function chart4(data){
 		                    formatter: '{b} {d}% ',
 		                    textStyle: {
 		                        color: '#fff',
-		                        fontSize: 8
+		                        fontSize: 10
 		                    }
 		                }
 		            },
@@ -579,11 +588,12 @@ function chart4(data){
 		        },{
 		            name: '下游',
 		            value: data[5],
-		            //symbolSize: 2.5,
+		            symbol:'circle',
+			        symbolSize :1,
 		            itemStyle: {
 		                normal: {
 		                    borderColor: 'rgba(19, 173, 255, 1)',
-		                    borderWidth: 2.5,
+		                    borderWidth: 1
 		                }
 		            },
 		            label: {
@@ -592,7 +602,7 @@ function chart4(data){
 		                    formatter: '{b} {d}% ',
 		                    textStyle: {
 		                        color: '#fff',
-		                        fontSize: 8
+		                        fontSize: 10
 		                    }
 		                }
 		            },
@@ -1077,7 +1087,6 @@ function main(das){
 	    });
 	    myChart.setOption(op, true);
 	}
-
 	/*addPie*/
 	function addPie(chart, data) {
 	    var op = chart.getOption();
@@ -1177,6 +1186,8 @@ function main(das){
 	        max: 100000,
 	        left: '5%',
 	        top: 'bottom',
+	        itemHeight:90,
+	        itemWidth:15,
 	        text: ['高', '低'], // 文本，默认为数值文本
 	        calculable: true,
 	        // seriesIndex: [0],
@@ -1192,8 +1203,8 @@ function main(das){
 	        name: 'chinaMap',
 	        type: 'map',
 	        mapType: mapName,
+	        zlevel: 1,
 	        roam: true,
-
 	        label: {
 	            normal: {
 	                show: false,
@@ -1203,11 +1214,11 @@ function main(das){
 	            }
 	        },
 	        geo: {
-	            show: true,
+	            show: false,
 	            map: mapName,
-	            layoutCenter: ['30%', '30%'],
+	            layoutCenter: ['130%', '30%'],
 	// 如果宽高比大于 1 则宽度为 100，如果小于 1 则高度为 100，保证了不超过 100x100 的区域
-	            layoutSize: 0.3,
+	            aspectScale: 0.9,
 	            label: {
 	                normal: {
 	                    show: false
@@ -1229,7 +1240,7 @@ function main(das){
 	        },
 
 	        data: convertMapDta(province[typeIndex], data),
-	        zlevel: 3
+	        zlevel: 1
 	    }]
 	};
 	if (option && typeof option === "object") {
