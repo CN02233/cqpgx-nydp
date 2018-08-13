@@ -82,9 +82,11 @@ function main(){
                     label:'>300',
                     color: '#070093'
                 }],
-                left: '10%',
+                left: '2%',
                 top: 'bottom',
-                itemGap:8,
+                itemWidth:16,
+                itemHeight:10,
+                itemGap:5,
                 textStyle: {
                     color: '#fff',
                     fontSize:10,
@@ -136,6 +138,7 @@ function main(){
                     borderWidth:0.3
                 },
                 viewControl: {
+                    center:[5,0,0],
                     distance: 80
                 },
                 boxHeight:20,
@@ -158,7 +161,7 @@ function main(){
         myChart.setOption(option);
     });
 }
-
+//探明结构储量分析
 function chart1(data){
     if(data==null||data.length<2)
         return;
@@ -301,7 +304,7 @@ function chart1(data){
     var myChart = echarts.init($('#chart1')[0]);
     myChart.setOption(option);
 }
-
+//区域历史储产比趋势对比
 function chart2(data){
     var seriesData = [];
     for(var i = 0; i < data[1].length; i++){
@@ -394,14 +397,14 @@ function chart2(data){
     };
     var myChart = $chart.init('#chart2', option, 'bar');
 }
-
+//近10年新增探明储量贡献
 function chart3(data){
     var dataStyle = {
         normal: {
             label: {
                 show: true,
                 color: '#fff',
-                fontSize: 12,
+                fontSize: 10,
             },
             labelLine: {
                 length: 15,
@@ -412,18 +415,18 @@ function chart3(data){
     var labelShow = {
         show: true,
         color: '#fff',
-        fontSize: 13,
+        fontSize: 14,
         formatter: [
             '{b| {b} }',
             '({d| {d}% })'
         ].join('\n'),
         rich: {
             d: {
-                fontSize: 12,
+                fontSize: 10,
                 color: '#fff'
             },
             b: {
-                fontSize: 14,
+                fontSize: 12,
                 color: '#fff'
             },
         }
@@ -442,7 +445,7 @@ function chart3(data){
             color: 'rgba(0,0,0,0)'
         }
     };
-    var seriesData = [], x0 = 360, x1 = 0, rs = [[60,62],[35,60],[60,70],[46,56],[35,55],[35,55]], sa = [121,59.33,19.94,341.25,307.08, 276.60];
+    var seriesData = [], x0 = 360, x1 = 0, rs = [[55,57],[30,55],[55,65],[41,51],[30,50],[30,50]], sa = [121,59.33,19.94,341.25,307.08, 276.60];
     data.forEach(function(d, i){
         var x = 3.6 * d.value;
         x0 = sa[i];
@@ -525,7 +528,7 @@ function chart3(data){
         },
         polar: {
             center: ['50%', '50%'],
-            radius: 75,
+            radius: 72,
         },
         legend: {
             show:false
@@ -535,16 +538,18 @@ function chart3(data){
     var myChart = echarts.init($('#chart3')[0]);
     myChart.setOption(option);
 }
-
+//探明储量TOP10国分布
 function chart4(data){
     var option = {
         tooltip:{
             formatter:'{b}: {c}%',
         },
         grid:{
-            top:'12%',
-            bottom:'38%',
-            right:20,
+            top:'10%',
+            bottom:'10%',
+            left:'5%',
+            right:'5%',
+            containLabel:true,
         },
         xAxis: [{
             type: 'category',
@@ -556,7 +561,11 @@ function chart4(data){
             },
             axisLabel: {
                 rotate: 45,
-                interval: 0,
+                interval: function(index){
+                    if(index<2)
+                        return true;
+                    return index % 2 == 0;
+                },
                 textStyle: {
                     color: '#ffffff'
                 }
@@ -567,6 +576,7 @@ function chart4(data){
                 show: false
             },
             type: 'value',
+            splitNumber:3,
             splitLine: {
                 show: false
             },
@@ -577,8 +587,9 @@ function chart4(data){
             },
             axisLabel: {
                 formatter:'{value}%',
+
                 textStyle: {
-                    color: '#ffffff'
+                    color: '#ffffff',
                 }
             }
         }],

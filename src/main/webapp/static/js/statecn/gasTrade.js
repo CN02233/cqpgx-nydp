@@ -187,6 +187,7 @@ function main(){
                     },
                     lineStyle: {
                         normal: {
+                            color:'#fed312',
                             width: 2,
                             curveness: 0.3
                         }
@@ -220,10 +221,10 @@ function convertLines(d,fromCn){
     }
     return o;
 }
-
+//中国LNG来源国结构
 function chart1(data){
     var option = {
-        color: ['#ffd653','#6ed5ff','#ff3a83','#2874ff','#ffa24c','#af59ff'],
+        color: ['#070093','#ffd312','#1c3fbf','#8121dd','#1482e5','#6ed5ff','#2874ff','#b9e1f2','#305496','#fff'],
         tooltip : {
             trigger: 'item',
             formatter:function(params){
@@ -232,21 +233,24 @@ function chart1(data){
         },
         legend: {
             x : 'center',
-            y : 'top',
+            y : 'bottom',
             type:'scroll',
             textStyle:{
                 color:'#fff'
             },
+            itemWidth: 12,
+            itemHeight: 8,
+            pageButtonItemGap:1,
             pageTextStyle:{
-                color:'#fff'
-            }
+                color:'#fff',
+            },
         },
         series : [
             {
                 name:'其他国家',
                 type:'pie',
-                radius : [70, 90],
-                center : ['50%', '55%'],
+                radius : [55, 65],
+                center : ['50%', '45%'],
                 label:{show:false},
                 labelLine: {
                     show:false,
@@ -258,8 +262,8 @@ function chart1(data){
             {
                 name:'TOP3-国家',
                 type:'pie',
-                radius : [0, 60],
-                center : ['50%', '55%'],
+                radius : [0, 40],
+                center : ['50%', '45%'],
                 label:{show:false},
                 labelLine: {
                     show:false,
@@ -273,30 +277,56 @@ function chart1(data){
     var myChart = echarts.init($('#chart1')[0]);
     myChart.setOption(option);
 }
-
+//中国PNG来源国结构
 function chart2(data){
-
-    var pieSeries = [];
-
+    var pieSeries = [], max = 0;
+    data.forEach(function(o){
+        max += o.value;
+    });
     data.map(function(dataObj,i){
-        var pieRadius = 20*(i+1);
-        var otherValue = 100 - dataObj.value;
+        var pieRadius = 14*(i+1);
+        var otherValue = max - dataObj.value;
+        dataObj.itemStyle = {
+            "normal": {
+                "color": new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    "offset": 0,
+                    "color": 'rgba(21,217,250,0.4)'
+                }, {
+                    "offset": 0.3,
+                    "color": 'rgba(21,217,250,1)'
+                }]),
+            }
+        };
         pieSeries.push({
             type:'pie',
-            radius : [pieRadius, pieRadius+10],
-            center : ['50%', '55%'],
-            label:{show:false},
-            labelLine: {
-                show:false,
-                length: 5,
-                length2: 10
+            radius : [pieRadius, pieRadius+8],
+            center : ['48%', '45%'],
+            startAngle:90,
+            label:{
+                show:true,
+                color:'#fff',
             },
-            data:[dataObj,{value:otherValue}]
+            labelLine: {
+                show:true,
+                lineStyle:{
+                    color:'#fff',
+                },
+                length: 4,
+                length2: 4
+            },
+            hoverOffset:3,
+            data:[dataObj,{
+                value:otherValue,
+                itemStyle:{
+                    color:'#032f65',
+                },
+                label:{show:false},
+                labelLine:{show:false, length:0, length2:0}
+            }]
         });
     });
 
     var option = {
-        color: ['#ffd653','#6ed5ff','#ff3a83','#2874ff','#ffa24c','#af59ff'],
         tooltip : {
             trigger: 'item',
             formatter:function(params){
@@ -305,24 +335,13 @@ function chart2(data){
                 return params.data.name+"<br>进口量："+params.data.value+"<br>占比："+params.data.rate;
             }
         },
-        legend: {
-            x : 'center',
-            y : 'top',
-            type:'scroll',
-            textStyle:{
-                color:'#fff'
-            },
-            pageTextStyle:{
-                color:'#fff'
-            }
-        },
         series : pieSeries
     };
 
     var myChart = echarts.init($('#chart2')[0]);
     myChart.setOption(option);
 }
-
+//管道进口输气能力
 function chart3(data){
     var option = {
         tooltip:{
@@ -330,25 +349,23 @@ function chart3(data){
                 var data = params.data;
                 var val = data.value;
                 var year = data.year;
-                return "设计输气能力："+val+"亿方/年：<br>预计投产年份："+year;
+                return params.name + "<br />设计输气能力："+val+"亿方/年<br/>预计投产年份："+year;
             }
         },
         color:['#366DFF','#15C0FE','#FFD200','#FFFFFF'],
         grid:{
-            top:40,
-            bottom:30
+            top:'12%',
+            bottom:'20%'
         },
-        // legend:{
-        //     left : 40,
-        //     textStyle:{
-        //         color:'#fff'
-        //     },
-        //     data:data[0]
-        // },
         xAxis: {
             axisLabel: {
                 textStyle: {
                     color: '#fff'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
                 }
             },
             splitLine: {
@@ -365,6 +382,14 @@ function chart3(data){
                 textStyle: {
                     color: '#fff'
                 }
+            },
+            splitNumber:4,
+            name:'亿方/年',
+            nameGap:5,
+            nameTextStyle:{
+                padding:[0,0,0,45],
+                align:'center',
+                color:'#fff',
             },
             type: 'value'
         }],
@@ -380,19 +405,28 @@ function chart3(data){
     var myChart = echarts.init($('#chart3')[0]);
     myChart.setOption(option);
 }
-
+//2017天然气进出口数据
 function chart4(data){
     var option = {
         tooltip:{},
         color:['#366DFF','#15C0FE','#FFD200','#FFFFFF'],
         grid:{
-            top:40,
-            bottom:30
+            top:'12%',
+            left:'5%',
+            right:'5%',
+            bottom:'20%',
+            containLabel: true
         },
         legend:{
-            left : 40,
+            show:true,
+            bottom : 5,
+            type:'scroll',
+            itemWidth: 16,
+            itemHeight: 8,
             textStyle:{
-                color:'#fff'
+                color:'#fff',
+                fontFamily: '微软雅黑',
+                fontSize: 10,
             },
             data:data[0]
         },
@@ -402,11 +436,16 @@ function chart4(data){
                     color: '#fff'
                 }
             },
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
+                }
+            },
             splitLine: {
                 show: false
             },
             type: 'category',
-            data:data[4]
+            data:data[5]
         },
         yAxis: [{
             axisLine: {
@@ -416,6 +455,14 @@ function chart4(data){
                 textStyle: {
                     color: '#fff'
                 }
+            },
+            splitNumber:4,
+            name:'亿方/年',
+            nameGap:5,
+            nameTextStyle:{
+                padding:[0,0,0,45],
+                align:'center',
+                color:'#fff',
             },
             type: 'value'
         }],

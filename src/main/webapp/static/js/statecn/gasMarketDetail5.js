@@ -31,34 +31,32 @@ function to_ldata(d){
 	return ret;
 }
 function chart1(xdata, sdata, data){
-	var colors = ['#36b8ff','#ff0','#61ffff'];
 	var sindex = 4;
 	var option =  {
+		color:['#38b8ff','#ff0'],
 		legend:{
 			left:10,
 			textStyle:{
 				color:'#fff'
 			},
+			itemGap: 12, //图例每项之间的间隔
+			itemWidth: 16,
+			itemHeight: 8,
+			textStyle: {
+				color: '#fff',
+				fontSize: 10,
+			},
 			data:sdata[sindex]
 		},
 		grid:{
-			top:'10%',
-			left:'10%',
-			right:'10%',
-			bottom:'20%',
+			top:'15%',
+			left:'5%',
+			right:'5%',
+			bottom:'5%',
+			containLabel: true
 		},
 		tooltip: {
-			trigger: 'axis',
-			formatter:function(params){
-				var s = params[0].name + '<br />';
-				for(var i = 0; i < params.length; i++){
-					s += params[i].seriesName + " : " + params[i].value[1] + "-" + params[i].value[2] + "<br />";
-				}
-				return s;
-			},
-			axisPointer: {
-				type: 'shadow'
-			}
+			trigger: 'axis'
 		},
 		xAxis: [{
 			type: "category",
@@ -124,33 +122,15 @@ function chart1(xdata, sdata, data){
 		series: [
 			{
 				name: sdata[sindex][0],
-				type: 'candlestick',
-				data: to_kdata(data, 0),
-				symbolSize:12,
-				layout:'horizontal',
-				itemStyle:{
-					normal: {
-						color:colors[0],
-						color0: colors[0],
-						borderColor: colors[0],
-						borderColor0: colors[0]
-					},
-				}
+				type: 'line',
+				showSymbol: false,
+				data: to_ldata(data[0])
 			},
 			{
 				name: sdata[sindex][1],
-				type: 'candlestick',
-				data: to_kdata(data, 1),
-				symbolSize:12,
-				layout:'horizontal',
-				itemStyle:{
-					normal: {
-						color:colors[1],
-						color0: colors[1],
-						borderColor: colors[1],
-						borderColor0: colors[1]
-					},
-				}
+				type: 'line',
+				showSymbol: false,
+				data: to_ldata(data[1])
 			}]
 	};
 	var myChart = echarts.init($('#chart1')[0]);
@@ -163,8 +143,12 @@ function chart2(xdata, sdata, data){
 		color:['#070093','#70b4eb','#fff'],
 		legend:{
 			left:10,
-			textStyle:{
-				color:'#fff'
+			itemGap: 12, //图例每项之间的间隔
+			itemWidth: 16,
+			itemHeight: 8,
+			textStyle: {
+				color: '#fff',
+				fontSize: 10,
 			},
 			data:sdata[sindex]
 		},
@@ -172,10 +156,11 @@ function chart2(xdata, sdata, data){
 			trigger: 'axis'
 		},
 		grid:{
-			top:'10%',
-			left:'10%',
-			right:'10%',
-			bottom:'20%',
+			top:'15%',
+			left:'5%',
+			right:'5%',
+			bottom:'5%',
+			containLabel: true
 		},
 		xAxis: {
 			type: "category",
@@ -270,8 +255,17 @@ function chart3(xdata, sdata, data){
 		color:['#070093','#70b4eb','#fff', '#8A2BE2', '#1E90FF', '#ff0'],
 		legend:{
 			left:10,
-			textStyle:{
-				color:'#fff'
+			itemGap: 12, //图例每项之间的间隔
+			itemWidth: 16,
+			itemHeight: 8,
+			textStyle: {
+				color: '#fff',
+				fontSize: 10,
+			},
+			type:'scroll',
+			pageButtonItemGap:1,
+			pageTextStyle:{
+				color:'#fff',
 			},
 			data:sdata[sindex]
 		},
@@ -279,10 +273,11 @@ function chart3(xdata, sdata, data){
 			trigger: 'axis'
 		},
 		grid:{
-			top:'10%',
-			left:'10%',
-			right:'10%',
-			bottom:'20%',
+			top:'15%',
+			left:'5%',
+			right:'5%',
+			bottom:'5%',
+			containLabel: true
 		},
 		xAxis: {
 			type: "category",
@@ -398,8 +393,12 @@ function chart4(xdata, sdata, data){
 		color:['#070093','#70b4eb','#ff0'],
 		legend:{
 			left:10,
-			textStyle:{
-				color:'#fff'
+			itemGap: 12, //图例每项之间的间隔
+			itemWidth: 16,
+			itemHeight: 8,
+			textStyle: {
+				color: '#fff',
+				fontSize: 10,
 			},
 			data:sdata[sindex]
 		},
@@ -407,10 +406,11 @@ function chart4(xdata, sdata, data){
 			trigger: 'axis'
 		},
 		grid:{
-			top:'10%',
-			left:'10%',
-			right:'10%',
-			bottom:'20%',
+			top:'15%',
+			left:'5%',
+			right:'5%',
+			bottom:'5%',
+			containLabel: true
 		},
 		xAxis: {
 			type: "category",
@@ -504,8 +504,12 @@ function chart5(xdata, sdata, data){
 		color:['#070093','#70b4eb','#fff'],
 		legend:{
 			left:10,
-			textStyle:{
-				color:'#fff'
+			itemGap: 12, //图例每项之间的间隔
+			itemWidth: 16,
+			itemHeight: 8,
+			textStyle: {
+				color: '#fff',
+				fontSize: 10,
 			},
 			data:sdata[sindex]
 		},
@@ -513,10 +517,11 @@ function chart5(xdata, sdata, data){
 			trigger: 'axis'
 		},
 		grid:{
-			top:'10%',
-			left:'10%',
-			right:'10%',
-			bottom:'20%',
+			top:'15%',
+			left:'5%',
+			right:'5%',
+			bottom:'5%',
+			containLabel: true
 		},
 		xAxis: {
 			type: "category",
@@ -596,8 +601,12 @@ function chart6(xdata, sdata, data){
 		color:['#070093','#70b4eb','#fff'],
 		legend:{
 			left:10,
-			textStyle:{
-				color:'#fff'
+			itemGap: 12, //图例每项之间的间隔
+			itemWidth: 16,
+			itemHeight: 8,
+			textStyle: {
+				color: '#fff',
+				fontSize: 10,
 			},
 			data:sdata[sindex]
 		},
@@ -605,10 +614,11 @@ function chart6(xdata, sdata, data){
 			trigger: 'axis'
 		},
 		grid:{
-			top:'10%',
-			left:'10%',
-			right:'10%',
-			bottom:'20%',
+			top:'15%',
+			left:'5%',
+			right:'5%',
+			bottom:'5%',
+			containLabel: true
 		},
 		xAxis: {
 			type: "category",

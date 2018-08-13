@@ -5,229 +5,146 @@ $(document).ready(function(){
 	getdata('/pattern/gasIndex/chart4.json',chart4);
 	getdata('/pattern/gasIndex/main.json',main);
 });
-
+//探明结构储量分析
 function chart1(data){
 	var pieData = data[3];
 	var option = {
-			 tooltip : {
-			        trigger: 'item',
-			        formatter: "{a} <br/>{b} : {c} ({d}%)"
-			    },
-		    series: [{
-		        name: '储量占比',
-		        type: 'pie',
-		        roseType : 'radius',
-		        radius: '60%',
-		        center: ["50%", "50%"], //圆心坐标
-		        label: {
-	                normal: {
-	                    show: true,
-	                    position: 'outside',
-	                    formatter: "{b}:{c}%",
-	                    textStyle: {
-	                    	color:'#fff',
-	                        fontSize: 9
-	                    }
-	                },
-	                emphasis: {
-	                    show: true,
-	                    textStyle: {
-	                        fontSize: 9,
-	                        fontWeight: 'bold'
-	                    }
-	                }
-	            },
-		        data: pieData/*[{
-		            value: 666,//随便给一个数字即可
-		            name: '待确认',
-		            itemStyle: {
-			            normal: {
-			                color: {//渐变颜色处理
-			                    type: 'linear',
-			                    x: 0,
-			                    y: 0,
-			                    x2: 0,
-			                    y2: 1,
-			                    colorStops: [{
-			                        offset: 0,
-			                        color: '#0000FF' // 0% 处的颜色
-			                    }, {
-			                        offset: 1,
-			                        color: '#7B68EE' // 100% 处的颜色
-			                    }],
-			                    globalCoord: false // 缺省为 false
-			                }
-			            }
-			        }
-		        },{
-		            value: 444,//随便给一个数字即可
-		            name: '待确认',
-		            itemStyle: {
-			            normal: {
-			                color: {//渐变颜色处理
-			                    type: 'linear',
-			                    x: 0,
-			                    y: 0,
-			                    x2: 0,
-			                    y2: 1,
-			                    colorStops: [{
-			                        offset: 0,
-			                        color: '#6495ED' // 0% 处的颜色
-			                    }, {
-			                        offset: 1,
-			                        color: '#7B68EE' // 100% 处的颜色
-			                    }],
-			                    globalCoord: false // 缺省为 false
-			                }
-			            }
-			        } 	
-		        },{
-		            value: 324,//随便给一个数字即可
-		            name: '待确认',
-		            itemStyle: {
-			            normal: {
-			                color: {//渐变颜色处理
-			                    type: 'linear',
-			                    x: 0,
-			                    y: 0,
-			                    x2: 0,
-			                    y2: 1,
-			                    colorStops: [{
-			                        offset: 0,
-			                        color: '#00F5FF' // 0% 处的颜色
-			                    }, {
-			                        offset: 1,
-			                        color: '#6495ED' // 100% 处的颜色
-			                    }],
-			                    globalCoord: false // 缺省为 false
-			                }
-			            }
-			        }
-		        },{
-		            value: 123,//随便给一个数字即可
-		            name: '待确认',
-		            itemStyle: {
-			            normal: {
-			                color: {//渐变颜色处理
-			                    type: 'linear',
-			                    x: 0,
-			                    y: 0,
-			                    x2: 0,
-			                    y2: 1,
-			                    colorStops: [{
-			                        offset: 0,
-			                        color: '#BBFFFF' // 0% 处的颜色
-			                    }, {
-			                        offset: 1,
-			                        color: '#00F5FF' // 100% 处的颜色
-			                    }],
-			                    globalCoord: false // 缺省为 false
-			                }
-			            }
-			        }
-		        }]*/
-		    }]
-		};
+		tooltip : {
+			trigger: 'item',
+			formatter: "{a} <br/>{b} : ({d}%)"
+		},
+		series: [{
+			name: '储量占比',
+			type: 'pie',
+			roseType : 'radius',
+			radius: '60%',
+			center: ["50%", "50%"], //圆心坐标
+			labelLine: {
+				length: 8,
+				length2: 4
+			},
+			label: {
+				normal: {
+					show: true,
+					position: 'outside',
+					formatter: "{b}\n{c}%",
+					textStyle: {
+						color:'#fff',
+						fontSize: 8
+					}
+				},
+				emphasis: {
+					show: true,
+					textStyle: {
+						fontSize: 9,
+						fontWeight: 'bold'
+					}
+				}
+			},
+			data: pieData
+		}]
+	};
 	var myChart = echarts.init($('#chart1')[0]);
     myChart.setOption(option);
 }
-
+//探明储量TOP10国分析
 function chart2(data){
 	var yData = data[2];
 	var barData = data[3];
-	option = {
-	 tooltip: {
-	  show:"true",
-	  trigger: 'item',
-	  axisPointer: { // 坐标轴指示器，坐标轴触发有效
-	    type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
-	    }
-	    },
-	    grid: {
-	        left: '17%',
-	        right:'3%',
-	        top:'12%',
-	        bottom:'5%',
-	        //containLabel: true
-	    },
-	    xAxis: {
-	        type: 'value',
-	        show: true,
-	        axisLine: {
-	            show: false
-	        },
-	        axisTick: {
-	            show: false
-	        },
-	        axisLabel: {
-	            show: false
-	        },
-	        splitLine: {
-	            show: false
-	        }
-	    },
-	    yAxis: [{
-	        type: 'category',
-	        position: "left",
-	        data: yData, 
-	        axisLine: {
-	            show: false
-	        },
-	        axisTick: {
-	            show: false
-	        },
-	        axisLabel: {
-	            show: true,
-	            color:'#fff',
-	            textStyle: {
-	                color: '#fff',
-	                fontWeight: 'normal',
-	                fontSize: 8
-	            },
-	        },
-	        splitLine: {
-	            show: false
-	        }
-	    }],
-	    series: [ {
-	        name: '',
-	        type: 'bar',
-	        barWidth: 6,
+	var option = {
+		tooltip: {
+			show:"true",
+			trigger: 'item',
+			formatter:'{b}: {c}%',
+			axisPointer: { // 坐标轴指示器，坐标轴触发有效
+				type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+			}
+		},
+		grid: {
+			left: '5%',
+			right:'5%',
+			top:'5%',
+			bottom:'5%',
+			containLabel: true
+		},
+		xAxis: {
+			type: 'value',
+			show: true,
+			axisLine: {
+				show: false
+			},
+			axisTick: {
+				show: false
+			},
+			axisLabel: {
+				show: false
+			},
+			splitLine: {
+				show: false
+			}
+		},
+		yAxis: [{
+			type: 'category',
+			position: "left",
+			data: yData,
+			axisLine: {
+				show: false
+			},
+			axisTick: {
+				show: false
+			},
+			axisLabel: {
+				show: true,
+				color:'#fff',
+				textStyle: {
+					color: '#fff',
+					fontWeight: 'normal',
+					fontSize: 8
+				},
+			},
+			splitLine: {
+				show: false
+			}
+		}],
+		series: [ {
+			name: '',
+			type: 'bar',
+			barWidth: 6,
 			silent: false,
-	        itemStyle: {
-	            normal: {
-	               barBorderRadius: 10,
-			       color: {
-							type: 'bar',
-							colorStops: [{
+			itemStyle: {
+				normal: {
+					barBorderRadius: 10,
+					color: {
+						type: 'bar',
+						colorStops: [{
 							offset: 0,
 							color: '#00ffa8' // 0% 处的颜色
-							}, {
-									offset: 1,
-									color: '#ffea00' // 100% 处的颜色
-								}],
-								globalCoord: false, // 缺省为 false
+						}, {
+							offset: 1,
+							color: '#ffea00' // 100% 处的颜色
+						}],
+						globalCoord: false, // 缺省为 false
 					},
-	              label: {
-	                show: true,
-	                position: 'insideRight',
-	                formatter: '   ',
-	                backgroundColor: '#fff',
-	                distance: 0,
-	                borderColor: 'rgba(255, 234, 0, 0.5)',
-	                borderWidth: 8,
-	                borderRadius: 10,
-	                color: '#fff'
-	              }
-	            }
-	        },
-	        data: barData
-	    }]
+					label: {
+						show: true,
+						position: 'insideRight',
+						formatter: '   ',
+						backgroundColor: '#fff',
+						distance: 0,
+						borderColor: 'rgba(255, 234, 0, 0.5)',
+						borderWidth: 8,
+						borderRadius: 10,
+						color: '#fff'
+					}
+				}
+			},
+			data: barData
+		}]
 	};
 	var myChart = echarts.init($('#chart2')[0]);
     myChart.setOption(option);
 }
-
+//区域历史储产比趋势对比
 function chart3(data){
 	var xData = data[2];
 	var lineData1 = data[3];
@@ -237,257 +154,277 @@ function chart3(data){
 	var lineData5 = data[7];
 	var lineData6 = data[8];
 	var lineData7 = data[9];
-	option = {
-		    tooltip: {
-		        trigger: 'axis'
-		    },
-		    grid:{
-	            top:'20%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'30%',
-	        },
-		    xAxis: {
-		    	type: "category",
-		        axisLine: {
-		            lineStyle: {
-		            	 color: 'rgba(255,255,255,0.6)',
-		            }
-		        },
-		        splitLine: {
-		        	show: false,
-		            lineStyle: {
-		                color: '#fff ',
-		            }
-		        },
-		        boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
-		        axisTick: {
-	            	color: '#0177d4',
-	                show: true
-	            },
-		        splitArea: {
-		            show: false
-		        },
-		        axisLabel: {
-		            inside: false,
-		            textStyle: {
-		                color: '#fff',
-		                fontWeight: 'normal',
-		                fontSize: 8
-		            },
-		        },
-		        data:xData
-		    },
-		    yAxis: {
-		    	 type: 'value',
-		    	 //min:410,
-		    	 axisTick: {
-		            	color: '#0177d4',
-		                show: true
-		            },
-		         axisLine: {
-		             show: true,
-		             lineStyle: {
-		                 color: 'rgba(255,255,255,0.6)',
-		             }
-		         },
-		         splitLine: {
-		        	 show: false,
-		             lineStyle: {
-		                 color: '#fff',
-		             }
-		         },
-		         axisLabel: {
-		             textStyle: {
-		                 color: '#fff',
-		                 fontWeight: 'normal',
-		                 fontSize: 8
-		             },
-		             formatter: '{value}'
-		         }
-		    },
-		    series: [{
-		        name: '北美洲',
-		        type: 'line',
-		        smooth: true,
-		        symbol:'circle',
-		        showSymbol: false,
-		        itemStyle: {
-	                normal: {
-	                    color: '#00FFFF'
-	                },
-	            },
-		        data: lineData1
-		    },
-		    {
-		        name: '中南美洲',
-		        type: 'line',
-		        smooth: true,//值为true折线平滑    值为false折线曲折
-		        symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
-		        showSymbol: false,//true 为拐点处有点  false 为没有
-		        itemStyle: {
-	                normal: {
-	                    color: '#F0FFFF'
-	                },
-	            },
-		        data: lineData2
-		    },
-		    {
-		        name: '欧洲国家',
-		        type: 'line',
-		        smooth: true,//值为true折线平滑    值为false折线曲折
-		        symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
-		        showSymbol: false,//true 为拐点处有点  false 为没有
-		        itemStyle: {
-	                normal: {
-	                    color: '#0000FF'
-	                },
-	            },
-		        data: lineData3
-		    },{
-		        name: '独联体',
-		        type: 'line',
-		        smooth: true,//值为true折线平滑    值为false折线曲折
-		        symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
-		        showSymbol: false,//true 为拐点处有点  false 为没有
-		        itemStyle: {
-	                normal: {
-	                    color: '#FFD700'
-	                },
-	            },
-		        data: lineData4
-		    },
-		    {
-		        name: '中东国家',
-		        type: 'line',
-		        smooth: true,//值为true折线平滑    值为false折线曲折
-		        symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
-		        showSymbol: false,//true 为拐点处有点  false 为没有
-		        itemStyle: {
-	                normal: {
-	                    color: '#FF6A6A'
-	                },
-	            },
-		        data: lineData5
-		    },
-		    {
-		        name: '非洲',
-		        type: 'line',
-		        smooth: true,//值为true折线平滑    值为false折线曲折
-		        symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
-		        showSymbol: false,//true 为拐点处有点  false 为没有
-		        itemStyle: {
-	                normal: {
-	                    color: '#A020F0'
-	                },
-	            },
-		        data: lineData6
-		    },{
-		        name: '亚太地区',
-		        type: 'line',
-		        smooth: true,//值为true折线平滑    值为false折线曲折
-		        symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
-		        showSymbol: false,//true 为拐点处有点  false 为没有
-		        itemStyle: {
-	                normal: {
-	                    color: '#FF7F00'
-	                },
-	            },
-		        data: lineData7
-		    }]
-		};
+	var option = {
+		tooltip: {
+			trigger: 'axis'
+		},
+		legend:{
+			show:true,
+			bottom : 10,
+			type:'scroll',
+			itemWidth: 16,
+			itemHeight: 8,
+			pageButtonItemGap:1,
+			pageTextStyle:{
+				color:'#fff',
+			},
+			textStyle:{
+				color:'#fff',
+				fontFamily: '微软雅黑',
+				fontSize: 10,
+			},
+			data:data[0]
+		},
+		grid:{
+			top:'10%',
+			bottom:'20%',
+			left:'5%',
+			right:'5%',
+			containLabel:true,
+		},
+		xAxis: {
+			type: "category",
+			axisLine: {
+				lineStyle: {
+					color: 'rgba(255,255,255,0.6)',
+				}
+			},
+			splitLine: {
+				show: false,
+				lineStyle: {
+					color: '#fff ',
+				}
+			},
+			boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
+			axisTick: {
+				color: '#0177d4',
+				show: true
+			},
+			splitArea: {
+				show: false
+			},
+			axisLabel: {
+				inside: false,
+				textStyle: {
+					color: '#fff',
+					fontWeight: 'normal',
+					fontSize: 8
+				},
+			},
+			data:xData
+		},
+		yAxis: {
+			type: 'value',
+			splitNumber:3,
+			//min:410,
+			axisTick: {
+				color: '#0177d4',
+				show: true
+			},
+			axisLine: {
+				show: true,
+				lineStyle: {
+					color: 'rgba(255,255,255,0.6)',
+				}
+			},
+			splitLine: {
+				show: false,
+				lineStyle: {
+					color: '#fff',
+				}
+			},
+			axisLabel: {
+				textStyle: {
+					color: '#fff',
+					fontWeight: 'normal',
+					fontSize: 8
+				},
+				formatter: '{value}'
+			}
+		},
+		series: [{
+			name: '北美洲',
+			type: 'line',
+			smooth: true,
+			symbol:'circle',
+			showSymbol: false,
+			itemStyle: {
+				normal: {
+					color: '#00FFFF'
+				},
+			},
+			data: lineData1
+		},
+			{
+				name: '中南美洲',
+				type: 'line',
+				smooth: true,//值为true折线平滑    值为false折线曲折
+				symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
+				showSymbol: false,//true 为拐点处有点  false 为没有
+				itemStyle: {
+					normal: {
+						color: '#F0FFFF'
+					},
+				},
+				data: lineData2
+			},
+			{
+				name: '欧洲国家',
+				type: 'line',
+				smooth: true,//值为true折线平滑    值为false折线曲折
+				symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
+				showSymbol: false,//true 为拐点处有点  false 为没有
+				itemStyle: {
+					normal: {
+						color: '#0000FF'
+					},
+				},
+				data: lineData3
+			},{
+				name: '独联体',
+				type: 'line',
+				smooth: true,//值为true折线平滑    值为false折线曲折
+				symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
+				showSymbol: false,//true 为拐点处有点  false 为没有
+				itemStyle: {
+					normal: {
+						color: '#FFD700'
+					},
+				},
+				data: lineData4
+			},
+			{
+				name: '中东国家',
+				type: 'line',
+				smooth: true,//值为true折线平滑    值为false折线曲折
+				symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
+				showSymbol: false,//true 为拐点处有点  false 为没有
+				itemStyle: {
+					normal: {
+						color: '#FF6A6A'
+					},
+				},
+				data: lineData5
+			},
+			{
+				name: '非洲',
+				type: 'line',
+				smooth: true,//值为true折线平滑    值为false折线曲折
+				symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
+				showSymbol: false,//true 为拐点处有点  false 为没有
+				itemStyle: {
+					normal: {
+						color: '#A020F0'
+					},
+				},
+				data: lineData6
+			},{
+				name: '亚太地区',
+				type: 'line',
+				smooth: true,//值为true折线平滑    值为false折线曲折
+				symbol:'circle',//circle--拐点实心圆形 rect--实心方形   symbol没有为默认空心圆形
+				showSymbol: false,//true 为拐点处有点  false 为没有
+				itemStyle: {
+					normal: {
+						color: '#FF7F00'
+					},
+				},
+				data: lineData7
+			}]
+	};
 	var myChart = echarts.init($('#chart3')[0]);
     myChart.setOption(option);
 }
-
+//近10年新增探明储量的贡献分布
 function chart4(data){
 	var xData = data[2];
 	var barData = data[3];
-	option = {
-		    grid: {
-		    	top:'20%',
-		        left: '3%',
-		        right: '4%',
-		        bottom: '13%',
-		        containLabel: true
-		    },
-		    xAxis: [{
-		        type: "category",
-		        axisLine: {
-		            lineStyle: {
-		            	 color: 'rgba(255,255,255,0.6)',
-		            }
-		        },
-		        splitLine: {
-		        	show: false,
-		            lineStyle: {
-		                color: '#fff ',
-		            }
-		        },
-		        //boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
-		        axisTick: {
-	            	color: '#0177d4',
-	                show: true
-	            },
-		        splitArea: {
-		            show: false
-		        },
-		        axisLabel: {
-		            inside: false,
-		            textStyle: {
-		                color: '#fff',
-		                fontWeight: 'normal',
-		                fontSize: 8
-		            },
-		        },
-		        data: xData,
-		    }],
-		    yAxis: [{
-		        axisTick: {
-	            	color: '#0177d4',
-	                show: true
-	            },
-	         axisLine: {
-	             show: true,
-	             lineStyle: {
-	                 color: 'rgba(255,255,255,0.6)',
-	             }
-	         },
-	         splitLine: {
-	        	 show: false,
-	             lineStyle: {
-	                 color: '#fff',
-	             }
-	         },
-	         axisLabel: {
-	             textStyle: {
-	                 color: '#fff',
-	                 fontWeight: 'normal',
-	                 fontSize: 8
-	             },
-	             formatter: '{value}%'
-	         }
-		    }],
-		    series: [{
-		    	name:'储量增量贡献占比',
-		        type: 'bar',
-		        data: barData,
-		        barWidth: '40%', //柱子宽度
-		        //barGap: 1, //柱子之间间距
-		        itemStyle: {
-		            normal: {
-		                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-		                    offset: 0,
-		                    color: '#00fcae'
-		                }, {
-		                    offset: 1,
-		                    color: '#006388'
-		                }]),
-		                opacity: 1,
-		            }
-		        }
-		    }]
-		};
+	var option = {
+		grid: {
+			top:'20%',
+			left: '3%',
+			right: '4%',
+			bottom: '13%',
+			containLabel: true
+		},
+		tooltip:{},
+		xAxis: [{
+			type: "category",
+			axisLine: {
+				lineStyle: {
+					color: 'rgba(255,255,255,0.6)',
+				}
+			},
+			splitLine: {
+				show: false,
+				lineStyle: {
+					color: '#fff ',
+				}
+			},
+			//boundaryGap: false, //坐标轴两边留白策略，类目轴和非类目轴的设置和表现不一样
+			axisTick: {
+				color: '#0177d4',
+				show: true
+			},
+			splitArea: {
+				show: false
+			},
+			axisLabel: {
+				inside: false,
+				textStyle: {
+					color: '#fff',
+					fontWeight: 'normal',
+					fontSize: 8
+				},
+			},
+			data: xData,
+		}],
+		yAxis: [{
+			axisTick: {
+				color: '#0177d4',
+				show: true
+			},
+			axisLine: {
+				show: true,
+				lineStyle: {
+					color: 'rgba(255,255,255,0.6)',
+				}
+			},
+			splitLine: {
+				show: false,
+				lineStyle: {
+					color: '#fff',
+				}
+			},
+			axisLabel: {
+				textStyle: {
+					color: '#fff',
+					fontWeight: 'normal',
+					fontSize: 8
+				},
+				formatter: '{value}%'
+			}
+		}],
+		series: [{
+			name:'储量增量贡献占比',
+			type: 'bar',
+			data: barData,
+			barWidth: '40%', //柱子宽度
+			//barGap: 1, //柱子之间间距
+			itemStyle: {
+				normal: {
+					color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+						offset: 0,
+						color: '#00fcae'
+					}, {
+						offset: 1,
+						color: '#006388'
+					}]),
+					opacity: 1,
+				}
+			}
+		}]
+	};
 	var myChart = echarts.init($('#chart4')[0]);
     myChart.setOption(option);
 }
@@ -713,71 +650,70 @@ var nameMap = {
 
 };
 
-option = {
-timeline: {
- axisType: 'category',
-     orient: 'vertical',
-     autoPlay: true,
-     inverse: true,
-     playInterval: 5000,
-     left: null,
-     right: -105,
-     top: 20,
-     bottom: 20,
-     width: 46,
- data: ['2016',]  
-},
-baseOption: {
- visualMap: {
- type: 'piecewise', //分段型。
- splitNumber: 6,
- inverse: true,
- max:36,
- inRange: {
- 	color: ['#BBFFFF','#1E90FF']
- },
- left: 'left',
- top: 'bottom',
- textStyle: {
-     color: '#fff'
- },
- //min: 0,
- //max: 60000,
- //text:['High','Low'],
- //realtime: true,
- //calculable: true,
- //color: ['red','orange','lightgreen']
-},
- series: [{
-     type: 'map',
-     map: 'world',
-     roam: true,
-     itemStyle:{
-         emphasis:{label:{show:false}}
-     },
-     nameMap: nameMap
-     
- }]
-},
+	var option = {
+		timeline: {
+			axisType: 'category',
+			orient: 'vertical',
+			autoPlay: true,
+			inverse: true,
+			playInterval: 5000,
+			left: null,
+			right: -105,
+			top: 20,
+			bottom: 20,
+			width: 46,
+			data: ['2016',]
+		},
+		baseOption: {
+			visualMap: {
+				type: 'piecewise', //分段型。
+				splitNumber: 6,
+				inverse: true,
+				max:36,
+				inRange: {
+					color: ['#BBFFFF','#1E90FF']
+				},
+				left: '2%',
+				top: 'bottom',
+				itemWidth:16,
+				itemHeight:10,
+				itemGap:5,
+				textStyle: {
+					color: '#fff',
+					fontSize:10,
+				}
+			},
+			series: [{
+				type: 'map',
+				map: 'world',
+				roam: true,
+				itemStyle:{
+					emphasis:{label:{show:false}}
+				},
+				nameMap: nameMap
 
-options: [{
- 
- tooltip: {
-     trigger: 'item',
-     formatter: function (params) {
-         var value = (params.value);
-         //value = value.toFixed(5);toFixed(3)控制小数位数      
-         value = value;
-         //var abc=(params.abc);
-         return  params.name + ' : ' + value+' 百万美元/km²';
-     }
- },
- series: {
-     data: value3
-     
- } 
-}, ]
-};
+			}]
+		},
+
+		options: [{
+			tooltip: {
+				trigger: 'item',
+				position: ['50%', '50%'],
+				formatter: function (params) {
+					var value = (params.value) || 0;
+					//value = value.toFixed(5);toFixed(3)控制小数位数
+					value = value;
+					if(params.name==''){
+						return '无';
+					}
+					return  params.name + ' : ' + value+' 万亿立方米';
+				}
+			},
+			series: {
+				data: value3
+			}
+		}, ]
+	};
 	var myChart = echarts.init($('#main')[0]);
     myChart.setOption(option);
 }

@@ -229,38 +229,38 @@ function chart1(data){
     var option = {
         tooltip:{},
         grid: {
-	        left: '10%',
-	        right:'12%',
-	        top:'10%',
-	        bottom:'25%',
-	        //containLabel: true
-	    },
-	    legend: { //图例组件，颜色和名字
-	        itemGap: 12, //图例每项之间的间隔
-	        itemWidth: 16,
-	        itemHeight: 8,
-	        x:'center',
-	        bottom:'4%',
-	        data: data[0],
-	        textStyle: {
-	            color: '#fff',
-	            fontSize: 10,
-	        }
-	    },    
+            left: '10%',
+            right:'12%',
+            top:'10%',
+            bottom:'25%',
+            //containLabel: true
+        },
+        legend: { //图例组件，颜色和名字
+            itemGap: 12, //图例每项之间的间隔
+            itemWidth: 16,
+            itemHeight: 8,
+            x:'center',
+            bottom:'4%',
+            data: data[0],
+            textStyle: {
+                color: '#fff',
+                fontSize: 10,
+            }
+        },
         xAxis: {
-        	axisLine: {
-	            lineStyle: {
-	                color: '#38b8ff'
-	            }
-	        },
-	        axisLabel: {
-	            inside: false,
-	            textStyle: {
-	                color: '#fff',
-	                fontWeight: 'normal',
-	                fontSize: 10
-	            },
-	        },
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
+                }
+            },
+            axisLabel: {
+                inside: false,
+                textStyle: {
+                    color: '#fff',
+                    fontWeight: 'normal',
+                    fontSize: 10
+                },
+            },
             splitLine: {
                 show: false
             },
@@ -268,40 +268,40 @@ function chart1(data){
             data:data[1]
         },
         yAxis: [{
-        	axisLine: {
-	            lineStyle: {
-	                color: '#38b8ff'
-	            }
-	        },
-	        axisLabel: {
-	            inside: false,
-	            textStyle: {
-	                color: '#fff',
-	                fontWeight: 'normal',
-	                fontSize: 10
-	            },
-	        },
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
+                }
+            },
+            axisLabel: {
+                inside: false,
+                textStyle: {
+                    color: '#fff',
+                    fontWeight: 'normal',
+                    fontSize: 10
+                },
+            },
             splitLine:{
                 show:false
             },
             type: 'value'
         },{
-        	axisLine: {
-	            lineStyle: {
-	                color: '#38b8ff'
-	            }
-	        },
-	        axisLabel: {
-	            inside: false,
-	            textStyle: {
-	                color: '#fff',
-	                fontWeight: 'normal',
-	                fontSize: 10
-	            },
-	            formatter:function(v){
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
+                }
+            },
+            axisLabel: {
+                inside: false,
+                textStyle: {
+                    color: '#fff',
+                    fontWeight: 'normal',
+                    fontSize: 10
+                },
+                formatter:function(v){
                     return v + '%';
                 }
-	        },
+            },
             splitLine:{
                 show:false
             },
@@ -667,4 +667,10 @@ function chart4(data){
     };
     var myChart = echarts.init($('#chart4')[0]);
     myChart.setOption(option);
+}
+
+function cv3d(d){
+    return d.map(function(v,i){
+        return [i, 0, v];
+    });
 }
