@@ -172,7 +172,7 @@
     height:calc(100% - 10px);
     margin:10px 40px 0 0 ;
     overflow: auto;
-}
+}`
 
 .callActionCompanyLstTable>table{
     width:100%;

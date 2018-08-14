@@ -893,7 +893,7 @@ function initTradeTopInfoChart(jsonData){
                 // symbolSize: 20,
                 type: 'scatter',
                 symbolSize: function (data) {
-                    return  data[2]/100;
+                    return  data[2]/500;
                 },
                 data: Object.values(dataTmpObj)
             }]
