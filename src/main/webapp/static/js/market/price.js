@@ -1,20 +1,23 @@
 $(document).ready(function(){
-    getdata('/market/price/bidCompMapInfo.json',function(df){ init_table(df,'tb1');  });
+    getdata('/market/price/chart1.json',function(df){ init_table(df,'tb1');  });
     getdata('/market/price/chart2.json',function(df){ init_table(df,'tb2');  });
     getdata('/market/price/chart3.json',function(df){ init_table(df,'tb3');  });
+    $(this).click(function(){
+        for(var n in _tdmap)
+            _tdmap[n].auto = true;
+    })
 });
-var _tdmap = {'tb1':{i:2,idx:2,fn:chart1,t:'table1',cv:cv1},'tb2':{i:1,idx:1,fn:chart2,t:'table2',cv:cv1},'tb3':{i:1,idx:1,fn:chart3,t:'table3',cv:cv2}};
-
+var _tdmap = {'tb1':{i:2,idx:2,fn:chart1,t:'table1',cv:cv1,auto:true},'tb2':{i:1,idx:1,fn:chart2,t:'table2',cv:cv1,auto:true},'tb3':{i:1,idx:1,fn:chart3,t:'table3',cv:cv2,auto:true}};
 function init_table(df, tid){
     if(df==null) return;
-    df.data = df.data.filter(function(t,i){ return i< 100;});
+    df.index = $chart.xtime(df.index);
     var tt = _tdmap[tid];
     var str = [];
     str.push('<table id="',tid,'" class="qtable">');
-    var l1 = df.column.length, l2 = df.column[0].length;
+    var l1 = df.column.length, l2 = df.column[0].length, l0 = df.data.length;
     var dsp = [];
     tt.max = l2;
-    tt.df = tt.df;
+    tt.df = df;
     for(var i = 0; i< l2; i++){
         dsp[i] = [];
         str.push('<colgroup id="', tid, '_col_', i, '"></colgroup>');
@@ -29,25 +32,36 @@ function init_table(df, tid){
         str.push('</tr>');
     }
     str.push('</thead><tbody>');
-    l1=df.data.length;
+    l1=50;
 
-    for(var i = 0; i < l1; i++){
-        str.push('<tr>');
-        for(var j = 0; j < l2; j++){
-            var cid = tid + "_col_" + j;
-            dsp[j].push(tt.cv(df.data[i][j]));
-            str.push('<td rel="',cid, '">', df.data[i][j], '</td>');
+    for(var i = 0; i < l0; i++){
+        if(i<l1){
+            str.push('<tr>');
+            for(var j = 0; j < l2; j++){
+                var cid = tid + "_col_" + j;
+                dsp[j].push(tt.cv(df.data[i][j]));
+                str.push('<td rel="',cid, '">', df.data[i][j], '</td>');
+            }
+            str.push('</tr>');
+        }else{
+            for(var j = 0; j < l2; j++){
+                dsp[j].push(tt.cv(df.data[i][j]));
+            }
         }
-        str.push('</tr>');
+
     }
     str.push('</tbody></table>');
     $("#"+tt.t).html(str.join(''));
     var tb = $("#"+tid);
     tb.width(l2*100);
-    tb.find("th,td").click(function() {
-        $("#"+tid+" colgroup.hover").removeClass("hover");
+    tb.find("th,td").click(function(e) {
+        e.stopPropagation();
         var curCol = $(this).attr("rel");
-        $("#"+curCol).addClass("hover");
+        if(!curCol) return;
+        var tt = _tdmap[tid];
+        tt.idx = parseInt(curCol.split('_')[2]);
+        tt.auto = false;
+        choseCol(tid, tt);
     });
     tt.ps = new PerfectScrollbar("#"+tt.t);
     tt.ds = dsp;
@@ -55,13 +69,14 @@ function init_table(df, tid){
     auto_choseCol(tid);
 }
 function auto_choseCol(tid){
-    choseCol(tid);
+    var tt = _tdmap[tid];
+    if(tt.auto)
+        choseCol(tid,tt);
     setTimeout(function(){
         auto_choseCol(tid);
     }, 3000);
 }
-function choseCol(tid){
-    var tt = _tdmap[tid];
+function choseCol(tid,tt){
     $("#"+tid+" colgroup.hover").removeClass("hover");
     var curCol = tid + '_col_' + tt.idx;
     $("#"+curCol).addClass("hover");
@@ -87,11 +102,21 @@ function chart1(data,tid){
         legend: {
             show:false
         },
-        tooltip: {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
         },
         grid: {
-            top: 20,
-            bottom:20
+            top: '10%',
+            bottom:10,
+            left:'5%',
+            right:'5%',
+            containLabel: true
         },
         xAxis: {
             type: 'category',
@@ -100,17 +125,29 @@ function chart1(data,tid){
                     color: '#fff'
                 }
             },
+            axisLine: {
+                lineStyle: {
+                    color: '#87CEFF'
+                }
+            },
             splitLine: {
                 show: false
-            }
+            },
+            data:tt.df.index
         },
         yAxis: {
             type: 'value',
+            splitNumber:4,
             axisTick: {
                 inside: true
             },
             splitLine: {
                 show: false
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#87CEFF'
+                }
             },
             axisLabel: {
                 textStyle: {
@@ -120,10 +157,10 @@ function chart1(data,tid){
             z: 10
         },
         series: [{
-            name:' ',
+            name:'石油价格',
             type:'line',
             smooth:true,
-            showAllSymbol: false,
+            showSymbol: false,
             sampling: 'average',
             lineStyle:{
                 color:'#36b8ff'
@@ -158,11 +195,21 @@ function chart2(data,tid){
         legend: {
             show:false
         },
-        tooltip: {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
         },
         grid: {
-            top: 20,
-            bottom:20
+            top: '10%',
+            bottom:10,
+            left:'5%',
+            right:'5%',
+            containLabel: true
         },
         xAxis: {
             type: 'category',
@@ -171,30 +218,41 @@ function chart2(data,tid){
                     color: '#fff'
                 }
             },
+            axisLine: {
+                lineStyle: {
+                    color: '#87CEFF'
+                }
+            },
             splitLine: {
                 show: false
-            }
+            },
+            data:tt.df.index
         },
         yAxis: {
             type: 'value',
+            splitNumber:4,
             axisTick: {
                 inside: true
             },
             splitLine: {
                 show: false
             },
+            axisLine: {
+                lineStyle: {
+                    color: '#87CEFF'
+                }
+            },
             axisLabel: {
                 textStyle: {
                     color: '#ffffff'
                 }
             },
-            z: 10
         },
         series: [{
             name:' ',
             type:'line',
             smooth:true,
-            showAllSymbol: false,
+            showSymbol: false,
             sampling: 'average',
             lineStyle:{
               color:'#e1c15a'
@@ -229,11 +287,21 @@ function chart3(data,tid){
         legend: {
             show:false
         },
-        tooltip: {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
         },
         grid: {
-            top: 20,
-            bottom:20
+            top: '10%',
+            bottom:10,
+            left:'5%',
+            right:'5%',
+            containLabel: true
         },
         xAxis: {
             type: 'category',
@@ -242,14 +310,26 @@ function chart3(data,tid){
                     color: '#fff'
                 }
             },
+            axisLine: {
+                lineStyle: {
+                    color: '#87CEFF'
+                }
+            },
             splitLine: {
                 show: false
-            }
+            },
+            data:tt.df.index
         },
         yAxis: {
             type: 'value',
+            splitNumber:4,
             axisTick: {
                 inside: true
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#87CEFF'
+                }
             },
             splitLine: {
                 show: false
@@ -259,13 +339,12 @@ function chart3(data,tid){
                     color: '#ffffff'
                 }
             },
-            z: 10
         },
         series: [{
             name:' ',
             type:'line',
             smooth:true,
-            showAllSymbol: false,
+            showSymbol: false,
             sampling: 'average',
             lineStyle:{
               color:'#61ffff'

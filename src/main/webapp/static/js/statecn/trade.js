@@ -1,6 +1,6 @@
 $(document).ready(function(){
     main();
-    getdata('/statecn/trade/bidCompMapInfo.json',chart1);
+    getdata('/statecn/trade/chart1.json',chart1);
     getdata('/statecn/trade/chart2.json',chart2);
     getdata('/statecn/trade/chart3.json',chart3);
 });
@@ -12,43 +12,46 @@ function main(){
     }
     getdata('/statecn/trade/main.json', function(data){
         var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#b9e1f2", "#ffffff"];
-        var regionCss = [{name:"China", itemStyle:{color:'#ffa24c'}}];
-        /*for(var i = 0; i < regionData.length; i++){
-            var c = '', v = regionData[i].value;
-            if(v < 1)
-                c = color[0];
-            else if(v >= 100 & v < 200)
-                c = color[1];
-            else if(v > 60 & v < 100)
-                c = color[2];
-            else if(v > 30 & v < 61)
-                c = color[3];
-            else if(v > 0)
-                c = color[4];
-            else
-                c = color[5];
+        var regionCss = [];
+        for(var i = 0; i < data.top.length; i++){
+            var c = data.top[i].name, v = data.top[i].value;
             regionCss.push({
-                name:regionData[i].name,
-                itemStyle:{
-                    color:c
+                name: _country[c],
+                itemStyle: {
+                    normal: {
+                        areaColor: '#2874ff',
+                    }
                 }
             });
-        }*/
+        }
         var data1 = data.top.map(function(o){
            return o;
         });
         var option = {
+            tooltip:{
+                trigger: 'item',
+            },
             geo: {
                 show: true,
                 map: 'world',
+                regions:regionCss,
+                left: '20%', top: 5, right: '20%', bottom: 5,
                 label: {
                     normal: {
-                        show: false
+                        show: false,
                     },
                     emphasis: {
                         show: false,
                     }
                 },
+                regions: [
+                    {
+                        name: "China",
+                        itemStyle: {
+                            areaColor: "#003CAF"
+                        }
+                    }
+                ],
                 roam: true,
                 itemStyle: {
                     normal: {
@@ -80,7 +83,8 @@ function main(){
                     label: {
                         normal: {
                             position: 'left',
-                            show: true
+                            show: true,
+                            formatter: function(v){return v.value[2];}
                         }
                     },
                     itemStyle: {
@@ -96,23 +100,24 @@ function main(){
                     type:'lines',
                     coordinateSystem: 'geo',
                     large: true,
+                    polyline:true,
                     zlevel: 2,
                     largeThreshold: 100,
                     effect: {
                         show: true,
                         constantSpeed: 30,
                         symbol: 'arrow',
-                        symbolSize: 8,
+                        symbolSize: 5,
                         trailLength: 0,
                     },
                     lineStyle: {
                         normal: {
-                            width: 1,
-                            curveness: 0.3
+                            width: 3,
+                            curveness: 1
                         }
                     },
                     blendMode: 'lighter',
-                    data:convertLines(data1)
+                    data:convertLines(data1, data.route)
                 }
             ]
         };
@@ -120,18 +125,18 @@ function main(){
         myChart.setOption(option);
     });
 }
-function convertLines(d){
+function convertLines(d, m){
     var o = [];
-    for(var i = 0; i < d.length; i++){
+    for(var i = 0; i < m.length; i++){
         o.push({
-            fromName: "中国",
-            toName: d[i].name,
-            coords:[ [121.336319, 31.197], [d[i].value[0],d[i].value[1]] ]
+            fromName: m[i].name,
+            toName: "中国",
+            coords:m[i].value
         });
     }
     return o;
 }
-
+//10大石油进口来源国
 function chart1(data){
     var option = {
         color: ['#ffd653','#6ed5ff','#ff3a83','#2874ff','#ffa24c','#af59ff'],
@@ -139,19 +144,11 @@ function chart1(data){
             trigger: 'item'
         },
         legend: {
-            x : 'center',
-            y : 'top',
-            type:'scroll',
-            textStyle:{
-                color:'#fff'
-            },
-            pageTextStyle:{
-                color:'#fff'
-            }
+            show:false
         },
         series : [
             {
-                name:'国家',
+                name:'占进口总量比例',
                 type:'pie',
                 radius : [30, 80],
                 center : ['50%', '60%'],
@@ -167,7 +164,7 @@ function chart1(data){
     var myChart = echarts.init($('#chart1')[0]);
     myChart.setOption(option);
 }
-
+//中国石油进口量总趋势
 function chart2(data){
     var dataShadow = [], yMax = 12000;
     for(var i = 0; i < data[3].length; i++){
@@ -175,10 +172,22 @@ function chart2(data){
     }
     var option = {
         tooltip:{},
+        grid:{
+            top:'10%',
+            left:'5%',
+            right:'5%',
+            bottom:'20%',
+            containLabel: true
+        },
         legend:{
-            y : 'left',
+            show:true,
+            bottom : 10,
+            itemWidth: 16,
+            itemHeight: 8,
             textStyle:{
-                color:'#fff'
+                color:'#fff',
+                fontFamily: '微软雅黑',
+                fontSize: 10,
             },
             data:data[0]
         },
@@ -201,12 +210,21 @@ function chart2(data){
             splitLine:{
                 show:false
             },
+            splitNumber:4,
             axisLabel: {
                 textStyle: {
                     color: '#fff'
                 }
             },
-            type: 'value'
+            name:'千桶/天',
+            nameGap:-5,
+            nameTextStyle:{
+                padding:[0,0,0,45],
+                align:'center',
+                color:'#fff',
+            },
+            type: 'value',
+            z:10,
         },{
             axisLine: {
                 show: false
@@ -222,6 +240,7 @@ function chart2(data){
                     return v + '%';
                 }
             },
+            splitNumber:4,
             type: 'value'
         }],
         series: [
@@ -270,17 +289,30 @@ function chart2(data){
     var myChart = echarts.init($('#chart2')[0]);
     myChart.setOption(option);
 }
-
+//中国石油进口新增需求
 function chart3(data){
     var option = {
         tooltip:{},
         color:['#61ffff','#ff0'],
         legend:{
-            y : 'left',
+            show:true,
+            bottom : 10,
+            type:'scroll',
+            itemWidth: 16,
+            itemHeight: 8,
             textStyle:{
-                color:'#fff'
+                color:'#fff',
+                fontFamily: '微软雅黑',
+                fontSize: 10,
             },
             data:data[0]
+        },
+        grid:{
+            top:'10%',
+            left:'5%',
+            right:'5%',
+            bottom:'20%',
+            containLabel: true
         },
         xAxis: {
             axisLabel: {
@@ -303,7 +335,20 @@ function chart3(data){
                     color: '#fff'
                 }
             },
-            type: 'value'
+            splitLine:{
+                lineStyle:{
+                    color:'#d3d3d3'
+                }
+            },
+            splitNumber:4,
+            name:'千桶/天',
+            nameGap:5,
+            nameTextStyle:{
+                padding:[0,0,0,45],
+                align:'center',
+                color:'#fff',
+            },
+            type: 'value',
         },{
             axisLine: {
                 show: false

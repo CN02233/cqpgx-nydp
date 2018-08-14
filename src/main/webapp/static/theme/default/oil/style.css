@@ -1,0 +1,27 @@
+.qsection{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+    border: 2px solid #fff;
+    color: #2c3e50;
+    background-color:#fff;
+}
+.qs_header{
+    height:30px;line-height: 30px;
+}
+.qs_title1{
+    background-color: #38b8ff; margin:0 10px 0 10px; font-size: 1.25em;
+}
+
+
+.qs_title2{
+    font-size: 1.25em;
+    color: #59ebe8;
+    font-family: "Microsoft YaHei" !important;
+}
+.qs_body{
+    height:calc(100% - 30px);
+}
+/******bootstrap theme******/
+.btn-primary, .btn-primary:hover{background-color:#00ced1;}

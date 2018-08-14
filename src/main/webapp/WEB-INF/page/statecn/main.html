@@ -7,7 +7,7 @@
 </#macro>
 
 <#macro body>
-    <@topbar title="中国能源态势<div class='circlebox'><div class='circle1' title='石油' onclick=\"gourl('index')\"></div><div class='circle2' title='天然气' onclick=\"gourl('gasIndex')\"></div></div>">
+    <@topbar title="中国能源态势">
     <div class="btn-group" style="width:55px;">
         <button class="btn btn-default barbtn" type="button" onclick="gourl('index')">供需</button>
     </div>
@@ -32,28 +32,50 @@
 </@topbar>
 <div class="qmain container-fluid animated fadeInRight">
     <div id="page" class="row qpage">
-		 <div class="col-sm-12 h9 qpanel" >
-		   <div class="col-sm-4 h12 qpanel">
-		   		 <div class="col-sm-12 h6 qpanel">
-		   		 	 <div class="qs_header"><span class="qs_title1">01\</span><span class="qs_title2">企业数量区域分布</span></div>
-                		<div id="chart1" class="qs_body"></div>
+		 <div class="w12 h8" >
+		   <div class="w4 h12">
+		   		 <div class="w12 h6">
+		   		 	<div class="qpanel">
+			   		 	 <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">企业数量区域分布</span></div>
+	                	<div id="chart1" class="qs_body"></div>
+                	</div>	
 		   		 </div>
-		   		  <div class="col-sm-12 h6 qpanel">
-		   		  		 <div class="qs_header"><span class="qs_title1">02\</span><span class="qs_title2">资产规模结构分布</span></div>
+		   		  <div class="w12 h6">
+		   		  	<div class="qpanel">
+		   		  		 <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">资产规模结构分布</span></div>
                 		<div id="chart2" class="qs_body"></div>
+                	</div>	
 		   		  </div>
 		   </div>
-		   <div id="main" class="col-sm-8 h12 qpanel">
+		   <div id="main" class="w8 h12 qpanel0">
 		   </div>
 		 </div>
-		 <div class="col-sm-12 h3 qpanel">
-		 	<div class="col-sm-6 h12 qpanel">
-		 		 <div class="qs_header"><span class="qs_title1">03\</span><span class="qs_title2">区域企业运营能力</span></div>
-                <div id="chart3" class="qs_body"></div>
+		 <div class="w12 h4">
+		 	<div class="w4 h12">
+		 		<div class="qpanel">
+			 		 <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">区域企业运营能力</span></div>
+	                <div id="chart3" class="qs_body"></div>
+                </div>
 		   </div>
-		   <div class="col-sm-6 h12 qpanel">
-		   		 <div class="qs_header"><span class="qs_title1">04\</span><span class="qs_title2">区域企业风险态势</span></div>
-                <div id="chart4" class="qs_body"></div>
+		   <div class="w8 h12">
+			   <div class="w4 h12">
+			   		<div class="qpanel">
+				   		 <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">区域企业风险态势</span></div>
+		               	<div id="chart41" class="qs_body"></div>
+	                </div>
+			   </div>
+			   <div class="w4 h12">
+			   		<div class="qpanel">
+				   		 <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">区域企业风险态势</span></div>
+		               <div id="chart42" class="qs_body"></div>
+	                </div>
+			   </div>
+			   <div class="w4 h12">
+			   		<div class="qpanel">
+				   		 <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">区域企业风险态势</span></div>
+		               <div id="chart43" class="qs_body"></div>
+	                </div>
+			   </div>
 		   </div>
 		 </div>
     </div>

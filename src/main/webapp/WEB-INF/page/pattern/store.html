@@ -6,7 +6,7 @@
 </#macro>
 
 <#macro body>
-<@topbar title="国际能源格局<div class='circlebox'><div class='circle1' title='石油' onclick=\"gourl('store')\"></div><div class='circle2' title='天然气' onclick=\"gourl('gasStore')\"></div></div>">
+<@topbar title="能源格局<div class='circlebox'><div class='circle1' title='石油' onclick=\"gourl('store')\"></div><div class='circle2' title='天然气' onclick=\"gourl('gasStore')\"></div></div>">
     <div class="btn-group" style="width:100px;">
         <button class="btn btn-default barbtn" type="button" onclick="gourl('index')">储量</button>
     </div>
@@ -22,33 +22,45 @@
 </@topbar>
 <div class="qmain container-fluid animated fadeInRight">
     <div id="page" class="row qpage"  style="margin-top: 2px">
-        <div class="col-sm-8 h12" style="margin-top:10px;">
-            <div id="main" class="w12 h8 qpanel"></div>
-            <div class="w4 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">06\</span><span class="qs_title2">美国商业原油库存</span></div>
-                <div id="chart6" class="qs_body"></div>
+        <div class="w8 h12" style="margin-top:6px;">
+            <div id="main" class="w12 h8 qpanel0"></div>
+            <div class="w4 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">美国商业原油库存</span></div>
+	                <div id="chart6" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w4 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">05\</span><span class="qs_title2">美国汽油库存</span></div>
-                <div id="chart5" class="qs_body"></div>
+            <div class="w4 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">美国汽油库存</span></div>
+	                <div id="chart5" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w4 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">04\</span><span class="qs_title2">美国馏分油库存</span></div>
-                <div id="chart4" class="qs_body"></div>
+            <div class="w4 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">美国馏分油库存</span></div>
+	                <div id="chart4" class="qs_body"></div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-4 h12" style="margin-top:10px;">
-            <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title2">欧洲ARA汽油与柴油库存</span><span class="qs_title1">/01</span></div>
-                <div id="chart1" class="qs_body"></div>
+        <div class="w4 h12" style="margin-top:10px;">
+            <div class="w12 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">欧洲ARA汽油与柴油库存</span></div>
+	                <div id="chart1" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title2">全球浮仓库存趋势</span><span class="qs_title1">/02</span></div>
-                <div id="chart2" class="qs_body"></div>
+            <div class="w12 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">全球浮仓库存趋势</span></div>
+	                <div id="chart2" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title2">美国库欣原油库存</span><span class="qs_title1">/03</span></div>
-                <div id="chart3" class="qs_body"></div>
+            <div class="w12 h4">
+           		<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">美国库欣原油库存</span></div>
+	                <div id="chart3" class="qs_body"></div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 $(document).ready(function(){
     main();
-    getdata('/pattern/index/bidCompMapInfo.json',chart1);
+    getdata('/pattern/index/chart1.json',chart1);
     getdata('/pattern/index/chart2.json',chart2);
     getdata('/pattern/index/chart3.json',chart3);
     getdata('/pattern/index/chart4.json',chart4);
@@ -15,6 +15,7 @@ function main(){
         var db = data.country;
         for(var i = 0; i < db.length; i++){
             db[i].name = _country[db[i].name];
+            db[i].regionHeight = db[i].value > 10 ? 8 : 4;
         }
         var color = ["#070093", "#1c3fbf", "#1482e5", "#70b4eb", "#b4e0f3", "#b9e1f2", "#ffffff"];
         /*var regionCss = [];
@@ -48,10 +49,10 @@ function main(){
         var option = {
             visualMap: {
                 type: 'piecewise',
-                splitNumber: 6,
                 inverse: true,
                 seriesIndex:0,
-                pieces: [{
+                pieces: [
+                    {
                     min: 0,
                     max: 0.99,
                     label:'<10',
@@ -81,13 +82,17 @@ function main(){
                     label:'>300',
                     color: '#070093'
                 }],
-                left: 'left',
+                left: '2%',
                 top: 'bottom',
+                itemWidth:16,
+                itemHeight:10,
+                itemGap:5,
                 textStyle: {
-                    color: '#fff'
+                    color: '#fff',
+                    fontSize:10,
                 }
             },
-            geo3D: {
+            /*geo3D: {
                 map: 'world',
                 shading: 'color',
                 silent: true,
@@ -111,8 +116,9 @@ function main(){
                     borderWidth:0.3
                 },
                 regionHeight: 0.5
-            },
-            series: [{
+            },*/
+            series: [
+                {
                 type:'map3D',
                 map: 'world',
                 shading: 'color',
@@ -132,9 +138,11 @@ function main(){
                     borderWidth:0.3
                 },
                 viewControl: {
-                    distance: 100
+                    center:[5,0,0],
+                    distance: 80
                 },
-                regionHeight: 0.5,
+                boxHeight:20,
+                regionHeight: 1,
                 data:db
             }/*,{
                 type: 'scatter3D',
@@ -153,23 +161,34 @@ function main(){
         myChart.setOption(option);
     });
 }
-
+//探明结构储量分析
 function chart1(data){
     if(data==null||data.length<2)
         return;
     var option = {
+        grid:{
+            top:'5%',
+            bottom:'5%',
+        },
         legend:{
             show:true,
-            bottom:5,
+            bottom:12,
+            itemWidth: 8,
+            itemHeight: 8,
             textStyle:{
-                color:'#fff'
+                color:'#fff',
+                fontStyle: 'normal',
+                fontFamily: '微软雅黑',
+                fontSize: 8,
             },
             data:['欧佩克']
         },
-        series: [{
+        series: [
+            {
             "name": ' ',
             "type": 'pie',
-            "radius": ['68%', '70%'],
+            center: ['50%', '45%'],
+            "radius": ['66%', '68%'],
             "avoidLabelOverlap": false,
             "startAngle": 90,
             "color": ["#fff", "transparent"],
@@ -183,7 +202,7 @@ function chart1(data){
                 "emphasis": {
                     "show": true,
                     "textStyle": {
-                        "fontSize": '30',
+                        "fontSize": '28',
                         "fontWeight": 'bold'
                     }
                 }
@@ -193,7 +212,8 @@ function chart1(data){
                     "show": false
                 }
             },
-            "data": [{
+            "data": [
+                {
                 "value": 85,
                 "name": '',
                 "itemStyle": {
@@ -219,7 +239,8 @@ function chart1(data){
         }, {
             "name": '欧佩克',
             "type": 'pie',
-            "radius": ['50%', '68.1%'],
+            "radius": ['48%', '66.1%'],
+             center: ['50%', '45%'],
             "avoidLabelOverlap": false,
             "startAngle": 90,
             "color": ["#2874ff", "transparent"],
@@ -283,7 +304,7 @@ function chart1(data){
     var myChart = echarts.init($('#chart1')[0]);
     myChart.setOption(option);
 }
-
+//区域历史储产比趋势对比
 function chart2(data){
     var seriesData = [];
     for(var i = 0; i < data[1].length; i++){
@@ -308,14 +329,26 @@ function chart2(data){
                 }
             }
         },
-        legend: {
-            show:false
+        legend:{
+            show:true,
+            bottom : 10,
+            type:'scroll',
+            itemWidth: 16,
+            itemHeight: 8,
+            textStyle:{
+                color:'#fff',
+                fontFamily: '微软雅黑',
+                fontSize: 10,
+            },
+            data:data[1]
         },
-        grid:[{
-            top:20,
-            bottom:20,
+        grid:{
+            top:'10%',
+            left:'5%',
+            right:'5%',
+            bottom:'20%',
             containLabel: true
-        }],
+        },
         dataZoom: [{
             type:'inside',
             show: true
@@ -329,9 +362,22 @@ function chart2(data){
                     color: '#ffffff'
                 }
             },
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
+                }
+            },
             data : data[0]
         }],
         yAxis : [{
+            name:'10亿吨',
+            nameGap:-5,
+            nameTextStyle:{
+                padding:[0,0,0,45],
+                align:'center',
+                color:'#fff',
+            },
+            splitNumber:3,
             splitLine:{
                 show:false
             },
@@ -340,21 +386,25 @@ function chart2(data){
                     color: '#ffffff'
                 }
             },
+            axisLine: {
+                lineStyle: {
+                    color: '#38b8ff'
+                }
+            },
             type : 'value'
         }],
         series : seriesData
     };
-    var myChart = echarts.init($('#chart2')[0]);
-    myChart.setOption(option);
+    var myChart = $chart.init('#chart2', option, 'bar');
 }
-
+//近10年新增探明储量贡献
 function chart3(data){
     var dataStyle = {
         normal: {
             label: {
                 show: true,
                 color: '#fff',
-                fontSize: 12,
+                fontSize: 10,
             },
             labelLine: {
                 length: 15,
@@ -365,18 +415,18 @@ function chart3(data){
     var labelShow = {
         show: true,
         color: '#fff',
-        fontSize: 13,
+        fontSize: 14,
         formatter: [
             '{b| {b} }',
             '({d| {d}% })'
         ].join('\n'),
         rich: {
             d: {
-                fontSize: 12,
+                fontSize: 10,
                 color: '#fff'
             },
             b: {
-                fontSize: 14,
+                fontSize: 12,
                 color: '#fff'
             },
         }
@@ -395,7 +445,7 @@ function chart3(data){
             color: 'rgba(0,0,0,0)'
         }
     };
-    var seriesData = [], x0 = 360, x1 = 0, rs = [[60,62],[35,60],[60,70],[46,56],[35,55],[35,55]], sa = [121,59.33,19.94,341.25,307.08, 276.60];
+    var seriesData = [], x0 = 360, x1 = 0, rs = [[55,57],[30,55],[55,65],[41,51],[30,50],[30,50]], sa = [121,59.33,19.94,341.25,307.08, 276.60];
     data.forEach(function(d, i){
         var x = 3.6 * d.value;
         x0 = sa[i];
@@ -437,7 +487,7 @@ function chart3(data){
             show: true,
             formatter: function(param){
                 if (param.name.length>0) {
-                    return param.name+'<br/>'+param.value;
+                    return param.name+'<br/>'+Math.round(param.value*10,2)+' 亿吨';
                 }
             }
         },
@@ -478,7 +528,7 @@ function chart3(data){
         },
         polar: {
             center: ['50%', '50%'],
-            radius: 75,
+            radius: 72,
         },
         legend: {
             show:false
@@ -488,18 +538,20 @@ function chart3(data){
     var myChart = echarts.init($('#chart3')[0]);
     myChart.setOption(option);
 }
-
+//探明储量TOP10国分布
 function chart4(data){
     var option = {
         tooltip:{
             formatter:'{b}: {c}%',
         },
-        grid: {
-            bottom: 20,
-            top: 20,
-            containLabel: true
+        grid:{
+            top:'10%',
+            bottom:'10%',
+            left:'5%',
+            right:'5%',
+            containLabel:true,
         },
-        xAxis: {
+        xAxis: [{
             type: 'category',
             data: data[1],
             axisLine: {
@@ -509,18 +561,22 @@ function chart4(data){
             },
             axisLabel: {
                 rotate: 45,
-                interval: 0,
+                interval: function(index){
+                    if(index<2)
+                        return true;
+                    return index % 2 == 0;
+                },
                 textStyle: {
                     color: '#ffffff'
                 }
             }
-        },
+        }],
         yAxis: [{
             splitLine: {
                 show: false
             },
             type: 'value',
-            boundaryGap: [0, 0.01],
+            splitNumber:3,
             splitLine: {
                 show: false
             },
@@ -531,8 +587,9 @@ function chart4(data){
             },
             axisLabel: {
                 formatter:'{value}%',
+
                 textStyle: {
-                    color: '#ffffff'
+                    color: '#ffffff',
                 }
             }
         }],

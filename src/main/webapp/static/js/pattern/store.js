@@ -1,6 +1,6 @@
 $(document).ready(function(){
     main();
-    getdata('/pattern/store/bidCompMapInfo.json',chart1);
+    getdata('/pattern/store/chart1.json',chart1);
     getdata('/pattern/store/chart2.json',chart2);
     getdata('/pattern/store/chart3.json',chart3);
     getdata('/pattern/store/chart4.json',chart4);
@@ -98,35 +98,44 @@ function main(){
 
 function chart1(data){
     var option = {
-        legend: {
-            top: 'top',
-            textStyle:{
-                color:'#fff'
-            },
-            data:data[0]
-        },
+    		legend: { //图例组件，颜色和名字
+    	        itemGap: 12, //图例每项之间的间隔
+    	        itemWidth: 16,
+    	        itemHeight: 8,
+    	        x:'center',
+    	        bottom:'3%',
+    	        data: data[0],
+    	        textStyle: {
+    	            color: '#fff',
+    	            fontSize: 10,
+    	        }
+    	    },    
+    	    grid: {
+    	        left: '3%',
+    	        right:'3%',
+    	        top:'10%',
+    	        bottom:'18%',
+    	        containLabel: true
+    	    },
         tooltip: {
-            formatter: '{b} - {c}千吨'
-        },
-        /*dataZoom: [{
-         type: 'inside',
-         throttle: 50
-         }],*/
-        grid: {
-            top: 40,
-            left:100,
-            bottom:20
+        	 trigger: 'axis',
+            //formatter: '{b} - {c}千吨'
         },
         xAxis: {
             type: 'category',
-            axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                }
-            },
+            axisLine: {
+	            lineStyle: {
+	                color: '#38b8ff'
+	            }
+	        },
+	        axisLabel: {
+	            color: '#fff',
+	            fontSize: 10
+	        },
             splitLine: {
                 show: false
-            }
+            },
+            data:data[1]
         },
         yAxis: {
             type: 'value',
@@ -136,11 +145,15 @@ function chart1(data){
             splitLine: {
                 show: false
             },
-            axisLabel: {
-                textStyle: {
-                    color: '#ffffff'
-                }
-            },
+            axisLine: {
+	            lineStyle: {
+	                color: '#38b8ff'
+	            }
+	        },
+	        axisLabel: {
+	            color: '#fff',
+	            fontSize: 10
+	        },
             z: 10
         },
         series: [{
@@ -197,36 +210,49 @@ function chart1(data){
 
 function chart2(data){
     var option = {
-        legend: {
-            left:120,
-            bottom: 40,
-            textStyle:{
-                color:'#fff'
-            },
-            data:data[0]
-        },
-        tooltip: {
-            formatter: '{b} - {c}百万桶'
-        },
-        grid: {
-            top: 40,
-            left:100,
-            bottom:20
-        },
+    		legend: { //图例组件，颜色和名字
+    	        itemGap: 12, //图例每项之间的间隔
+    	        itemWidth: 16,
+    	        itemHeight: 8,
+    	        x:'center',
+    	        bottom:'3%',
+    	        data: data[0],
+    	        textStyle: {
+    	            color: '#fff',
+    	            fontSize: 10,
+    	        }
+    	    },    
+    	    grid: {
+    	        left: '5%',
+    	        right:'3%',
+    	        top:'15%',
+    	        bottom:'18%',
+    	        containLabel: true
+    	    },
+    	    tooltip: {
+           	 trigger: 'axis',
+               //formatter: '{b} - {c}千吨'
+           },
         xAxis: {
             type: 'category',
-            axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                }
-            },
+            axisLine: {
+	            lineStyle: {
+	                color: '#38b8ff'
+	            }
+	        },
+	        axisLabel: {
+	            color: '#fff',
+	            fontSize: 10
+	        },
             splitLine: {
                 show: false
-            }
+            },
+            data:data[1]
         },
         yAxis: {
             name:'百万桶',
             nameTextStyle:{
+            	top:'5%',
                 color:'#fff'
             },
             type: 'value',
@@ -236,11 +262,15 @@ function chart2(data){
             splitLine: {
                 show: false
             },
-            axisLabel: {
-                textStyle: {
-                    color: '#fff'
-                }
-            },
+            axisLine: {
+	            lineStyle: {
+	                color: '#38b8ff'
+	            }
+	        },
+	        axisLabel: {
+	            color: '#fff',
+	            fontSize: 10
+	        },
             z: 10
         },
         series: [{
@@ -298,36 +328,53 @@ function chart3(data){
     }
     var option = {
         color: ['#ff3481','#ffa24c','#61ffff','#2874ff','#ac9857'],
-        legend:{
-            top:'top',
-            textStyle:{
-                color:'#fff'
-            },
-            data:data[0]
-        },
-        tooltip: {
-            trigger: 'axis',
-        },
-        grid:{
-            top:40,
-            bottom:20
-        },
+        legend: { //图例组件，颜色和名字
+	        itemGap: 12, //图例每项之间的间隔
+	        itemWidth: 16,
+	        itemHeight: 8,
+	        x:'center',
+	        bottom:'3%',
+	        data: ["2014","2015","2016","2017","2018"],
+	        textStyle: {
+	            color: '#fff',
+	            fontSize: 10,
+	        }
+	    },    
+	    grid: {
+	        left: '7%',
+	        right:'3%',
+	        top:'15%',
+	        bottom:'18%',
+	        containLabel: true
+	    },
+	    tooltip: {
+       	 trigger: 'axis',
+           //formatter: '{b} - {c}千吨'
+       },
         xAxis: {
             type: 'category',
             boundaryGap: false,
-            axisLabel: {
-                textStyle: {
-                    color: '#ffffff'
-                }
-            },
+            axisLine: {
+	            lineStyle: {
+	                color: '#38b8ff'
+	            }
+	        },
+	        axisLabel: {
+	            color: '#fff',
+	            fontSize: 10
+	        },
             data: data[1]
         },
         yAxis: {
-            axisLabel: {
-                textStyle: {
-                    color: '#ffffff'
-                }
-            },
+            axisLine: {
+	            lineStyle: {
+	                color: '#38b8ff'
+	            }
+	        },
+	        axisLabel: {
+	            color: '#fff',
+	            fontSize: 10
+	        },
             splitLine: {
                 show: false
             },
@@ -342,29 +389,53 @@ function chart3(data){
 function chart4(data){
     var option = {
         color: ["#ffa3ff","#ffa3ff", "#69df55", "#f034d", "#217346"],//["#37A2DA", "#32C5E9", "#67E0E3", "#9FE6B8", "#FFDB5C", "#ff9f7f", "#fb7293", "#E062AE", "#E690D1", "#e7bcf3", "#9d96f5", "#8378EA", "#96BFFF"],
-        tooltip: {
-            trigger: 'axis',
-        },
-        grid:{
-            top:20,
-            bottom:25
-        },
+        legend: { //图例组件，颜色和名字
+	        itemGap: 12, //图例每项之间的间隔
+	        itemWidth: 16,
+	        itemHeight: 8,
+	        x:'center',
+	        bottom:'3%',
+	        data: ["2014","2015","2016","2017","2018"],
+	        textStyle: {
+	            color: '#fff',
+	            fontSize: 10,
+	        }
+	    },    
+	    grid: {
+	        left: '4%',
+	        right:'3%',
+	        top:'15%',
+	        bottom:'18%',
+	        containLabel: true
+	    },
+	    tooltip: {
+       	 trigger: 'axis',
+           //formatter: '{b} - {c}千吨'
+       },
         xAxis: {
             type: 'category',
             boundaryGap: false,
-            axisLabel: {
-                textStyle: {
-                    color: '#ffffff'
-                }
-            },
+            axisLine: {
+	            lineStyle: {
+	                color: '#38b8ff'
+	            }
+	        },
+	        axisLabel: {
+	            color: '#fff',
+	            fontSize: 10
+	        },
             data: data[1]
         },
         yAxis: {
-            axisLabel: {
-                textStyle: {
-                    color: '#ffffff'
-                }
-            },
+        	 axisLine: {
+ 	            lineStyle: {
+ 	                color: '#38b8ff'
+ 	            }
+ 	        },
+ 	        axisLabel: {
+ 	            color: '#fff',
+ 	            fontSize: 10
+ 	        },
             splitLine: {
                 show: false
             },
@@ -445,29 +516,53 @@ function chart4(data){
 function chart5(data){
     var option = {
         color: ["#ffa3ff","#ffa3ff", "#69df55", "#f034d", "#217346"],//["#37A2DA", "#32C5E9", "#67E0E3", "#9FE6B8", "#FFDB5C", "#ff9f7f", "#fb7293", "#E062AE", "#E690D1", "#e7bcf3", "#9d96f5", "#8378EA", "#96BFFF"],
-        tooltip: {
-            trigger: 'axis',
-        },
-        grid:{
-            top:20,
-            bottom:25
-        },
+        legend: { //图例组件，颜色和名字
+	        itemGap: 12, //图例每项之间的间隔
+	        itemWidth: 16,
+	        itemHeight: 8,
+	        x:'center',
+	        bottom:'3%',
+	        data: ["2014","2015","2016","2017","2018"],
+	        textStyle: {
+	            color: '#fff',
+	            fontSize: 10,
+	        }
+	    },    
+	    grid: {
+	        left: '4%',
+	        right:'3%',
+	        top:'15%',
+	        bottom:'18%',
+	        containLabel: true
+	    },
+	    tooltip: {
+       	 trigger: 'axis',
+           //formatter: '{b} - {c}千吨'
+       },
         xAxis: {
             type: 'category',
             boundaryGap: false,
-            axisLabel: {
-                textStyle: {
-                    color: '#ffffff'
-                }
-            },
+            axisLine: {
+	            lineStyle: {
+	                color: '#38b8ff'
+	            }
+	        },
+	        axisLabel: {
+	            color: '#fff',
+	            fontSize: 10
+	        },
             data: data[1]
         },
         yAxis: {
-            axisLabel: {
-                textStyle: {
-                    color: '#ffffff'
-                }
-            },
+        	axisLine: {
+ 	            lineStyle: {
+ 	                color: '#38b8ff'
+ 	            }
+ 	        },
+ 	        axisLabel: {
+ 	            color: '#fff',
+ 	            fontSize: 10
+ 	        },
             splitLine: {
                 show: false
             },
@@ -548,29 +643,53 @@ function chart5(data){
 function chart6(data){
     var option = {
         color: ["#ffa3ff","#ffa3ff", "#69df55", "#f034d", "#217346"],//["#37A2DA", "#32C5E9", "#67E0E3", "#9FE6B8", "#FFDB5C", "#ff9f7f", "#fb7293", "#E062AE", "#E690D1", "#e7bcf3", "#9d96f5", "#8378EA", "#96BFFF"],
-        tooltip: {
-            trigger: 'axis',
-        },
-        grid:{
-            top:20,
-            bottom:25
-        },
+        legend: { //图例组件，颜色和名字
+	        itemGap: 12, //图例每项之间的间隔
+	        itemWidth: 16,
+	        itemHeight: 8,
+	        x:'center',
+	        bottom:'3%',
+	        data: ["2014","2015","2016","2017","2018"],
+	        textStyle: {
+	            color: '#fff',
+	            fontSize: 10,
+	        }
+	    },    
+	    grid: {
+	        left: '4%',
+	        right:'3%',
+	        top:'15%',
+	        bottom:'18%',
+	        containLabel: true
+	    },
+	    tooltip: {
+       	 trigger: 'axis',
+           //formatter: '{b} - {c}千吨'
+       },
         xAxis: {
             type: 'category',
             boundaryGap: false,
-            axisLabel: {
-                textStyle: {
-                    color: '#ffffff'
-                }
-            },
+            axisLine: {
+	            lineStyle: {
+	                color: '#38b8ff'
+	            }
+	        },
+	        axisLabel: {
+	            color: '#fff',
+	            fontSize: 10
+	        },
             data: data[1]
         },
         yAxis: {
-            axisLabel: {
-                textStyle: {
-                    color: '#ffffff'
-                }
-            },
+        	axisLine: {
+	            lineStyle: {
+	                color: '#38b8ff'
+	            }
+	        },
+	        axisLabel: {
+	            color: '#fff',
+	            fontSize: 10
+	        },
             splitLine: {
                 show: false
             },

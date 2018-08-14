@@ -4,8 +4,6 @@ $(document).ready(function(){
     chart3();
     getdata('/pattern/gasStore/chart4.json',chart4);
     getdata('/market/index/main.json',main);
-//	getdata('/pattern/gasIndex/chart4.json',chart4);
-//	getdata('/pattern/gasIndex/main.json',main);
 });
 
 function chart1(data){
@@ -14,21 +12,33 @@ function chart1(data){
 	var lineData2 = data[4];
 	var lineData3 = data[5];
 	option = {
-		    tooltip: {
-		        trigger: 'axis',
-		        //formatter: '{a}</br>{b} ：{c} %'
+			tooltip : {
+		        trigger: 'axis'
 		    },
-		    grid:{
-	            top:'10%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'20%',
-	        },
+		    legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'2%',
+		        data: data[0],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },    
+		    grid: {
+		        left: '14%',
+		        right:'3%',
+		        top:'10%',
+		        bottom:'24%',
+		        //containLabel: true
+		    },
 		    xAxis: {
 		    	type: "category",
 		        axisLine: {
 		            lineStyle: {
-		            	 color: 'rgba(255,255,255,0.6)',
+		            	 color: '#59ebe8',
 		            }
 		        },
 		        splitLine: {
@@ -50,7 +60,7 @@ function chart1(data){
 		            textStyle: {
 		                color: '#fff',
 		                fontWeight: 'normal',
-		                fontSize: 8
+		                fontSize: 10
 		            },
 		        },
 		        data:xData
@@ -65,7 +75,7 @@ function chart1(data){
 		         axisLine: {
 		             show: true,
 		             lineStyle: {
-		                 color: 'rgba(255,255,255,0.6)',
+		                 color: '#59ebe8',
 		             }
 		         },
 		         splitLine: {
@@ -78,9 +88,9 @@ function chart1(data){
 		             textStyle: {
 		                 color: '#fff',
 		                 fontWeight: 'normal',
-		                 fontSize: 8
+		                 fontSize: 10
 		             },
-		             formatter: '{value}%'
+		             formatter: '{value}'
 		         }
 		    },
 		    series: [{
@@ -149,18 +159,28 @@ function chart2(data){
 	var xData = data[2];
 	var barData = data[3];
 	    var option =  {
-	        grid:{
-	            top:'7%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'25%',
-	        },
-	        tooltip: {
-	            trigger: 'axis',
-	            axisPointer: { // 坐标轴指示器，坐标轴触发有效
-	                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
-	            }
-	        },
+	    		tooltip : {
+			        trigger: 'axis'
+			    },
+			    legend: { //图例组件，颜色和名字
+			        itemGap: 12, //图例每项之间的间隔
+			        itemWidth: 16,
+			        itemHeight: 8,
+			        x:'center',
+			        bottom:'2%',
+			        data: data[0],
+			        textStyle: {
+			            color: '#fff',
+			            fontSize: 10,
+			        }
+			    },    
+			    grid: {
+			        left: '14%',
+			        right:'3%',
+			        top:'10%',
+			        bottom:'30%',
+			        //containLabel: true
+			    },
 	        xAxis: [{
 	            position: "bottom",
 	            type: "category",
@@ -168,13 +188,13 @@ function chart2(data){
 	                //interval: 0,
 	                textStyle: {
 	                    color: '#fff',
-	                    fontSize:8
+	                    fontSize:10
 	                },
 	                rotate: 30,
 	            },
 	            axisLine:{
 	                lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#59ebe8'
 	                }
 	            },
 	            data: xData,
@@ -188,12 +208,12 @@ function chart2(data){
 	                textStyle: {
 	                    color: '#fff',
 	                    fontStyle: 'normal',
-	                    fontSize:8
+	                    fontSize:10
 	                }
 	            },
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#59ebe8'
 	                }
 	            },
 	            axisTick: {
@@ -207,7 +227,7 @@ function chart2(data){
 	        series: [{
 	            name: "偏离度",
 	            type: "bar",
-	            barWidth: '50%',
+	            barWidth: '70%',
 	            itemStyle: {
 	                normal: {
 	                	 color: function (param){
@@ -234,12 +254,24 @@ function chart3(data){
 		        trigger: 'item',
 		        formatter: "{a} <br/>{b} : {c} ({d}%)"
 		    },
+		    legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'2%',
+		        data: ["东部地区库存","中西部地区","中南部地区","洛基山地区","太平洋地区","阿拉斯加地区"],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },
 		    series: [{
 		        name: '美国天然气库存区域分布',
 		        type: 'pie',
-		        radius: '68%',
+		        radius: '50%',
 		        //roseType: 'radius',
-		        center: ['50%', '50%'],
+		        center: ['50%', '43%'],
 		        clockwise: false,
 		        data: [{
 		            value: 459,
@@ -300,22 +332,29 @@ function chart3(data){
 
 function chart4(data){
 	option = {
-			grid:{
-	            top:'18%',
-	            left:'10%',
-	            right:'10%',
-	            bottom:'16%',
-	        },
-	        color:["#FFFFFF","#FFD200","#15C0FF","#7C7DFF","#3729FF","#366DFF"],
-	        legend: {
-		        itemWidth:20,
-		        itemHeight:4,
-		        	textStyle: {
-	                    color: '#fff',
-	                    fontSize:8
-	                },
-		        data: data[0]
+			tooltip : {
+		        trigger: 'axis'
 		    },
+		    legend: { //图例组件，颜色和名字
+		        itemGap: 12, //图例每项之间的间隔
+		        itemWidth: 16,
+		        itemHeight: 8,
+		        x:'center',
+		        bottom:'2%',
+		        data: data[0],
+		        textStyle: {
+		            color: '#fff',
+		            fontSize: 10,
+		        }
+		    },    
+		    grid: {
+		        left: '3%',
+		        right:'3%',
+		        top:'10%',
+		        bottom:'35%',
+		        containLabel: true
+		    },
+	        color:["#FFFFFF","#FFD200","#15C0FF","#7C7DFF","#3729FF","#366DFF"],
 		    tooltip: {
 		        trigger: 'axis'
 		    },
@@ -326,13 +365,13 @@ function chart4(data){
 		                //interval: 0,
 		                textStyle: {
 		                    color: '#fff',
-		                    fontSize:8
+		                    fontSize:10
 		                },
 		                //rotate: 30,
 		            },
 		            axisLine:{
 		                lineStyle:{
-		                    color: '#0177d4'
+		                    color: '#59ebe8'
 		                }
 		            },
 		        data: data[2]
@@ -345,12 +384,12 @@ function chart4(data){
 	                textStyle: {
 	                    color: '#fff',
 	                    fontStyle: 'normal',
-	                    fontSize:8
+	                    fontSize:10
 	                }
 	            },
 	            axisLine: {
 	            	lineStyle:{
-	                    color: '#0177d4'
+	                    color: '#59ebe8'
 	                }
 	            },
 	            axisTick: {
@@ -364,7 +403,7 @@ function chart4(data){
 		    series: [{
 		        name: '东部地区库存',
 		        type: 'line',
-		      //  z:5,
+		        symbol:'circle',
 		        stack: '总量',
 		        itemStyle: {
 		            normal: {
@@ -386,7 +425,7 @@ function chart4(data){
 		    }, {
 		        name: '中西部地区库存',
 		        type: 'line',
-		      //  z:4,
+		        symbol:'circle',
 		        stack: '总量',
 		        itemStyle: {
 		            normal: {
@@ -408,7 +447,7 @@ function chart4(data){
 		    },{
 		        name: '中南部地区库存',
 		        type: 'line',
-		      //  z:3,
+		        symbol:'circle',
 		        stack: '总量',
 		        itemStyle: {
 		            normal: {
@@ -430,7 +469,7 @@ function chart4(data){
 		    },{
 		        name: '洛基山地区库存',
 		        type: 'line',
-		      //  z:3,
+		        symbol:'circle',
 		        stack: '总量',
 		        itemStyle: {
 		            normal: {
@@ -452,7 +491,7 @@ function chart4(data){
 		    },{
 		        name: '太平洋地区库存',
 		        type: 'line',
-		      //  z:3,
+		        symbol:'circle',
 		        stack: '总量',
 		        itemStyle: {
 		            normal: {
@@ -474,7 +513,7 @@ function chart4(data){
 		    },{
 		        name: '阿拉斯加地区库存',
 		        type: 'line',
-		      //  z:3,
+		        symbol:'circle',
 		        stack: '总量',
 		        itemStyle: {
 		            normal: {
@@ -786,12 +825,15 @@ function main(data){
 	    visualMap: {
 	        min: 0,
 	        max: 1000,
-	        left: 'left',
-	        bottom: '3%',
 	        text: ['高','低'],           // 文本，默认为数值文本
-	        textStyle: {
-                color: '#fff'
-            },
+	        itemHeight:100,
+	        itemWidth:15,
+	        left:'5%',
+	        bottom:'30%',
+	       textStyle:{
+	    	   color:'#fff',
+	    	   fontSize: 10
+	       },
 	        //calculable: true,
 	       color: ['#1E90FF','#BBFFFF']
 	    },

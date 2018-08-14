@@ -1,11 +1,11 @@
 $(document).ready(function(){
 	main();
-    getdata('/statecn/gasSecurity/bidCompMapInfo.json',chart1);
+    getdata('/statecn/gasSecurity/chart1.json',chart1);
     getdata('/statecn/gasSecurity/chart2.json',chart2);
     getdata('/statecn/gasSecurity/chart3.json',chart3);
-    getdata('/statecn/security/chart4.json',chart4);
+    getdata('/statecn/gasSecurity/chart4.json',chart4);
     getdata('/statecn/gasSecurity/chart5.json',chart5);
-    getdata('/statecn/security/chart6.json',chart6);
+    getdata('/statecn/gasSecurity/chart6.json',chart6);
 //    getdata('/statecn/security/chart2.json',chart2);
 //    getdata('/statecn/security/chart3.json',chart3);
 //    getdata('/statecn/security/chart4.json',chart4);
@@ -18,8 +18,8 @@ function main(data){
 	var myRate1 = 1000;
 	option = {
 	   title: [{
-	        x: "27%",
-	        bottom: 10,
+	        x: "23%",
+	        bottom: 90,
 	        text: '天然气对外依赖度',
 	        textStyle: {
 	            fontWeight: 'normal',
@@ -27,8 +27,8 @@ function main(data){
 	            color: "#fff"
 	        },
 	    }, {
-	        x: "57%",
-	        bottom: 10,
+	        x: "60.5%",
+	        bottom: 90,
 	        text: '储量接替率',
 	        textStyle: {
 	            fontWeight: 'normal',
@@ -36,8 +36,8 @@ function main(data){
 	            color: "#fff"
 	        },
 	    },{
-	        x: "4%",
-	        bottom: 40,
+	        x: "3%",
+	        bottom: 70,
 	        text: '单一进口管道油气国家集中度',
 	        textStyle: {
 	            fontWeight: 'normal',
@@ -45,8 +45,8 @@ function main(data){
 	            color: "#fff"
 	        },
 	    },{
-	        x: "72%",
-	        bottom: 40,
+	        x: "73%",
+	        bottom: 70,
 	        text: '单一进口LNG油气国家集中度',
 	        textStyle: {
 	            fontWeight: 'normal',
@@ -61,13 +61,13 @@ function main(data){
 	    },
 	    series: [{
 	        type: 'gauge',
-	        center: ['36%', '50%'], // 默认全局居中  
+	        center: ['34%', '50%'], // 默认全局居中  
 	        radius: '50%',
 	        splitNumber: 10, //刻度数量
 	        min: 0,
 	        max: 100,
-	        startAngle: 280,
-	        endAngle: 10,
+	        startAngle: 220,
+	        endAngle: -40,
 	        clockwise: true,
 	        axisLine: {
 	            show: true,
@@ -114,10 +114,10 @@ function main(data){
 	            value: myRate1
 	        }]
 	    }, {
-	        startAngle: 280,
-	        endAngle: 10,
+	    	startAngle: 220,
+	        endAngle: -40,
 	        type: 'gauge',
-	        center: ['36%', '50%'], // 默认全局居中  
+	        center: ['34%', '50%'], // 默认全局居中  
 	        radius: '45%',
 	        min: 0,
 	        max: 100,
@@ -159,10 +159,10 @@ function main(data){
 	    }, {
 	        name: '天然气对外依赖度',
 	        type: 'gauge',
-	        startAngle: 280,
-	        endAngle: 10,
+	        startAngle: 220,
+	        endAngle: -40,
 	        radius: '40%',
-	        center: ['36%', '50%'], // 默认全局居中  
+	        center: ['34%', '50%'], // 默认全局居中  
 	        min: 0,
 	        max: 100,
 	        axisLine: {
@@ -214,13 +214,13 @@ function main(data){
 	        }]
 	    },{
 	        type: 'gauge',
-	        center: ['64%', '50%'], // 默认全局居中  
+	        center: ['66%', '50%'], // 默认全局居中  
 	        radius: '50%',
 	        splitNumber: 10, //刻度数量
 	        min: 200,
 	        max: 0,
-	        startAngle: 170,
-	        endAngle: -100,
+	        startAngle: 220,
+	        endAngle: -40,
 	        clockwise: true,
 	        axisLine: {
 	            show: true,
@@ -267,10 +267,10 @@ function main(data){
 	            value: myRate1
 	        }]
 	    }, {
-	        startAngle: 170,
-	        endAngle: -100,
+	    	startAngle: 220,
+	        endAngle: -40,
 	        type: 'gauge',
-	        center: ['64%', '50%'], // 默认全局居中  
+	        center: ['66%', '50%'], // 默认全局居中  
 	        radius: '45%',
 	        min: 200,
 	        max: 0,
@@ -312,10 +312,10 @@ function main(data){
 	    }, {
 	        name: '储量接替率',
 	        type: 'gauge',
-	        startAngle: 170,
-	        endAngle: -100,
+	        startAngle: 220,
+	        endAngle: -40,
 	        radius: '40%',
-	        center: ['64%', '50%'], // 默认全局居中  
+	        center: ['66%', '50%'], // 默认全局居中  
 	        min: 200,
 	        max: 0,
 	        axisLine: {
@@ -367,13 +367,13 @@ function main(data){
 	        }]
 	    },{
 	        type: 'gauge',
-	        center: ['17%', '55%'], // 默认全局居中  
-	        radius: '33%',
+	        center: ['14%', '55%'], // 默认全局居中  
+	        radius: '29%',
 	        splitNumber: 10, //刻度数量
 	        min: 0,
 	        max: 100,
 	        startAngle: 280,
-	        endAngle: 40,
+	        endAngle: 80,
 	        clockwise: true,
 	        axisLine: {
 	            show: true,
@@ -421,12 +421,12 @@ function main(data){
 	        }]
 	    }, {
 	        type: 'gauge',
-	        center: ['17%', '55%'], // 默认全局居中  
-	        radius: '28%',
+	        center: ['14%', '55%'], // 默认全局居中  
+	        radius: '26%',
 	        min: 0,
 	        max: 100,
 	        startAngle: 280,
-	        endAngle: 40,
+	        endAngle: 80,
 	        splitNumber: 0,
 	        axisLine: { // 坐标轴线  
 	            lineStyle: {
@@ -466,9 +466,9 @@ function main(data){
 	        name: '单一进口管道油气国家集中度',
 	        type: 'gauge',
 	        startAngle: 280,
-	        endAngle: 40,
-	        radius: '25%',
-	        center: ['17%', '55%'], // 默认全局居中  
+	        endAngle: 80,
+	        radius: '23%',
+	        center: ['14%', '55%'], // 默认全局居中  
 	        min: 0,
 	        max: 100,
 	        axisLine: {
@@ -520,12 +520,12 @@ function main(data){
 	        }]
 	    }, {
 	        type: 'gauge',
-	        center: ['83%', '55%'], // 默认全局居中  
-	        radius: '33%',
+	        center: ['86%', '55%'], // 默认全局居中  
+	        radius: '29%',
 	        splitNumber: 10, //刻度数量
 	        min: 100,
 	        max: 0,
-	        startAngle: 140,
+	        startAngle: 100,
 	        endAngle: -100,
 	        clockwise: true,
 	        axisLine: {
@@ -574,11 +574,11 @@ function main(data){
 	        }]
 	    }, {
 	        type: 'gauge',
-	        center: ['83%', '55%'], // 默认全局居中  
-	        radius: '28%',
+	        center: ['86%', '55%'], // 默认全局居中  
+	        radius: '26%',
 	        min: 0,
 	        max: 100,
-	        startAngle: 140,
+	        startAngle: 100,
 	        endAngle: -100,
 	        splitNumber: 0,
 	        axisLine: { // 坐标轴线  
@@ -618,10 +618,10 @@ function main(data){
 	    }, {
 	        name: '单一进口LNG油气国家集中度',
 	        type: 'gauge',
-	        startAngle: 140,
+	        startAngle: 100,
 	        endAngle: -100,
-	        radius: '25%',
-	        center: ['83%', '55%'], // 默认全局居中  
+	        radius: '23%',
+	        center: ['86%', '55%'], // 默认全局居中  
 
 	        min: 0,
 	        max: 100,
@@ -961,8 +961,8 @@ function chart3(data){
 		        //formatter: '{a}</br>{b} ：{c} %'
 		    },
 		    grid:{
-	            top:'10%',
-	            left:'10%',
+	            top:'12%',
+	            left:'12%',
 	            right:'10%',
 	            bottom:'20%',
 	        },
@@ -1057,13 +1057,14 @@ function chart3(data){
 
 function chart4(data){
 	var xData = data[2];
-	var barData = data[3];
-	var lineData = data[4];
+	var barData1 = data[3];
+	var barData2 = data[4];
+	var lineData = data[5];
 	    var option =  {
 	        grid:{
 	            top:'7%',
-	            left:'10%',
-	            right:'10%',
+	            left:'12%',
+	            right:'12%',
 	            bottom:'25%',
 	        },
 	        tooltip: {
@@ -1143,7 +1144,19 @@ function chart4(data){
 	            }
 	        }],
 	        series: [{
-	            name: "需求-供给",
+	            name: "中国",
+	            type: "bar",
+	            barWidth: '30%',
+	            itemStyle: {
+	                normal: {
+	                	 color: '#00bfff',
+	                	 barBorderRadius: 50,
+	                },
+	            },
+	            data: barData1,
+
+	        },{
+	            name: "美国",
 	            type: "bar",
 	            barWidth: '30%',
 	            itemStyle: {
@@ -1152,10 +1165,10 @@ function chart4(data){
 	                	 barBorderRadius: 50,
 	                },
 	            },
-	            data: barData,
+	            data: barData2,
 
-	        }, {
-	            name: "需求-供给变化",
+	        },{
+	            name: "中国与美国比较",
 	            type: "line",
 	            yAxisIndex: 1,
 	            itemStyle: {
@@ -1305,13 +1318,12 @@ function chart6(data){
 	var xData = data[2];
 	var barData1 = data[3];
 	var barData2 = data[4];
-	var barData3 = data[5];
-	var lineData = data[6];
+	var lineData = data[5];
 	    var option =  {
 	        grid:{
 	            top:'7%',
 	            left:'10%',
-	            right:'10%',
+	            right:'12%',
 	            bottom:'25%',
 	        },
 	        tooltip: {
@@ -1365,7 +1377,6 @@ function chart6(data){
 	        },{
 	            type: "value",
 	            position: 'right',
-	            min:90,
 	            axisLine: {
 	            	lineStyle:{
 	                    color: '#fff'
@@ -1392,48 +1403,36 @@ function chart6(data){
 	            }
 	        }],
 	        series: [{
-	            name: "新增查明储量",
+	            name: "储气库工作气量",
 	            type: "bar",
 	            barWidth: '30%',
 	            itemStyle: {
 	                normal: {
-	                	 color: '#1E90FF',
+	                	 color: '#226FFF',
 	                	 barBorderRadius: 50,
 	                },
 	            },
 	            data: barData1,
 
 	        },{
-	            name: "查明储量",
+	            name: "消费量",
 	            type: "bar",
 	            barWidth: '30%',
 	            itemStyle: {
 	                normal: {
-	                	 color: '#1E90FF',
+	                	 color: '#7C7DFF',
 	                	 barBorderRadius: 50,
 	                },
 	            },
 	            data: barData2,
 
 	        },{
-	            name: "消耗储量",
-	            type: "bar",
-	            barWidth: '30%',
-	            itemStyle: {
-	                normal: {
-	                	 color: '#1E90FF',
-	                	 barBorderRadius: 50,
-	                },
-	            },
-	            data: barData3,
-
-	        },{
-	            name: "储量接替率",
+	            name: "工作气量占消费量比重",
 	            type: "line",
 	            yAxisIndex: 1,
 	            itemStyle: {
 	                normal: {
-	                    color: '#E9DC37'
+	                    color: '#15BEFB'
 	                },
 	            },
 	            data: lineData,

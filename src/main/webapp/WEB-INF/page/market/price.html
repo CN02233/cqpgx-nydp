@@ -7,8 +7,9 @@
         .qtable-panel{overflow:hidden;position: relative;overflow-x:scroll;overflow-y:scroll;background-color:rgba(12, 17, 29,0.65);border-radius:5px;}
         .qtable{}
         .qtable .hover { background-color: #151d2f; }
-        .qtable th{width:80px;height:30px;color:#61ffff;padding-left:10px;}
-        .qtable td{width:80px;height:30px;color:#36b8ff;padding-left:10px;}
+        .qtable th{width:100px;height:30px;color:#61ffff;padding-left:10px;}
+        .qtable td{width:100px;height:30px;color:#36b8ff;padding-left:10px;}
+        div.qpanelx{width:100%;margin:0 0 10px 0;}
     </style>
 </#macro>
 
@@ -25,31 +26,37 @@
     </div>
 </@topbar>
 <div class="qmain container-fluid animated fadeInRight">
-    <div id="page" class="row qpage"  style="margin-top: 30px">
+    <div id="page" class="row qpage">
       	<div class="col-sm-4 h12">
-            <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">01\</span><span class="qs_title2">能源产品价格趋势</span></div>
-                <div id="chart1" class="qs_body"></div>
+            <div class="w12 h4">
+                <div class="qpanel qpanelx">
+                    <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">能源产品价格趋势</span></div>
+                    <div id="chart1" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w12 h8 qpanel">
+            <div class="w12 h8">
                 <div id="table1" class="qs_body qtable-panel"></div>
             </div>
         </div>
         <div class="col-sm-4 h12">
-            <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">02\</span><span class="qs_title2">能源产品价差趋势</span></div>
+            <div class="w12 h4">
+                <div class="qpanel qpanelx">
+                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">能源产品价差趋势</span></div>
                 <div id="chart2" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w12 h8 qpanel">
+            <div class="w12 h8">
                 <div id="table2" class="qs_body qtable-panel"></div>
             </div>
         </div>
         <div class="col-sm-4 h12">
-            <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">03\</span><span class="qs_title2">国际油价与供需缺口分析</span></div>
-                <div id="chart3" class="qs_body"></div>
+            <div class="w12 h4">
+                <div class="qpanel qpanelx">
+                    <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">国际油价与供需缺口分析</span></div>
+                    <div id="chart3" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w12 h8 qpanel">
+            <div class="w12 h8">
                 <div id="table3" class="qs_body qtable-panel"></div>
             </div>
         </div>

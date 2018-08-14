@@ -1,3 +1,4 @@
+<#assign goods="gas" />
 <#include "/WEB-INF/include/base.html" />
 <#macro head>
     <script src="${host}/static/lib/echarts/echarts-gl.js"></script>
@@ -31,29 +32,39 @@
 </@topbar>
 <div class="qmain container-fluid animated fadeInRight">
     <div id="page" class="row qpage">
-        <div class="col-sm-4 h12">
-            <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">01\</span><span class="qs_title2">天然气消费量增长</span></div>
-                <div id="chart1" class="qs_body"></div>
+        <div class="w4 h12">
+            <div class="w12 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">天然气消费量增长</span></div>
+	                <div id="chart1" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">02\</span><span class="qs_title2">天然气供需缺口季节性特征</span></div>
-                <div id="chart2" class="qs_body"></div>
+            <div class="w12 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">天然气供需缺口季节性特征</span></div>
+	                <div id="chart2" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">03\</span><span class="qs_title2">国内外气价比较</span></div>
-                <div id="chart3" class="qs_body"></div>
+            <div class="w12 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">国内外气价比较</span></div>
+	                <div id="chart3" class="qs_body"></div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-8 h12">
-            <div id="main" class="w12 h8 qpanel"></div>
-            <div class="w5 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">04\</span><span class="qs_title2">天然气行业消费增长率对比</span></div>
-                <div id="chart4" class="qs_body"></div>
+        <div class="w8 h12">
+            <div id="main" class="w12 h8 qpanel0"></div>
+            <div class="w6 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">天然气行业消费增长率对比</span></div>
+	                <div id="chart4" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w7 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">05\</span><span class="qs_title2">终端售价比较</span></div>
-                <div id="chart5" class="qs_body"></div>
+            <div class="w6 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">终端售价比较</span></div>
+	                <div id="chart5" class="qs_body"></div>
+                </div>
             </div>
         </div>
     </div>

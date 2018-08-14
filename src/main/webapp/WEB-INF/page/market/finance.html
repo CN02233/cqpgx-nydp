@@ -3,15 +3,6 @@
     <script src="${host}/static/lib/echarts/echarts-gl.js"></script>
     <script src="${host}/static/lib/echarts/map/world.js"></script>
     <script src="${host}/static/js/market/finance.js"></script>
-    <style>
-    #right .qs_title2{
-    float: right;
-    margin-top: 6px;
-    }
-    #right .qs_title1{
-    float: right;
-    }
-    </style>
 </#macro>
 
 <#macro body>
@@ -29,45 +20,63 @@
 <div class="qmain container-fluid animated fadeInRight">
     <div id="page" class="row qpage"  style="margin-top: 2px">
       <div class="w4 h12">
-      	 <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">01\</span><span class="qs_title2">INA SC首行合约成交量和价格</span></div>
-                <div id="chart1" class="qs_body"></div>
+      	 <div class="w12 h4">
+      	 		<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">INA SC首行合约成交量和价格</span></div>
+	                <div id="chart1" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">04\</span><span class="qs_title2">WTI远月价差结构</span></div>
-                <div id="chart4" class="qs_body"></div>
+            <div class="w12 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">WTI远月价差结构</span></div>
+	                <div id="chart4" class="qs_body"></div>
+                </div>
             </div>
-           <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">07\</span><span class="qs_title2">美国汽油和柴油期货价格和价差</span></div>
-                <div id="chart7" class="qs_body"></div>
+           <div class="w12 h4">
+           		<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">美国汽油和柴油期货价格和价差</span></div>
+	                <div id="chart7" class="qs_body"></div>
+                </div>
             </div> 
         </div>
         <div class="w4 h12">
-        	<div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">02\</span><span class="qs_title2">INA SC远期曲线结构</span></div>
-                <div id="chart2" class="qs_body"></div>
+        	<div class="w12 h4">
+        		<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">INA SC远期曲线结构</span></div>
+	                <div id="chart2" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">05\</span><span class="qs_title2">Brent远月价差结构</span></div>
-                <div id="chart5" class="qs_body"></div>
+            <div class="w12 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">Brent远月价差结构</span></div>
+	                <div id="chart5" class="qs_body"></div>
+                </div>
             </div>
-           <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">08\</span><span class="qs_title2">欧洲柴油期货价格及裂解价差</span></div>
-                <div id="chart8" class="qs_body"></div>
+           <div class="w12 h4">
+           		<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">欧洲柴油期货价格及裂解价差</span></div>
+	                <div id="chart8" class="qs_body"></div>
+                </div>
             </div>  
         </div>  
-        <div class="w4 h12" id = 'right'>
-        	<div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">\03</span><span class="qs_title2">CFTC持仓量</span></div>
-                <div id="chart3" class="qs_body"></div>
+        <div class="w4 h12">
+        	<div class="w12 h4">
+        		<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">CFTC持仓量</span></div>
+	                <div id="chart3" class="qs_body"></div>
+                </div>
             </div>
-            <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">\06</span><span class="qs_title2">主要原油标的价差</span></div>
-                <div id="chart6" class="qs_body"></div>
+            <div class="w12 h4">
+            	<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">主要原油标的价差</span></div>
+	                <div id="chart6" class="qs_body"></div>
+                </div>
             </div>
-           <div class="w12 h4 qpanel">
-                <div class="qs_header"><span class="qs_title1">\09</span><span class="qs_title2">全球各地裂解价差</span></div>
-                <div id="chart9" class="qs_body"></div>
+           <div class="w12 h4">
+           		<div class="qpanel">
+	                <div class="qs_header"><span class="qs_title1">&nbsp;</span><span class="qs_title2">全球各地裂解价差</span></div>
+	                <div id="chart9" class="qs_body"></div>
+                </div>
             </div>  
         </div>  
     </div>
