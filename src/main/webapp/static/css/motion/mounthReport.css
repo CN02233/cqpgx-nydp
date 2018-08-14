@@ -9,7 +9,7 @@
 }
 
 .tradePortrayalP2,.tradeAreaInfo,.tradeMarketInfo,.tradeAmountOrderInfo,.tradeAreaInfoChart{
-    width:500px;
+    width:100%;
 }
 
 .tradePortrayalP2{
@@ -113,7 +113,7 @@
 }
 
 .tradeAreaInfoChart{
-    height:190px;
+    height:calc(100% - 35px);
 }
 
 .tradeAmountOrderBarChart,.tradeAmountOrderPieChart{
@@ -146,8 +146,8 @@
 }
 
 .marketFtPriceChart{
-    width:498px;
-    height:169px;
+    width:100%;
+    height:calc(100% - 30px);
 }
 
 .tradeAmountOrderInfoBar{
@@ -165,8 +165,8 @@
 }
 
 .tradeTopInfoChart{
-    width:680px;
-    height:548px;
+    width:100%;
+    height:100%;
 }
 
 .tradeInfoMonthChart{

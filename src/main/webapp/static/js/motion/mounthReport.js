@@ -554,16 +554,18 @@ function initTradeAmountOrderChart(showType){
 
 
     if(showType=='liveness'){
-        $("#tradeAmountOrderBarChart").show();
-        $("#tradeAmountOrderPieChart").show();
+        $("#tradeAmountOrderInfos").show();
+        // $("#tradeAmountOrderBarChart").show();
+        // $("#tradeAmountOrderPieChart").show();
         $("#tradeAmountOrderPieChart").find("div").width("100%");
         $("#tradeAmountOrderPieChart").find("div").height("100%");
         $("#tradeAmountOrderPieChart").find("canvas").width("100%");
         $("#tradeAmountOrderPieChart").find("canvas").height("100%");
         $("#marketFtPriceChartArea").hide();
     }else{
-        $("#tradeAmountOrderBarChart").hide();
-        $("#tradeAmountOrderPieChart").hide();
+        // $("#tradeAmountOrderBarChart").hide();
+        // $("#tradeAmountOrderPieChart").hide();
+        $("#tradeAmountOrderInfos").hide();
         $("#marketFtPriceChartArea").show();
 
     }
@@ -1113,14 +1115,16 @@ function marketFtPriceChartChange(lngOrPng){
         });
 
         var echarOption = {
-            grid:{right:30,top:30,left:40,bottom:50},
+            // grid:{right:0,top:60,left:60,bottom:40},
+            // legend: {top:'bottom',left:'left',textStyle:{color:'white'},padding:[0,0,10,0],itemGap:80 ,data: grpNmsArray},
+            grid:{right:30,top:50,left:40,bottom:50},
             legend: {
                 textStyle:{
                     color:'white'
                 },
                 top:'bottom',
                 left:'left',
-                padding:[0,0,0,30],
+                padding:[0,0,10,30],
                 data:[{name:'成交总金额',icon:'roundRect'},{name:'成交总笔数',icon:'roundRect'}]
             },
             tooltip:{
